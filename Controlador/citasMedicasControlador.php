@@ -39,7 +39,7 @@ class citasMedicasControlador {
         $datos['titulo'] = "Editar Cita Medica";
         $this->modelo->setIdcitaMedica($_POST['idcitaMedica']);
         if (!isset($_POST['btnGuardar'])) {
-            $datos['citaMedica'] = $this->modelo->listarIdcitaMedica();
+            $datos['citaMedica'] = $this->modelo->listarIdCitaMedica();
             Vista::mostrar('editarCitaMedica', $datos);
         } else {
             $this->modelo->setIdCitaMedica($_POST['']);

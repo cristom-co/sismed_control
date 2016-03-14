@@ -43,7 +43,13 @@ class agendasMedicasControlador {
     
     public function listarHorasEmpleado() {
         $this->modelo->setIdEmpleado($_POST['idEmpleado']);
-        echo json_encode($this->modelo->listarHorasEmpleado());
+        $registros = $this->modelo->listarHorasEmpleado();
+        $hora;
+        foreach ($registros as $reg) {
+            $hora .= $reg['hora'] . " - ";
+        }
+        
+        echo $hora;
     }
     
     public function listarAgendaMedica() {

@@ -35,7 +35,7 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
                 </div>
             </div>
             <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                <button type="button" class="btn btn-info col-xs-12" data-toggle="modal" data-target="#modalRegistrarAgendaMedica">Crear Cita Medica</button>
+                <button type="button" class="btn btn-info col-xs-12" data-toggle="modal" data-target="#modalRegistrarCitaMedica">Crear Cita Medica</button>
             </div>
         </div>
         <div class="row" style="margin-top: 10px"></div>
@@ -50,7 +50,7 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
                         <thead>
                             <tr>
                                 <th>
-                                    Fecha Hora Registro
+                                    Registro
                                 </th>
                                 <th>
                                     Fecha
@@ -68,13 +68,19 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
                                     Estado
                                 </th>
                                 <th>
-                                    Id Beneficiario
+                                    Cedula
                                 </th>
                                 <th>
-                                    Id Consultorio
+                                    Beneficiario
                                 </th>
                                 <th>
-                                    Id Agenda Medica
+                                    Consultorio
+                                </th>
+                                <th>
+                                    Agenda
+                                </th>
+                                <th>
+                                    Doctor
                                 </th>
                                 <th class='text-center'>Acciones</th>
                             </tr>
@@ -90,37 +96,48 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
     </div><!-- /.container-fluid -->
 </div><!-- /#page-wrapper -->
 <?php Vista::mostrar('plantillas/_pie', $datos); ?>
-
 <script type="text/javascript">
-    $.post('<?php echo URL_BASE; ?>agendasMedicas/listarAgendasMedicas', {}, function (data) {
+    $.post('<?php echo URL_BASE; ?>citasMedicas/listarCitasMedicas', {}, function (data) {
         var datos = JSON.parse(data);
         var filas;
         var cont = 0;
         $.each(datos, function (i, v) {
             cont = cont + 1;
-            idEmpleado = v.empleados_idEmpleado;
             filas += "<tr>";
-            filas += "<td>" + v.numeroIdentificacionEmpleado + "</td>";
+            filas += "<td>" + v.fechaHoraRegistroCitaMedica + "</td>";
+            filas += "<td>" + v.fechaAgendaMedica + "</td>";
+            filas += "<td>" + v.hora + "</td>";
+            filas += "<td>" + v.duracionCitaMedica + "</td>";
+            filas += "<td>" + v.comentariosCitaMedica + "</td>";
+            filas += "<td>" + v.estadoCitaMedica + "</td>";
+            filas += "<td>" + v.numeroIdentificacionBeneficiario + "</td>"; //modifcar la consulta sql----------------------
+            filas += "<td>" + v.nombresBeneficiario + " "+ v.apellidosBeneficiario + "</td>";
+            filas += "<td>" + v.numeroConsultorio + "</td>";
+            filas += "<td>" + v.agendas_medicas_idAgendasMedica + "</td>";
             filas += "<td>" + v.nombresEmpleado + " " + v.apellidosEmpleado + "</td>";
             filas += "<td>";
+            filas += "<form action='<?php echo URL_BASE; ?>citasMedicas/editarCitaMedica' method='POST'>";
+            filas += "<button class='btn btn-xs btn-success' type='submit' name='btnEditarCitaMedica'><i class='fa fa-edit'></i></button>";
+            filas += "<input type='hidden' name='idCitaMedica' value='" + v.idCitaMedica + "'>";
+            filas += "</form>";
             filas += "</td>";
-            filas += "<td class='text-center'>";
-            filas += "<button class='btn btn-xs btn-danger' data-toggle='modal' data-target='#modalEliminarAgendaMedica" + cont + "' name='btnModalEliminarAgendaMedica'><i class='fa fa-close'></i></button>";
-            filas += "<div class = 'modal fade' id='modalEliminarAgendaMedica" + cont + "' tabindex = '-1' role = 'dialog'>";
+            filas += "<td>";
+            filas += "<button class='btn btn-xs btn-danger' data-toggle='modal' data-target='#modalEliminarCitaMedica" + cont + "' name='btnModalEliminarCitaMedica'><i class='fa fa-close'></i></button>";
+            filas += "<div class = 'modal fade' id='modalEliminarCitaMedica" + cont + "' tabindex = '-1' role = 'dialog'>";
             filas += "<div class='modal-dialog'>";
             filas += "<div class='modal-content'>";
             filas += "<div class='modal-header'>";
             filas += "<button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>";
-            filas += "<h4 class='modal-title'>Eliminar Agenda Medica</h4>";
+            filas += "<h4 class='modal-title'>Eliminar Cita Medica</h4>";
             filas += "</div>";
             filas += "<div class='modal-body'>";
             filas += "<p>¿Seguro que desea eliminar registro?</p>";
             filas += "</div>";
             filas += "<div class='modal-footer'>";
-            filas += "<form action='<?php echo URL_BASE; ?>agendasMedicas/eliminarAgendaMedica' method='POST'>";
+            filas += "<form action='<?php echo URL_BASE; ?>citasMedicas/eliminarCitaMedica' method='POST'>";
             filas += "<button type='button' class='btn btn-default' data-dismiss='modal'>Cancelar</button>";
-            filas += "<button class='btn btn-primary' type='submit' name='btnEliminarAgendaMedica'> Aceptar </button>";
-            filas += "<input type='hidden' name='idAgendaMedica' value='" + v.idAgendaMedica + "'>";
+            filas += "<button class='btn btn-primary' type='submit' name='btnEliminarCitaMedica'> Aceptar </button>";
+            filas += "<input type='hidden' name='idCitaMedica' value='" + v.idCitaMedica + "'>";
             filas += "</form>";
             filas += "</div>";
             filas += "</div>";
@@ -129,14 +146,13 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
             filas += "</td>";
             filas += "</tr>";
         });
-        $('#tblAgendaMedica tbody').html(filas);
+        $('#tblCitasMedicas tbody').html(filas);
     });
-</script>
-<script type="text/javascript">
-    //Revisar funcionamiento
+
+
     $('#btnBuscar').click(function () {
-        var AgendaMedica = $('#txtBuscar').val();
-        $.post('<?php echo URL_BASE; ?>agendaMedica/listarDocumentoEmpleado', {AgendaMedica: AgendaMedica}, function (data) {
+        var funcionario = $('#txtBuscar').val();
+        $.post('<?php echo URL_BASE; ?>funcionarios/listarDocumentoFuncionario', {funcionario: funcionario}, function (data) {
             var datos = JSON.parse(data);
             var cont = 0;
             if (datos != false) {
@@ -144,32 +160,42 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
                 $.each(datos, function (i, v) {
                     cont = cont + 1;
                     filas += "<tr>";
-                    filas += "<td>" + v.numeroIdentificacionEmpleado + "</td>";
-                    filas += "<td>" + v.nombresEmpleado + " " + v.apellidosEmpleado + "</td>";
-                    filas += "<td>" + horasDiarias + "</td>";
+                    filas += "<td>" + v.numeroIdentificacionFuncionario + "</td>";
+                    filas += "<td>" + v.tipoDocumento + "</td>";
+                    filas += "<td>" + v.nombresFuncionario + "</td>";
+                    filas += "<td>" + v.apellidosFuncionario + "</td>";
+                    filas += "<td>" + v.tipoGenero + "</td>";
+                    filas += "<td>" + v.fechaNacimientoFuncionario + "</td>";
+                    filas += "<td>" + v.nombreCentroFormacion + "</td>";
+                    filas += "<td>" + v.nombreRegional + "</td>";
+                    filas += "<td>" + v.direccionFuncionario + "</td>";
+                    filas += "<td>" + v.telefonoFuncionario + "</td>";
+                    filas += "<td>" + v.movilFuncionario + "</td>";
+                    filas += "<td>" + v.correoFuncionario + "</td>";
+                    filas += "<td>" + v.estadoFuncionario + "</td>";
                     filas += "<td>";
-                    filas += "<form action='<?php echo URL_BASE; ?>agendasMedicas/editarAgendaMedica' method='POST'>";
-                    filas += "<button class='btn btn-xs btn-success' type='submit' name='btnEditarAgendaMedica'><i class='fa fa-edit'></i></button>";
-                    filas += "<input type='hidden' name='idAgendaMedica' value='" + v.idAgendaMedica + "'>";
+                    filas += "<form action='<?php echo URL_BASE; ?>funcionarios/editarFuncionario' method='POST'>";
+                    filas += "<button class='btn btn-xs btn-success' type='submit' name='btnEditarFuncionario'><i class='fa fa-edit'></i></button>";
+                    filas += "<input type='hidden' name='idFuncionario' value='" + v.idFuncionario + "'>";
                     filas += "</form>";
                     filas += "</td>";
                     filas += "<td>";
-                    filas += "<button class='btn btn-xs btn-danger' data-toggle='modal' data-target='#modalEliminarAgendaMedica" + cont + "' name='btnModalEliminarAgendaMedica'><i class='fa fa-close'></i></button>";
-                    filas += "<div class = 'modal fade' id='modalEliminarAgendaMedica" + cont + "' tabindex = '-1' role = 'dialog'>";
+                    filas += "<button class='btn btn-xs btn-danger' data-toggle='modal' data-target='#modalEliminarFuncionario" + cont + "' name='btnModalEliminarFuncionario'><i class='fa fa-close'></i></button>";
+                    filas += "<div class = 'modal fade' id='modalEliminarFuncionario" + cont + "' tabindex = '-1' role = 'dialog'>";
                     filas += "<div class='modal-dialog'>";
                     filas += "<div class='modal-content'>";
                     filas += "<div class='modal-header'>";
                     filas += "<button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>";
-                    filas += "<h4 class='modal-title'>Eliminar Agenda Medica</h4>";
+                    filas += "<h4 class='modal-title'>Eliminar Funcionario</h4>";
                     filas += "</div>";
                     filas += "<div class='modal-body'>";
                     filas += "<p>¿Seguro que desea eliminar registro?</p>";
                     filas += "</div>";
                     filas += "<div class='modal-footer'>";
-                    filas += "<form action='<?php echo URL_BASE; ?>agendasMedicas/eliminarAgendaMedica' method='POST'>";
+                    filas += "<form action='<?php echo URL_BASE; ?>funcionarios/eliminarFuncionario' method='POST'>";
                     filas += "<button type='button' class='btn btn-default' data-dismiss='modal'>Cancelar</button>";
-                    filas += "<button class='btn btn-primary' type='submit' name='btnEliminarAgendaMedica'> Aceptar </button>";
-                    filas += "<input type='hidden' name='idAgendaMedica' value='" + v.idAgendaMedica + "'>";
+                    filas += "<button class='btn btn-primary' type='submit' name='btnEliminarFuncionario'> Aceptar </button>";
+                    filas += "<input type='hidden' name='idFuncionario' value='" + v.idFuncionario + "'>";
                     filas += "</form>";
                     filas += "</div>";
                     filas += "</div>";
@@ -187,4 +213,5 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
         });
     });
 </script>
-<?php Vista::mostrar('registrarAgendaMedica', $datos); ?>
+
+<?php Vista::mostrar('registrarCitaMedica', $datos); ?>

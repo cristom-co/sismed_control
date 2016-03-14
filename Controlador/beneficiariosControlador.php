@@ -39,7 +39,7 @@ class beneficiariosControlador {
             $datos['mensaje'] = "No se inserto Beneficiario";
         }
         $datos['titulo'] = "Beneficiarios";
-        Vista::mostrar('Beneficiarios', $datos);
+        Vista::mostrar('beneficiarios', $datos);
     }
 
     public function listarBeneficiarios() {

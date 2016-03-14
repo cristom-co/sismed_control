@@ -38,7 +38,7 @@ class funcionariosControlador {
             $datos['mensaje'] = "No se inserto Funcionario";
         }
         $datos['titulo'] = "Funcionarios";
-        Vista::mostrar('Funcionarios', $datos);
+        Vista::mostrar('funcionarios', $datos);
     }
 
     public function listarFuncionarios() {

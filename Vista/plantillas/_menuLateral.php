@@ -60,7 +60,7 @@
             <a href="javascript:;" data-toggle="collapse" data-target="#citasMedicas"><i class="fa fa-calendar-o fa-2x"> </i>  Citas Medicas <i class="fa fa-fw fa-caret-down"></i></a>
             <ul id="citasMedicas" class="collapse">
                 <li>
-                    <a href="#">Citas medicas</a>
+                    <a href="<?php echo URL_BASE; ?>citasMedicas/citas">Citas medicas</a>
                 </li>
                 <li>
                     <a href="<?php echo URL_BASE; ?>agendasMedicas/agenda">Agendas medicas</a>
