@@ -29,9 +29,9 @@ class agendasMedicasControlador {
             $registro = $this->modelo->insertarAgendaMedica();
         }
         if ($registro) {
-            $datos['mensaje'] = "Se inserto Agenda Medica correctamente$a";
+            $datos['mensaje'] = "Se inserto Agenda Medica correctamente";
         } else {
-            $datos['mensaje'] = "No se inserto Agenda Medica$a";
+            $datos['mensaje'] = "No se inserto Agenda Medica";
         }
         $datos['titulo'] = "Agendas Medicas";
         Vista::mostrar('AgendasMedicas', $datos);
@@ -40,33 +40,28 @@ class agendasMedicasControlador {
     public function listarAgendasMedicas() {
         echo json_encode($this->modelo->listarAgendasMedicas(), TRUE);
     }
-    
+
     public function listarHorasEmpleado() {
         $this->modelo->setIdEmpleado($_POST['idEmpleado']);
-        $registros = $this->modelo->listarHorasEmpleado();
-        $hora;
-        foreach ($registros as $reg) {
-            $hora .= $reg['hora'] . " - ";
-        }
-        
-        echo $hora;
+        echo json_encode($this->modelo->listarHorasEmpleado(), TRUE);
     }
-    
-    public function listarAgendaMedica() {
-        $this->modelo->setIdAgendaMedica($_POST['IdAgendaMedica']);
-        echo json_encode($this->modelo->listarDocumentoAgendaMedi(), TRUE);
+
+    public function listarAgendaEmpleado() {
+        $this->modelo->setNumeroIdentificacionEmpleado($_POST['identificacionEmpleado']);
+        echo json_encode($this->modelo->listarAgendaEmpleado(), TRUE);
     }
 
     public function eliminarAgendaMedica() {
-        $this->modelo->setIdAgendaMedica($_POST['idAgendaMedica']);
+        $this->modelo->setIdEmpleado($_POST['idEmpleado']);
+        $this->modelo->setFechaAgendaMedica($_POST['fecha']);
         $registro = $this->modelo->eliminarAgendaMedica();
         if ($registro) {
             $datos['mensaje'] = "Registro eliminado correctamente";
         } else {
             $datos['mensaje'] = "Error al eliminar registro";
         }
-        $datos['titulo'] = "AgendaMedicas";
-        Vista::mostrar('AgendaMedicas', $datos);
+        $datos['titulo'] = "Agendas Medicas";
+        Vista::mostrar('AgendasMedicas', $datos);
     }
 
 }

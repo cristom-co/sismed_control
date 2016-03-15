@@ -56,3 +56,30 @@
     </div>
 </div>
 
+<script>
+        //Listar los consultorios existentes
+    $.post('<?php echo URL_BASE; ?>consultorios/listarConsultorios', {}, function (data) {
+        var datos = JSON.parse(data);
+        $.each(datos, function (i, v) {
+            $('').append('<option value="' + v.idConsultorio + '">' + v.numeroConsultorio + '</option>');
+        });
+    });
+    
+    //Listar los doctores existentes
+    $.post('<?php echo URL_BASE; ?>empleados/listarEmpleados', {}, function (data) {
+        var datos = JSON.parse(data);
+        $.each(datos, function (i, v) {
+            $('').append('<option value="' + v.idEmpleado + '">' + v.nombresEmpleado +" "+ v.apellidosEmpleado+'</option>');
+        });
+    });
+    
+    //Listar las horas disponible por doctor y fecha
+    //select * from agendas_medicas where idEmpleado = valor and fechaAgendaMedica = valor
+    //inner join hora_20 on idhora_20 = hora_20_idhora_20;
+    $.post('<?php echo URL_BASE; ?>empleados/listarEmpleados', {}, function (data) {
+        var datos = JSON.parse(data);
+        $.each(datos, function (i, v) {
+            $('').append('<option value="' + v.idhora_20 + '">' + v.hora +'</option>');
+        });
+    });
+</script>

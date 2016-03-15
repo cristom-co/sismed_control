@@ -30,6 +30,10 @@
 <!--<script src="<?php echo URL_BASE; ?>Vista/js/plugins/morris/morris-data.js"></script>-->
 <script type="text/javascript">
     $('#modalMensaje').modal('show');
+    
+    // $('#btnAtras').click(function(event){
+    //     event.preventDefault();
+    // });
 </script>
 </body>
 </html>

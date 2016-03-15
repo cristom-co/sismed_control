@@ -40,7 +40,7 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
             <button type="submit" class="btn btn-primary" name="btnGuardar" id="btnGuardar"> GUARDAR </button>
             <button class="btn btn-primary" name="btnAtras" id="btnAtras"><a style="text-decoration: none;color:#fff" href="<?php echo URL_BASE . 'roles/roles'; ?>">ATRAS</a></button>
         </form>
-        <div class="row" style="margin-top: 40%"></div>
+        
     </div><!-- /.container-fluid -->
 </div><!-- /#page-wrapper -->
 <?php Vista::mostrar('plantillas/_pie'); ?>

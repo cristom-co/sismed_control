@@ -61,6 +61,5 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
 </div><!-- /#page-wrapper -->
 <?php Vista::mostrar('plantillas/_pie'); ?>
 <script type="text/javascript">
-    
 </script>
 
