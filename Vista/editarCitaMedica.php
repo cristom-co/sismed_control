@@ -48,8 +48,8 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="">Horas programada: <?php echo $citaMedica[0]['hora']; ?></label>
-                        <select class="form-control" name="" id="" required>
+                        <label for="cmbHoras">Horas programada: <?php echo $citaMedica[0]['hora']; ?></label>
+                        <select class="form-control" name="cmbHoras" id="cmbHoras" required>
                             <option value="">Seleccione una Hora Disponible</option>
                         </select>                    
                     </div>

@@ -77,9 +77,6 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
                                     Consultorio
                                 </th>
                                 <th>
-                                    Agenda
-                                </th>
-                                <th>
                                     Doctor
                                 </th>
                                 <th class='text-center'>Acciones</th>
@@ -101,6 +98,7 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
         var datos = JSON.parse(data);
         var filas;
         var cont = 0;
+        var estadoCita;
         $.each(datos, function (i, v) {
             cont = cont + 1;
             filas += "<tr>";
@@ -109,11 +107,28 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
             filas += "<td>" + v.hora + "</td>";
             filas += "<td>" + v.duracionCitaMedica + "</td>";
             filas += "<td>" + v.comentariosCitaMedica + "</td>";
-            filas += "<td>" + v.estadoCitaMedica + "</td>";
+            switch (v.estadoCitaMedica) {
+                case '1':
+                    estadoCita = "Asignada";
+                    break;
+                case '2':
+                    estadoCita = "En progreso";
+                    break;
+                case '3':
+                    estadoCita = "Cancelada";
+                    break;
+                case '4':
+                    estadoCita ="Atendida";
+                    break;
+                case '5':
+                    estadoCita ="Perdida";
+                    break;
+            }
+            filas += "<td>" + estadoCita + "</td>";
             filas += "<td>" + v.numeroIdentificacionBeneficiario + "</td>";
             filas += "<td>" + v.nombresBeneficiario + " "+ v.apellidosBeneficiario + "</td>";
             filas += "<td>" + v.numeroConsultorio + "</td>";
-            filas += "<td>" + v.agendas_medicas_idAgendasMedica + "</td>";
+            //filas += "<td>" + v.agendas_medicas_idAgendasMedica + "</td>";
             filas += "<td>" + v.nombresEmpleado + " " + v.apellidosEmpleado + "</td>";
             filas += "<td>";
             filas += "<form action='<?php echo URL_BASE; ?>citasMedicas/editarCitaMedica' method='POST'>";
