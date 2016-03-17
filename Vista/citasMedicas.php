@@ -110,7 +110,7 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
             filas += "<td>" + v.duracionCitaMedica + "</td>";
             filas += "<td>" + v.comentariosCitaMedica + "</td>";
             filas += "<td>" + v.estadoCitaMedica + "</td>";
-            filas += "<td>" + v.numeroIdentificacionBeneficiario + "</td>"; //modifcar la consulta sql----------------------
+            filas += "<td>" + v.numeroIdentificacionBeneficiario + "</td>";
             filas += "<td>" + v.nombresBeneficiario + " "+ v.apellidosBeneficiario + "</td>";
             filas += "<td>" + v.numeroConsultorio + "</td>";
             filas += "<td>" + v.agendas_medicas_idAgendasMedica + "</td>";
@@ -118,7 +118,7 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
             filas += "<td>";
             filas += "<form action='<?php echo URL_BASE; ?>citasMedicas/editarCitaMedica' method='POST'>";
             filas += "<button class='btn btn-xs btn-success' type='submit' name='btnEditarCitaMedica'><i class='fa fa-edit'></i></button>";
-            filas += "<input type='hidden' name='idCitaMedica' value='" + v.idCitaMedica + "'>";
+            filas += "<input type='hidden' name='idCitaMedica' value='" + v.idCitaMedica  + "'>";
             filas += "</form>";
             filas += "</td>";
             filas += "<td>";

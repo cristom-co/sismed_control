@@ -45,7 +45,13 @@ class agendasMedicasControlador {
         $this->modelo->setIdEmpleado($_POST['idEmpleado']);
         echo json_encode($this->modelo->listarHorasEmpleado(), TRUE);
     }
-
+    
+    public function listarHorasAgenda() {
+        $this->modelo->setNumeroIdentificacionEmpleado($_POST['identificacionEmpleado']);
+        $this->modelo->setFechaAgendaMedica($_POST['fecha']);
+        echo json_encode($this->modelo->listarHorasAgenda(), TRUE); 
+    }
+    
     public function listarAgendaEmpleado() {
         $this->modelo->setNumeroIdentificacionEmpleado($_POST['identificacionEmpleado']);
         echo json_encode($this->modelo->listarAgendaEmpleado(), TRUE);

@@ -46,7 +46,27 @@ class CitasMedicas {
     }
     
     public function listarIdCitaMedica(){
-        $sql ="SELECT * FROM citas_medicas WHERE idCitaMedica = '{$this->getIdCitaMedica()}'";
+        $sql ="SELECT idCitaMedica, 
+           fechaHoraRegistroCitaMedica, 
+           am.fechaAgendaMedica, 
+           hs.hora, 
+           duracionCitaMedica,
+           comentariosCitaMedica, 
+           estadoCitaMedica, 
+           numeroIdentificacionBeneficiario,
+           nombresBeneficiario, 
+           apellidosBeneficiario, 
+           numeroConsultorio,
+           ct.agendas_medicas_idAgendasMedica,
+           nombresEmpleado, 
+           apellidosEmpleado
+        FROM citas_medicas ct
+        INNER JOIN beneficiarios b ON b.idBeneficiario = ct.beneficiarios_idBeneficiario
+        INNER JOIN consultorios c ON c.idConsultorio = ct.consultorios_idConsultorio
+        INNER JOIN agendas_medicas am ON am.idAgendaMedica = ct.agendas_medicas_idAgendasMedica
+        INNER JOIN empleados e ON e.idEmpleado = am.empleados_idEmpleado
+        INNER JOIN hora_20 hs ON hs.idhora_20 = am.hora_20_idhora_20
+        WHERE idCitaMedica = '{$this->getIdCitaMedica()}'";
         return $this->conexion->consulta($sql);
     }
 

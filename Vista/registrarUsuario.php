@@ -49,7 +49,7 @@
     $.post('<?php echo URL_BASE; ?>empleados/listarEmpleados', {}, function (data) {
         var datos = JSON.parse(data);
         $.each(datos, function (i, v) {
-            $('#cmbIdentificacionEmpleado').append('<option value="' + v.idEmpleado + '">' + v.numeroIdentificacionEmpleado + '</option>');
+            $('#cmbIdentificacionEmpleado').append('<option value="' + v.idEmpleado + '">' + v.numeroIdentificacionEmpleado + ' - ' + v.nombresEmpleado + ' ' + v.apellidosEmpleado + '</option>');
         });
     });
 

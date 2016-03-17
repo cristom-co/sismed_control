@@ -44,13 +44,14 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
                 <label for="cmbRegionales">Regional</label>
                 <select class="form-control" name="cmbRegionales" id="cmbRegionales">
                     <option value="<?php echo $centroFormacion[0]['regionales_idRegional']; ?>"><?php echo $centroFormacion[0]['nombreRegional']; ?></option>
-                    
+
                 </select>
             </div>
             <button type="submit" class="btn btn-primary" name="btnGuardar" id="btnGuardar"> GUARDAR </button> 
-            <button class="btn btn-primary" name="btnAtras" id="btnAtras"><a style="text-decoration: none;color:#fff" href="<?php echo URL_BASE . 'centrosFormacion/centrosFormacion'; ?>">ATRAS</a></button>
+            <button type="button" class="btn btn-primary" name="btnAtras" id="btnAtras"><a style="text-decoration: none;color:#fff" href="<?php echo URL_BASE . 'centrosFormacion/centrosFormacion'; ?>">ATRAS</a></button>
             <input type="hidden" name="idCentroFormacion" value="<?php echo $centroFormacion[0]['idCentroFormacion']; ?>">
         </form>
+        
     </div><!-- /.container-fluid -->
 </div><!-- /#page-wrapper -->
 <?php Vista::mostrar('plantillas/_pie'); ?>
