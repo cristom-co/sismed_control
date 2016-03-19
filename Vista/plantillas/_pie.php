@@ -31,9 +31,9 @@
 <script type="text/javascript">
     $('#modalMensaje').modal('show');
     
-    // $('#btnAtras').click(function(event){
-    //     event.preventDefault();
-    // });
+    $('#btnAtras').click(function () {
+        history.back();
+    });
 </script>
 </body>
 </html>

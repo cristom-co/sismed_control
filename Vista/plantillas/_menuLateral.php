@@ -86,7 +86,7 @@
                     <a href="#">Diagnosticos</a>
                 </li>
                 <li>
-                    <a href="#">Formulas médicas</a>
+                    <a href="<?php echo URL_BASE; ?>formulasMedicas/formulas">Formulas médicas</a>
                 </li>
             </ul>
         </li>

@@ -131,6 +131,12 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
             //filas += "<td>" + v.agendas_medicas_idAgendasMedica + "</td>";
             filas += "<td>" + v.nombresEmpleado + " " + v.apellidosEmpleado + "</td>";
             filas += "<td>";
+            filas += "<form action='<?php echo URL_BASE; ?>' method='POST'>";
+            filas += "<button class='btn btn-xs btn-warning' type='submit' name='btnEditarCitaMedica'><i class='fa fa-stethoscope'></i></button>";
+            filas += "<input type='hidden' name='idCitaMedica' value='" + v.idCitaMedica  + "'>";
+            filas += "</form>";
+            filas += "</td>";
+            filas += "<td>";
             filas += "<form action='<?php echo URL_BASE; ?>citasMedicas/editarCitaMedica' method='POST'>";
             filas += "<button class='btn btn-xs btn-success' type='submit' name='btnEditarCitaMedica'><i class='fa fa-edit'></i></button>";
             filas += "<input type='hidden' name='idCitaMedica' value='" + v.idCitaMedica  + "'>";

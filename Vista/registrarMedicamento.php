@@ -13,7 +13,7 @@
                         <input type="text" id="txfCodigoMedicamento" name="txfCodigoMedicamento" class="form-control" placeholder="Codigo" required>
                     </div>
                     <div class="form-group">
-                        <label for="txfNombreGenericoMedicamento">Celular</label>
+                        <label for="txfNombreGenericoMedicamento">Nombre Generico</label>
                         <input type="text" id="txfNombreGenericoMedicamento" name="txfNombreGenericoMedicamento" class="form-control" placeholder="Nombre Generico" required>
                     </div>
                     <div class="form-group">
