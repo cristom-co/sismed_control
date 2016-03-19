@@ -68,27 +68,7 @@
             </ul>
         </li>
         <li>
-            <a href="javascript:;" data-toggle="collapse" data-target="#atencionMedica"><i class="fa fa-heart-o fa-2x"></i> Atención Médica <i class="fa fa-fw fa-caret-down"></i></a>
-            <ul id="atencionMedica" class="collapse">
-                <li>
-                    <a href="#">Consultar Historia C.</a>
-                </li>
-                <li>
-                    <a href="<?php echo URL_BASE; ?>enfermedades/enfermedades">Enfermedades</a>
-                </li>
-                <li>
-                    <a href="#">Episodios</a>
-                </li>
-                <li>
-                    <a href="#">Ordenes</a>
-                </li>
-                <li>
-                    <a href="#">Diagnosticos</a>
-                </li>
-                <li>
-                    <a href="<?php echo URL_BASE; ?>formulasMedicas/formulas">Formulas médicas</a>
-                </li>
-            </ul>
+            <a href="<?php echo URL_BASE; ?>consultas/consulta"><i class="fa fa-building-o fa-2x"></i> Consultas Medicas </a>
         </li>
     </ul>
 </div>

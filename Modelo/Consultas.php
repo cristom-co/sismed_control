@@ -1,6 +1,6 @@
 <?php
 
-class Consultas{
+class Consultas {
     
     private $conexion;
     private $idCitaMedica;
