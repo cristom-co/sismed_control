@@ -56,7 +56,7 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
                 <form method="POST" action="<?php echo URL_BASE . 'consulta/'; ?>">
                     <div class="form-group">
                         <label for="txf">Descripcion: </label>
-                        <input type="text" id="txf" name="txf" class="form-control" placeholder="" required>
+                        <textarea class="form-control" rows="5" id=""></textarea>
                     </div>
                     <div class="form-group">
                         <label for="txf">Enfermedad: </label>
@@ -104,8 +104,8 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
                 
                 <form method="POST" action="<?php echo URL_BASE . 'consulta/'; ?>">
                     <div class="form-group">
-                        <label for="txf">Observaciones: </label>
-                        <input type="text" id="txf" name="txf" class="form-control" placeholder="" required>
+                        <label for="">Observaciones: </label>
+                        <textarea class="form-control" rows="5" id=""></textarea>
                     </div>
                     <div class="form-group">
                         <label for="txf">Posologia: </label>
@@ -114,7 +114,7 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
                     <button type="submit" class="btn btn-primary" name="btnRegistrarFuncionario" id="btnRegistrarFuncionario"> ENVIAR </button>
                 </form>
                 
-                <button class="btn btn-primary" style="">Agregar Medicamento</button>
+                <button class="btn btn-primary" style="margin-top:20px;">Agregar Medicamento</button>
                 <div class="table-responsive">
                     <table id="tblMedicamentos" class="table table-condensed table-hover">
                         <thead>

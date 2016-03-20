@@ -147,7 +147,7 @@ class Consultas {
         return $this->conexion->consultaSimple($sql);
     }
     
-    public function listarOrden (){
+    public function listarOrdenes (){
         $sql="SELECT idOrden, fechaHoraOrden, cantidadOrden, observacionOrden, 
         tipos_ordenes_idTipoOrden, diagnosticos_idDiagnostico, cups_idCup 
         FROM ordenes WHERE diagnosticos_idDiagnostico = '{$this->getIdDiagnostico()}'"; 

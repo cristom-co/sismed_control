@@ -68,7 +68,7 @@
             </ul>
         </li>
         <li>
-            <a href="<?php echo URL_BASE; ?>consultas/consulta"><i class="fa fa-building-o fa-2x"></i> Consultas Medicas </a>
+            <a href="<?php echo URL_BASE; ?>consultas/consulta"><i class="fa fa-stethoscope fa-2x"></i> Consultas Medicas </a>
         </li>
     </ul>
 </div>
