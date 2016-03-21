@@ -134,6 +134,7 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
             filas += "<form action='<?php echo URL_BASE; ?>consultas/consulta' method='POST'>";
             filas += "<button class='btn btn-xs btn-warning' type='submit' name='btnConstulaCitaMedica'><i class='fa fa-stethoscope'></i></button>";
             filas += "<input type='hidden' name='idCitaMedica' value='" + v.idCitaMedica  + "'>";
+            filas += "<input type='hidden' name='idBeneficiario' value ='"+v.idBeneficiario+"'>"; //idBeneficiario para la insercion del episodio
             filas += "</form>";
             filas += "</td>";
             filas += "<td>";

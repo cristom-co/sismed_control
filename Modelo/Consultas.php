@@ -14,7 +14,7 @@ class Consultas {
     private $anamnesisEpisodio;
     private $exploracionEpisodio;
     #--idCitaMedica
-    private $idHistoriaClinica;
+    #--idHistoriaClinica;
     
     //Tabla diagnosticos
     private $idDiagnostico;
@@ -44,6 +44,13 @@ class Consultas {
     #--idMedicamento
     private $cantidadMedicamento;
     private $dosificacionMedicamento;
+    
+    //Tabla historias clinicas
+    private $idHistoriaClinica;
+    private $fechaAperturaHistoria;
+    private $estadoHistoria;
+    private $idBeneficiario;
+    
     
     public function __construct() {
         $this->conexion = new Conexiones();
@@ -223,8 +230,10 @@ class Consultas {
     }
     
     public function listarMedicamentosFormula(){
-        $sql="SELECT * FROM medicamentos_formulas 
-        WHERE formulas_medicas_idFormulaMedica = '{$this->getIdFormulaMedica()}'";
+        $sql="SELECT *
+        FROM medicamentos_formulas mf 
+        INNER JOIN medicamentos m ON m.idMedicamento = mf.medicamentos_idMedicamento
+        WHERE formulas_medicas_idFormulaMedica = '{$this->getIdFormulaMedica()}' ";
         return $this->conexion->consulta($sql);
     }
     
@@ -242,6 +251,16 @@ class Consultas {
         $sql="DELETE FROM medicamentos_formulas 
         WHERE idMedicamentoFormula = '{$this->getIdMedicamentoFormula()}'";
         return $this->conexion->consultaSimple($sql);
+    }
+    
+    //--------------------------------------------------------------------------
+    //HISTORIAS CLINICAS
+    //--------------------------------------------------------------------------
+    public function listarHistoriaClinica (){
+        $sql="SELECT idHistoriaClinica, fechaAperturaHistoriaClinica, 
+        estadoHistoriaClinica, beneficiarios_idBeneficiario 
+        FROM historias_clinicas 
+        WHERE beneficiarios_idBeneficiario = '{$this->getIdBeneficiario()}'";
     }
     
     //--------------------------------------------------------------------------
@@ -319,6 +338,9 @@ class Consultas {
      function getPresionArterialEpisodio() {
         return $this->presionArterialEpisodio;
     }
+    function getIdBeneficiario(){
+        return $this->idBeneficiario;
+    }
     function setIdCitaMedica($idCitaMedica) {
         $this->idCitaMedica = $idCitaMedica;
     }
@@ -390,5 +412,8 @@ class Consultas {
     }
     function setPresionArterialEpisodio($presionArterialEpisodio) {
         $this->presionArterialEpisodio = $presionArterialEpisodio;
+    }
+    function setIdBeneficiario ($idBeneficiario){
+        $this->idBeneficiario = $idBeneficiario;
     }
 }

@@ -78,6 +78,7 @@ class CitasMedicas {
            duracionCitaMedica,
            comentariosCitaMedica, 
            estadoCitaMedica, 
+           b.idBeneficiario,
            numeroIdentificacionBeneficiario,
            nombresBeneficiario, 
            apellidosBeneficiario, 
