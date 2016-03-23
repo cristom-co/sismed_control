@@ -53,7 +53,13 @@ class citasMedicasControlador {
             $datos['citaMedica'] = $this->modelo->listarIdCitaMedica(); 
             Vista::mostrar('editarCitaMedica', $datos);
         } else {
+            
             $this->modelo->setIdCitaMedica($_POST['idCitaMedica']);
+            $this->modelo->setComentariosCitaMedica($_POST['txfComentario']);
+            $this->modelo->setIdBeneficarios($_POST['cmbBeneficiario']);
+            $this->modelo->setIdConsultorio($_POST['cmbConsultorio']);
+            $this->modelo->setIdAgendaMedica($_POST['cmbHoraCita']);
+            
             $registro = $this->modelo->editarCitaMedica();
             if ($registro) {
                 $datos['mensaje'] = "Cita Medica Editado correctamente";

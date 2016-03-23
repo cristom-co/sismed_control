@@ -28,7 +28,7 @@
 <script src="<?php echo URL_BASE; ?>Vista/js/plugins/morris/raphael.min.js"></script>
 
 <!-- DateTimePicker -->
-<script src="<?php echo URL_BASE; ?>Vista/js/jquery.datetimepicker.full.min.js"></script>-->
+<script src="<?php echo URL_BASE; ?>Vista/js/jquery.datetimepicker.full.min.js"></script>
 
 <script type="text/javascript">
     $('#modalMensaje').modal('show');

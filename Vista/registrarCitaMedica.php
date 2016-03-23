@@ -20,11 +20,11 @@
                             <option value="">Seleccione un medico</option>
                         </select>
                     </div>
-                     <div class="form-group">
+                     <div class="form-group col-xs-6">
                         <label for="txfFechaCita">Fecha:</label>
                         <input type="text" name="txfFechaCita" id="txfFechaCita" class="form-control" placeholder="Seleccione fecha" required disabled>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group col-xs-6">
                         <label for="cmbHoraCita">Horas Disponibles:</label>
                          <select class="form-control" name="cmbHoraCita" id="cmbHoraCita" required disabled>
                             <option value="">Seleccione Hora</option>
@@ -96,11 +96,11 @@ $('#txfFechaCita').change(function (){
     var fecha = $(this).val();
     var idEmpleado = $('#cmbEmpleado').val();
     $('#cmbHoraCita').removeAttr('disabled');
-    $('#cmbHoraCita').removeAttr('disabled');
+    $('.fuera').remove();
     $.post('<?php echo URL_BASE; ?>agendasMedicas/listarHorasDisponibles', {fecha:fecha, idEmpleado:idEmpleado}, function (data) { 
         var datos = JSON.parse(data);
         $.each(datos, function (i, v) {
-            $('#cmbHoraCita').append('<option value="' + v.idAgendaMedica + '">' + v.hora + '</option>')
+            $('#cmbHoraCita').append('<option class="fuera" value="' + v.idAgendaMedica + '">' + v.hora + '</option>')
         });
     });
 });

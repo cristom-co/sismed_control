@@ -18,7 +18,9 @@ class Consultorios {
     }
 
     public function listarConsultorios() {
-        $sql = "SELECT idConsultorio, numeroConsultorio FROM consultorios;";
+        $sql = "SELECT idConsultorio, numeroConsultorio,  
+            FROM consultorios c
+            INNER JOIN centros_formacion cf ON cf.idCentroFormacion = c.centros_formacion_idCentroFormacion;";
 
         return $this->conexion->consulta($sql);
     }

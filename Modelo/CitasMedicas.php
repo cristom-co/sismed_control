@@ -119,22 +119,18 @@ class CitasMedicas {
     }    
 
     public function editarCitaMedica() {
-        $sql = "UPDATE citas_medicas SET "
-                . "fechaCitaMedica=''{$this->getFechaCitaMedica()}',"
-                . "horaCitaMedica='{$this->getHoraCitaMedica()}',"
-                ."duracionCitaMedica = '{$this->getDuracionCitaMedica()}',"
-                . "comentariosCitaMedica = '{$this->getComentariosCitaMedica()}'"
-                . "consultorios_idConsultorio = '{$this->getIdConsultorio()}'"
-                . "estadoCitaMedica='{$this->getEstadoCitaMedica()}',"
-                . "agendas_medicas_idAgendasMedica='{$this->getIdAgendaMedica()}'"
-                . " WHERE idCitaMedica = '{$this->getIdCitaMedica()}'";
+        $sql = "UPDATE citas_medicas SET 
+            comentariosCitaMedica='{$this->getComentariosCitaMedica()}',
+            estadoCitaMedica='{$this->getEstadoCitaMedica()}',
+            consultorios_idConsultorio='{$this->getIdConsultorio()}',
+            agendas_medicas_idAgendasMedica='{$this->getIdAgendaMedica()}' 
+            WHERE idCitaMedica='{$this->getIdCitaMedica()}'";
         return $this->conexion->consultaSimple($sql);
     }
     
 
     public function eliminarCitaMedica() {
         $sql = "DELETE FROM citas_medicas WHERE idCitaMedica = '{$this->getIdCitaMedica()}'";
-
         return $this->conexion->consultaSimple($sql);
     }
 

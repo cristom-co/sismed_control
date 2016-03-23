@@ -77,7 +77,7 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
                                     Consultorio
                                 </th>
                                 <th>
-                                    Doctor
+                                    Médico
                                 </th>
                                 <th colspan="3" class='text-center'>Acciones</th>
                             </tr>

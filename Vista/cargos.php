@@ -22,6 +22,25 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
                 <img src="<?php echo URL_BASE; ?>Vista/img/logo2.png" alt="" class="img-responsive" style="max-widht:150px; max-height:150px;">
             </div>
         </div>
+        
+            <div class="row">
+            <div class="col-md-12">
+
+            <div class=" col-md-offset-3 col-md-6 col-md-offset-3">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-5">
+                                <i class="fa fa-user-md fa-5x"></i>
+                            </div>
+                            <div class="col-xs-7 text-right">
+                               <div class="huge">Cargos</div>
+                               <div>Modulo: Usuarios</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         <div class="row" style="margin-top: 5%"></div>
 

@@ -8,7 +8,6 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
     <div class="container-fluid fondoFluid" id="formArea">
         <!-- encabezado wrapper -->
         <?php Vista::mostrar('plantillas/_eslogan'); ?>
-        
         <div>   
           <!-- Nav tabs -->
           <ul class="nav nav-tabs" role="tablist">
@@ -82,19 +81,7 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
                     <button type="submit" class="btn btn-primary" name="btnRegistrarDiagnostico" id="btnRegistrarDiagnostico"> ENVIAR </button>
                 </form>
             </div>
-            <script type="text/javascript">
-                $.post('<?php echo URL_BASE; ?>enfermedades/listarEnfermedades',function (data) {
-                    var datos = JSON.parse(data);
-                    
-                    $.each(datos, function (i, v) {
-                        $('#cmbEnfermedad').append('<option value="' + v.idEnfermedad + '">' + v.nombreEnfermedad + '</option>');
-                    });
-                });
-            </script>
-            <script type="text/javascript">
-                
-            </script><!-- consulta el id del diagnostico mediante el id del episodio creado anteriomente -->
-            <!------------------------------------------------------------------------------------------------------------------------------------------------->
+           
             <!-- Tab para las ordenes ------------------------------------------------------------------------------------------------------------------------->
             
             <div role="tabpanel" class="tab-pane" id="Ordenes">
@@ -129,60 +116,11 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
                     </table>
                 </div>
             </div>
-            <script type="text/javascript" src="">
-            $.post('<?php echo URL_BASE; ?>consultas/listarOrdenes', {idDiagnostico:''}, function (data) {
-                var datos = JSON.parse(data);
-                var filas;
-                var cont = 0;
-                $.each(datos, function (i, v) {
-                    cont = cont + 1;
-                    filas += "<tr>";
-                    filas += "<td>" + v.fechaHoraOrden +"</td>";
-                    filas += "<td>" + v.cantidad +"</td>";
-                    filas += "<td>" + v.observacionOrden +"</td>";
-                    filas += "<td>" + v.tipoOrden +"</td>";
-                    filas += "<td>" + v.diagnosticos_idDiagnostico +"<td>";
-                    filas += "<td>" + v.codigoCup +"</td>";
-                    filas += "<td>";
-                    filas += "<form action='<?php echo URL_BASE; ?>consultas/editarOrden' method='POST'>";
-                    filas += "<button class='btn btn-xs btn-success' type='submit' name='btnEditarOrden'><i class='fa fa-edit'></i></button>";
-                    filas += "<input type='hidden' name='idOrden' value='" + v.idOrden + "'>";
-                    filas += "</form>";
-                    filas += "</td>";
-                    filas += "<td>";
-                    filas += "<button class='btn btn-xs btn-danger' data-toggle='modal' data-target='#modalEliminarOrden" + cont + "' name='btnModalEliminarOrden'><i class='fa fa-close'></i></button>";
-                    filas += "<div class = 'modal fade' id='modalEliminarOrden" + cont + "' tabindex = '-1' role = 'dialog'>";
-                    filas += "<div class='modal-dialog'>";
-                    filas += "<div class='modal-content'>";
-                    filas += "<div class='modal-header'>";
-                    filas += "<button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>";
-                    filas += "<h4 class='modal-title'>Eliminar Orden</h4>";
-                    filas += "</div>";
-                    filas += "<div class='modal-body'>";
-                    filas += "<p>¿Seguro que desea eliminar registro?</p>";
-                    filas += "</div>";
-                    filas += "<div class='modal-footer'>";
-                    filas += "<form action='<?php echo URL_BASE; ?>consultas/eliminarOrden' method='POST'>";
-                    filas += "<button type='button' class='btn btn-default' data-dismiss='modal'>Cancelar</button>";
-                    filas += "<button class='btn btn-primary' type='submit' name='btnEliminarOrden'> Aceptar </button>";
-                    filas += "<input type='hidden' name='idOrden' value='" + v.idOrden + "'>";
-                    filas += "</form>";
-                    filas += "</div>";
-                    filas += "</div>";
-                    filas += "</div>";
-                    filas += "</div>";
-                    filas += "</td>";
-                    filas += "</tr>";
-                });
-                $('#tblMedicamentos tbody').html(filas);
-            });
-            </script>
-
+            
             <!-------------------------------------------------------------------------------------------------------------------------------------------------->
             <!-- Tab para las formulas medicas ----------------------------------------------------------------------------------------------------------------->
             
             <div role="tabpanel" class="tab-pane" id="FormulaMedica">
-                
                 <form method="POST" action="<?php echo URL_BASE . 'consulta/insertarFormulaMedica'; ?>">
                     <div class="form-group">
                         <label for="txfObservacionesFormula">Observaciones: </label>
@@ -230,7 +168,14 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
                     </table>
                 </div>    
             </div>
-            <script type="text/javascript" src="">
+          </div>
+        </div>
+        <!-------------------------------------------------------------------------------------------------------------------------------------------------->
+        </div>
+    </div><!-- /.container-fluid -->
+</div><!-- /#page-wrapper -->
+<?php Vista::mostrar('plantillas/_pie', $datos); ?>
+<script type="text/javascript" src="">
                 $.post('<?php echo URL_BASE; ?>consultas/listarMedicamentosFormula', {idFormulaMedica:''}, function (data) {
                     var datos = JSON.parse(data);
                     var filas;
@@ -277,11 +222,67 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
                     });
                     $('#tblMedicamentos tbody').html(filas);
                 });
+                
+                $.post('<?php echo URL_BASE; ?>enfermedades/listarEnfermedades',function (data) {
+                    var datos = JSON.parse(data);
+                    
+                    $.each(datos, function (i, v) {
+                        $('#cmbEnfermedad').append('<option value="' + v.idEnfermedad + '">' + v.nombreEnfermedad + '</option>');
+                    });
+                });
+                
+                $.post('<?php echo URL_BASE; ?>consultas/listarOrdenes', {idDiagnostico:''}, function (data) {
+                var datos = JSON.parse(data);
+                var filas;
+                var cont = 0;
+                $.each(datos, function (i, v) {
+                    cont = cont + 1;
+                    filas += "<tr>";
+                    filas += "<td>" + v.fechaHoraOrden +"</td>";
+                    filas += "<td>" + v.cantidad +"</td>";
+                    filas += "<td>" + v.observacionOrden +"</td>";
+                    filas += "<td>" + v.tipoOrden +"</td>";
+                    filas += "<td>" + v.diagnosticos_idDiagnostico +"<td>";
+                    filas += "<td>" + v.codigoCup +"</td>";
+                    filas += "<td>";
+                    filas += "<form action='<?php echo URL_BASE; ?>consultas/editarOrden' method='POST'>";
+                    filas += "<button class='btn btn-xs btn-success' type='submit' name='btnEditarOrden'><i class='fa fa-edit'></i></button>";
+                    filas += "<input type='hidden' name='idOrden' value='" + v.idOrden + "'>";
+                    filas += "</form>";
+                    filas += "</td>";
+                    filas += "<td>";
+                    filas += "<button class='btn btn-xs btn-danger' data-toggle='modal' data-target='#modalEliminarOrden" + cont + "' name='btnModalEliminarOrden'><i class='fa fa-close'></i></button>";
+                    filas += "<div class = 'modal fade' id='modalEliminarOrden" + cont + "' tabindex = '-1' role = 'dialog'>";
+                    filas += "<div class='modal-dialog'>";
+                    filas += "<div class='modal-content'>";
+                    filas += "<div class='modal-header'>";
+                    filas += "<button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>";
+                    filas += "<h4 class='modal-title'>Eliminar Orden</h4>";
+                    filas += "</div>";
+                    filas += "<div class='modal-body'>";
+                    filas += "<p>¿Seguro que desea eliminar registro?</p>";
+                    filas += "</div>";
+                    filas += "<div class='modal-footer'>";
+                    filas += "<form action='<?php echo URL_BASE; ?>consultas/eliminarOrden' method='POST'>";
+                    filas += "<button type='button' class='btn btn-default' data-dismiss='modal'>Cancelar</button>";
+                    filas += "<button class='btn btn-primary' type='submit' name='btnEliminarOrden'> Aceptar </button>";
+                    filas += "<input type='hidden' name='idOrden' value='" + v.idOrden + "'>";
+                    filas += "</form>";
+                    filas += "</div>";
+                    filas += "</div>";
+                    filas += "</div>";
+                    filas += "</div>";
+                    filas += "</td>";
+                    filas += "</tr>";
+                });
+                $('#tblMedicamentos tbody').html(filas);
+            });
+            
+            $('#txfFechaHora').datetimepicker({
+	            timepicker: false,
+	            format: 'Y-m-d',
+	            allowDates: ['1900-01-01'], 
+	            formatDate:'Y-m-d'
+            });
+
             </script>
-          </div>
-        </div>
-        <!-------------------------------------------------------------------------------------------------------------------------------------------------->
-        </div>
-    </div><!-- /.container-fluid -->
-</div><!-- /#page-wrapper -->
-<?php Vista::mostrar('plantillas/_pie', $datos); ?>

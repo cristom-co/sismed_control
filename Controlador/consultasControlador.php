@@ -27,6 +27,7 @@ class consultasControlador {
     public function insertarEpisodio (){
         
         if (isset($_POST['btnRegistrarEpisodio'])){
+            $this->modelo->setIdBeneficiario($_POST['idBeneficiario']);
             $this->modelo->setIdCitaMedica($_POST['idCitaMedica']);
             $this->modelo->setFechaHoraAtencion($_POST['txfFechaHora']);
             $this->modelo->setPesoEpisodio($_POST['txfPeso']);
@@ -38,6 +39,9 @@ class consultasControlador {
             
             //insertar el episodio      =   el episodio depende del id cita medica
             $registro = $this->modelo->insertarEpisodio();
+            $idConsulta = $this->modelo->consultarId();
+            $registrarDiagnostico = $this->modelo->insertarDiagnostico($idConsulta);
+            
             if ($registro) {
                 $datos['mensaje'] = "Se inserto el episodio correctamente";
             } else {

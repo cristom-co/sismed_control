@@ -33,7 +33,14 @@ class beneficiariosControlador {
         $this->modelo->setCorreoBeneficiario($_POST['txfCorreoBeneficiario']);
         $this->modelo->setEstadoBeneficiario($_POST['cmbEstadoBeneficiario']);
         $registro = $this->modelo->insertarBeneficiario();
-        if ($registro) {
+        
+       //posibles soluciones a insertar la historia clinica 
+       // disparadores en la base de datos 
+       //capturarlo desde el controlador 
+
+        $resgistroHistoria = $this->modelo->insertarHistoriaClinica();
+        
+        if ($registro && $registroHistoria) {
             $datos['mensaje'] = "Se inserto Beneficiario correctamente";
         } else {
             $datos['mensaje'] = "No se inserto Beneficiario";

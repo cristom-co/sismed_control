@@ -91,7 +91,7 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
             <div class="col-lg-8">
                 <div class="panel panel-info">
                     <div class="panel-heading">
-                        <h3 class="panel-title text-center">Resultado de búsqueda</h3>
+                        <h3 class="panel-title text-center">Citas para hoy</h3>
                     </div>
                     <div class="panel-body">
                         <div class="table-responsive">
@@ -108,11 +108,11 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>Gustavo</td>
-                                        <td>Galindez</td>
-                                        <td>GGALINDEZ</td>
-                                        <td>123456</td>
-                                        <td>ADMIN</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
                                         <td>
                                             <div class="btn-group" role="group" aria-label="...">
                                                 <button type="button" class="btn btn-xs btn-success">Editar Usuario</button>

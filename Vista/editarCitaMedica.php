@@ -26,43 +26,36 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
         <form method="POST" action="<?php echo URL_BASE . 'citasMedicas/editarCitaMedica'; ?>">
             
                     <div class="form-group">
-                      <label for="comment">Comentarios:</label>
-                      <textarea value="<?php echo $citaMedica[0]['comentariosCitaMedica']; ?>" class="form-control" rows="5" id=""><?php echo $citaMedica[0]['comentariosCitaMedica']; ?></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="">Estado: <?php echo ($citaMedica[0]['estadoCitaMedica']==1)?"Activo":"Inactivo"  ?></label>
-                        <select class="form-control" name="" id="" required>
-                            <option value="">Seleccione un estado</option>
-                            <option value="1">Activo</option>
-                            <option value="2">Inactivo</option>
-                        </select>                    
-                    </div>
-                    <div class="form-group">
-                        <label for="cmbEmpleado">Doctor: <?php echo $citaMedica[0]['nombresEmpleado'] ." ".$citaMedica[0]['apellidosEmpleado']; ?></label>
+                        <label for="cmbEmpleado">Medico asignado: <?php echo $citaMedica[0]['nombresEmpleado']." ".$citaMedica[0]['apellidosEmpleado'] ?></label>
                         <select class="form-control" name="cmbEmpleado" id="cmbEmpleado" required>
-                            <option value="">Seleccione un Doctor</option>
+                            <option value="">Seleccione un medico</option>
+                        </select>
+                    </div> 
+                     <div class="form-group">
+                        <label for="txfFechaCita">Fecha asignada:  <?php echo $citaMedica[0]['fechaAgendaMedica'] ?></label>
+                        <input type="text" name="txfFechaCita" id="txfFechaCita" class="form-control" placeholder="Seleccione fecha" required disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="cmbHoraCita">Hora asignada:  <?php echo $citaMedica[0]['hora']; ?></label>
+                         <select class="form-control" name="cmbHoraCita" id="cmbHoraCita" required disabled>
+                            <option value="">Seleccione Hora</option>
                         </select>
                     </div>
+                    
                     <div class="form-group">
-                        <label for="txfFechaCita">Fecha programada: <?php echo $citaMedica[0]['fechaAgendaMedica'] ?></label>
-                        <input class="form-control" type="text" name="txfFechaCita" id="txfFechaCita" placeholder="Digite una fecha"/>
-                    </div>
-                    <div class="form-group">
-                        <label for="cmbHoraCita">Horas programada: <?php echo $citaMedica[0]['hora']; ?></label>
-                        <select class="form-control" name="cmbHoraCita" id="cmbHoraCita" required>
-                            <option value="">Seleccione una Hora Disponible</option>
-                        </select>                    
-                    </div>
-                    <div class="form-group">
-                        <label for="cmbConsultorio">Consultorio:  <?php echo $citaMedica[0]['numeroConsultorio']; ?></label>
+                        <label for="cmbConsultorio">Consultorio asignado:  <?php echo $citaMedica[0]['numeroConsultorio']; ?></label>
                         <select class="form-control" name="cmbConsultorio" id="cmbConsultorio" required>
                             <option value="">Seleccione un consultorio</option>
                         </select>
                     </div>
+                    <div class="form-group">
+                      <label for="txfComentario">Comentarios:</label>
+                      <textarea class="form-control" rows="5" id="txfComentario" name="txfComentario"></textarea>
+                    </div>
             
             <button type="submit" class="btn btn-primary" name="btnGuardar" id="btnGuardar"> GUARDAR </button>
             <button class="btn btn-primary" name="btnAtras" id="btnAtras"><a style="text-decoration: none;color:#fff" href="<?php echo URL_BASE . 'citasMedicas/citas'; ?>">ATRAS</a></button>
-            <input type="hidden" name="idcitaMedica" value="<?php echo $citaMedica[0]['idcitaMedica']; ?>">
+            <input type="hidden" name="idCitaMedica" value="<?php echo $citaMedica[0]['idcitaMedica']; ?>">
         </form>
     </div><!-- /.container-fluid -->
 </div><!-- /#page-wrapper -->

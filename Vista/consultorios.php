@@ -22,6 +22,23 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
                 <img src="<?php echo URL_BASE; ?>Vista/img/logo2.png" alt="" class="img-responsive" style="max-widht:150px; max-height:150px;">
             </div>
         </div>
+        <div class="row">
+            <div class="col-md-12">
+
+            <div class=" col-md-offset-3 col-md-6 col-md-offset-3">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <div class="row">
+                        <div class="col-xs-5">
+                        <i class="fa fa-plus-circle fa-5x"></i>
+                        </div>
+                            <div class="col-xs-7 text-right">
+                           <div class="huge">Consultorios</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div class="row" style="margin-top: 5%"></div>
 
@@ -43,6 +60,9 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
                                 <th>
                                     Numero Consultorio
                                 </th>
+                                <th>
+                                    Centro medico
+                                </th>
                                 <th colspan="2">Acciones</th>
                             </tr>
                         </thead>
@@ -53,7 +73,7 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
             </div>
         </div>
     </div><!-- /.container-fluid -->
-</div><!-- /#page-wrapper -->
+</div><!--page-wrapper -->
 <?php Vista::mostrar('plantillas/_pie', $datos); ?>
 <script type="text/javascript">
     $.post('<?php echo URL_BASE; ?>consultorios/listarConsultorios', {}, function (data) {
@@ -64,6 +84,7 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
             cont = cont + 1;
             filas += "<tr>";
             filas += "<td>" + v.numeroConsultorio + "</td>";
+            filas += "<td></td>";
             filas += "<td>";
             filas += "<form action='<?php echo URL_BASE; ?>consultorios/editarConsultorio' method='POST'>";
             filas += "<button class='btn btn-xs btn-success' type='submit' name='btnEditarConsultorio'><i class='fa fa-edit'></i></button>";
