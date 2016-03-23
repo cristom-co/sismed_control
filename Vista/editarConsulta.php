@@ -56,10 +56,14 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
                 </form>
             </div>
             <script type="text/javascript">
-                
+                $.post('url', {idBeneficiario:''}, function (response){
+                    $('#').append("<input type='hidden' name='idHistoriaClinica' value='"+ response+"'>");
+                });
             </script><!-- Consultar la historia clinica del beneficiario con su id enviado desde la cita medica-->
             <script type="text/javascript">
-                
+                $.post('url', {idCitaMedica:''}, function (response){
+                    $('#').append("<input type='hidden' name='idEpisodio' value='"+ response+"'>");
+                });
             </script> <!-- consultar el id del episodio creado mediante el id de la cita medica -->
             <!-------------------------------------------------------------------------------------------------------------------------------------------------->
             <!-- Tab para los diagnosticos --------------------------------------------------------------------------------------------------------------------->

@@ -15,20 +15,18 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="">Fecha:</label>
-                        <input type="text" name="" id="" class="form-control" placeholder="" value="" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="">Doctor:</label>
+                        <label for="cmbEmpleado">Medico:</label>
                         <select class="form-control" name="cmbEmpleado" id="cmbEmpleado" required>
-                            <option value="">Seleccione un Doctor</option>
+                            <option value="">Seleccione un medico</option>
                         </select>
                     </div>
+                     <div class="form-group">
+                        <label for="txfFechaCita">Fecha:</label>
+                        <input type="text" name="txfFechaCita" id="txfFechaCita" class="form-control" placeholder="Seleccione fecha" required disabled>
+                    </div>
                     <div class="form-group">
-                        <label for="">Horas Disponibles:</label>
-                        <select class="form-control" name="" id="" required>
-                            <option value="">Seleccione una hora</option>
-                        </select>                    
+                        <label for="txfHoraCita">Horas Disponibles:</label>
+                        <input type="text" name="txfHoraCita" id="txfHoraCita" class="form-control" placeholder="Seleccione una hora" required disabled>
                     </div>
                     <div class="form-group">
                         <label for="">Consultorio:</label>
@@ -70,14 +68,54 @@
             $('#cmbEmpleado').append('<option value="' + v.idEmpleado + '">' + v.nombresEmpleado + " "+ v.apellidosEmpleado + '</option>');
         });
     });
-    
-//Lista las horas disponible de un doctor en una fecha especifica   //agregar una consulta al modelo
-     $.post('<?php echo URL_BASE; ?>agendasMedicas/listarHorasEmpleado', {}, function (data) { 
+
+   
+$('#cmbEmpleado').change(function () {
+    var idEmpleado = $(this).val();
+    $('#txfFechaCita').removeAttr('disabled');
+    $.post('<?php echo URL_BASE; ?>agendasMedicas/listarFechasDisponibles', {idEmpleado: idEmpleado}, function (data) {
+        var f=0;
+        var fechasDisponibles=[]; 
         var datos = JSON.parse(data);
         $.each(datos, function (i, v) {
-            $('#cmbHoras').append('<option value="' + v.idEmpleado + '">' + v.numeroIdentificacionEmpleado + '</option>');
+            fechasDisponibles[f]=v.fechaAgendaMedica;
+	        f++;
         });
+        if(fechasDisponibles.length !== 0){
+            $('#txfFechaCita').datetimepicker({
+	            timepicker: false,
+	            format: 'Y-m-d',
+	            allowDates: fechasDisponibles, 
+	            formatDate:'Y-m-d'
+            });
+        }else{
+           $('#txfFechaCita').datetimepicker({
+	            timepicker: false,
+	            format: 'Y-m-d',
+	            allowDates: ['1900-01-01'], 
+	            formatDate:'Y-m-d'
+            });
+        }
     });
+});
+
+$('#txfFechaCita').change(function (){
+    var fecha = $(this).val();
+    var idEmpleado = $('#cmbEmpleado').val();
+    alert(fecha+' '+idEmpleado);
+});
+
+
+
+
+    
+//Lista las horas disponible de un doctor en una fecha especifica   //agregar una consulta al modelo
+    //  $.post('<?php echo URL_BASE; ?>agendasMedicas/listarHorasEmpleado', {}, function (data) { 
+    //     var datos = JSON.parse(data);
+    //     $.each(datos, function (i, v) {
+    //         $('#cmbHoras').append('<option value="' + v.idEmpleado + '">' + v.numeroIdentificacionEmpleado + '</option>');
+    //     });
+    // });
 
 //Lista todos los consultorios de la base de datos
      $.post('<?php echo URL_BASE; ?>consultorios/listarConsultorios', {}, function (data) {

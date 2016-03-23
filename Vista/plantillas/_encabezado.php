@@ -14,6 +14,8 @@
         <link href="<?php echo URL_BASE; ?>Vista/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <!-- Mi estilo -->
         <link rel="stylesheet" type="text/css" href="<?php echo URL_BASE; ?>Vista/css/miestilo.css">
+        <!-- DateTimePicker -->
+        <link rel="stylesheet" type="text/css" href="<?php echo URL_BASE; ?>Vista/css/jquery.datetimepicker.css">
         <link rel="shortcut icon" href="<?php echo URL_BASE; ?>Vista/img/favicon.png" type="image/x-icon">
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

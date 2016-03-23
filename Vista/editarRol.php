@@ -25,10 +25,6 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
         <form action="<?php echo URL_BASE . 'roles/editarRol'; ?>" method="POST" class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
             <legend>Editar Rol</legend>
             <div class="form-group">
-                <label for="idRol">ID rol: </label> 
-                <input class="form-control" type="text" name="idRol" value="<?php echo $rol[0]['idRol']; ?>" readonly>
-            </div>
-            <div class="form-group">
                 <label for="txfNombreRol">Nombre rol: </label>
                 <input class="form-control" type="text" name="txfNombreRol" id="txfNombreRol" value="<?php echo $rol[0]['nombreRol']; ?>">
             </div>

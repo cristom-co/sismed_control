@@ -49,5 +49,10 @@
             $('#cmbIdentificacionEmpleado').append('<option value="' + v.idEmpleado + '">' + v.numeroIdentificacionEmpleado + '</option>');
         });
     });
+    
+    $('#txfFechaAgendaMedica').datetimepicker({
+    	timepicker: false,
+	    format: 'Y-m-d'
+    });
 </script>
 

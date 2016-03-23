@@ -107,5 +107,10 @@
             });
         });
     });
+    
+    $('#txfFechaNacimientoFuncionario').datetimepicker({
+        timepicker: false,
+	    format: 'Y-m-d'
+    });
 
 </script>

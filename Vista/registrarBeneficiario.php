@@ -97,5 +97,10 @@
             $('#cmbIdFuncionario').append('<option value="' + v.idFuncionario + '">' + v.numeroIdentificacionFuncionario + '</option>');
         });
     });
+    
+    $('#txfFechaNacimientoBeneficiario').datetimepicker({
+	    timepicker: false,
+    	format: 'Y-m-d'
+    });
 
 </script>

@@ -107,6 +107,11 @@
             $('#cmbEspecialidad').append('<option value="' + val.idEspecialidad + '">' + val.descripcionEspecialidad + '</option>');
         });
     });
+    
+    $('#txfFechaNacimientoEmpleado').datetimepicker({
+        timepicker: false,
+	    format: 'Y-m-d'
+    });
 
 
 </script>

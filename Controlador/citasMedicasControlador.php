@@ -34,6 +34,10 @@ class citasMedicasControlador {
     public function listarCitasMedicas() {
         echo json_encode($this->modelo->listarCitasMedicas(), TRUE);
     }
+    
+    public function listarCitasMedicasAtentidas (){
+        echo json_encode($this->modelo->listarCitasMedicasAtentidas(), TRUE);
+    }
 
     public function editarcitaMedica() {
         $datos['titulo'] = "Editar Cita Medica";

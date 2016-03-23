@@ -26,10 +26,6 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
         <form action="<?php echo URL_BASE . 'usuarios/editarUsuario'; ?>" method="POST" class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
             <legend>Editar usuario</legend>
             <div class="form-group">
-                <label for="idUsuario">ID usuario: </label> 
-                <input class="form-control" type="text" name="txfIdUsuario" value="<?php echo $usuario[0]['idUsuario']; ?>" readonly>
-            </div>
-            <div class="form-group">
                 <label for="txfContraseniaUsuario">Contraseña: </label>
                 <input class="form-control" type="password" name="txfContrasenia" id="txfContrasenia" value="<?php echo $usuario[0]['contrasenia']; ?>" readonly>
             </div>
