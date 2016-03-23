@@ -86,23 +86,30 @@ class AgendasMedicas {
     }
     
     public function listarHorasDisponibles() {
-        $sql = "SELECT hora "
+        $sql = "SELECT idAgendaMedica, hora "
                 . "FROM agendas_medicas "
                 . "INNER JOIN hora_20 ON hora_20_idhora_20 = idhora_20 "
                 . "INNER JOIN empleados ON empleados_idEmpleado=idEmpleado "
                 . "WHERE idEmpleado={$this->getIdEmpleado()} "
-                . "AND fechaAgendaMedica = '{$this->getFechaAgendaMedica}' "
+                . "AND fechaAgendaMedica='{$this->getFechaAgendaMedica()}' "
                 . "AND disponibilidadAgendaMedica=1";
         return $this->conexion->consulta($sql);
     }
     
-
-
     public function eliminarAgendaMedica() {
         $sql = "DELETE FROM agendas_medicas "
-                . "WHERE fechaAgendaMedica= '{$this->getFechaAgendaMedica()}' "
+                . "WHERE fechaAgendaMedica='{$this->getFechaAgendaMedica()}' "
                 . "AND empleados_idEmpleado={$this->getIdEmpleado()};";
         return $this->conexion->consultaSimple($sql);
+    }
+
+    public function editarDisponibilidad (){
+        $sql="UPDATE agendas_medicas 
+        SET disponibilidadAgendaMedica = {$this->getDiponibilidadAgendaMedica()} 
+        WHERE idAgendaMedica = {$this->getIdAgendaMedica()}";
+        
+        return $this->conexion->consultaSimple($sql);
+        
     }
 
     public function getIdAgendaMedica() {

@@ -38,18 +38,18 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
                         </select>                    
                     </div>
                     <div class="form-group">
-                        <label for="txfFecha">Fecha programada: <?php echo $citaMedica[0]['fechaAgendaMedica'] ?></label>
-                        <input class="form-control" type="text" name="txfFecha" id="txfFecha" placeholder="Digite una fecha"/>
-                    </div>
-                    <div class="form-group">
                         <label for="cmbEmpleado">Doctor: <?php echo $citaMedica[0]['nombresEmpleado'] ." ".$citaMedica[0]['apellidosEmpleado']; ?></label>
                         <select class="form-control" name="cmbEmpleado" id="cmbEmpleado" required>
                             <option value="">Seleccione un Doctor</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="cmbHoras">Horas programada: <?php echo $citaMedica[0]['hora']; ?></label>
-                        <select class="form-control" name="cmbHoras" id="cmbHoras" required>
+                        <label for="txfFechaCita">Fecha programada: <?php echo $citaMedica[0]['fechaAgendaMedica'] ?></label>
+                        <input class="form-control" type="text" name="txfFechaCita" id="txfFechaCita" placeholder="Digite una fecha"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="cmbHoraCita">Horas programada: <?php echo $citaMedica[0]['hora']; ?></label>
+                        <select class="form-control" name="cmbHoraCita" id="cmbHoraCita" required>
                             <option value="">Seleccione una Hora Disponible</option>
                         </select>                    
                     </div>
@@ -76,17 +76,50 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
             $('#cmbEmpleado').append('<option value="' + v.idEmpleado + '">' + v.nombresEmpleado + " "+ v.apellidosEmpleado + '</option>');
         });
     });
-    
-    var fecha = $('#txfFecha').val();
-    var identificacionEmpleado = $('#cmbEmpleado').val();
-//Lista las horas disponible de un doctor en una fecha especifica   //agregar una consulta al modelo
-     $.post('<?php echo URL_BASE; ?>agendasMedicas/listarHorasAgenda', {fecha:fecha, identificacionEmpleado:identificacionEmpleado}, function (data) { 
+
+   
+$('#cmbEmpleado').change(function () {
+    var idEmpleado = $(this).val();
+    $('#txfFechaCita').removeAttr('disabled');
+    $.post('<?php echo URL_BASE; ?>agendasMedicas/listarFechasDisponibles', {idEmpleado: idEmpleado}, function (data) {
+        var f=0;
+        var fechasDisponibles=[]; 
         var datos = JSON.parse(data);
         $.each(datos, function (i, v) {
-            $('#cmbHoras').append('<option value="' + v.idhora_20 + '">' + v.hora+ '</option>');
+            fechasDisponibles[f]=v.fechaAgendaMedica;
+	        f++;
+        });
+        if(fechasDisponibles.length !== 0){
+            $('#txfFechaCita').datetimepicker({
+	            timepicker: false,
+	            format: 'Y-m-d',
+	            allowDates: fechasDisponibles, 
+	            formatDate:'Y-m-d'
+            });
+        }else{
+           $('#txfFechaCita').datetimepicker({
+	            timepicker: false,
+	            format: 'Y-m-d',
+	            allowDates: ['1900-01-01'], 
+	            formatDate:'Y-m-d'
+            });
+        }
+    });
+});
+
+//Lista las horas disponible de un doctor en una fecha especifica   //agregar una consulta al modelo
+$('#txfFechaCita').change(function (){
+    var fecha = $(this).val();
+    var idEmpleado = $('#cmbEmpleado').val();
+    $('#cmbHoraCita').removeAttr('disabled');
+    $.post('<?php echo URL_BASE; ?>agendasMedicas/listarHorasDisponibles', {fecha:fecha, idEmpleado:idEmpleado}, function (data) { 
+        var datos = JSON.parse(data);
+        $.each(datos, function (i, v) {
+            $('#cmbHoraCita').append('<option value="' + v.idAgendaMedica + '">' + v.hora + '</option>')
         });
     });
-    
+});
+
 //Lista todos los consultorios de la base de datos
      $.post('<?php echo URL_BASE; ?>consultorios/listarConsultorios', {}, function (data) {
         var datos = JSON.parse(data);
@@ -94,5 +127,7 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
             $('#cmbConsultorio').append('<option value="' + v.idConsultorio + '">' + v.numeroConsultorio + '</option>');
         });
     });
+
+
 </script>
 

@@ -14,7 +14,6 @@ class CitasMedicas {
     private $idAgendaMedica;
     private $conexion;
 
-    
     public function __construct() {
         $this->conexion = new Conexiones();
     }
@@ -23,25 +22,22 @@ class CitasMedicas {
         $sql = "INSERT INTO citas_medicas("
                 . "idCitaMedica,"
                 . "fechaHoraRegistroCitaMedica,"
-                . " fechaCitaMedica, "
-                . "horaCitaMedica, "
                 . "duracionCitaMedica, "
                 . "comentariosCitaMedica, "
                 . "estadoCitaMedica, "
                 . "beneficiarios_idBeneficiario, "
                 . "consultorios_idConsultorio, "
                 . "agendas_medicas_idAgendasMedica) "
-                . "VALUES ("
-                . "null ,"
-                . "'{$this->getFechaHoraRegistro()}' ,"
-                . "'{$this->getFechaCitaMedica()}' ,"
-                . "'{$this->getHoraCitaMedica()}' ,"
-                . "'{$this->getDuracionCitaMedica()}' ,"
-                . "'{$this->getComentariosCitaMedica()}' ,"
-                . "'{$this->getEstadoCitaMedica()}' ,"
-                . "'{$this->getIdBeneficarios()}' ,"
-                . "'{$this->getIdConsultorio()}' ,"
-                . "'{$this->getIdAgendaMedica()}' )";
+                . "VALUES("
+                . "NULL ,"
+                . "CURRENT_TIMESTAMP ,"
+                . "'00:20:00', "
+                . "'{$this->getComentariosCitaMedica()}', "
+                . "1, "
+                . "'{$this->getIdBeneficarios()}', "
+                . "'{$this->getIdConsultorio()}', "
+                . "'{$this->getIdAgendaMedica()}')";
+                
         return $this->conexion->consultaSimple($sql);
     }
     
@@ -134,6 +130,7 @@ class CitasMedicas {
                 . " WHERE idCitaMedica = '{$this->getIdCitaMedica()}'";
         return $this->conexion->consultaSimple($sql);
     }
+    
 
     public function eliminarCitaMedica() {
         $sql = "DELETE FROM citas_medicas WHERE idCitaMedica = '{$this->getIdCitaMedica()}'";

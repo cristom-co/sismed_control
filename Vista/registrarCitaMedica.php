@@ -25,30 +25,22 @@
                         <input type="text" name="txfFechaCita" id="txfFechaCita" class="form-control" placeholder="Seleccione fecha" required disabled>
                     </div>
                     <div class="form-group">
-                        <label for="txfHoraCita">Horas Disponibles:</label>
-                        <input type="text" name="txfHoraCita" id="txfHoraCita" class="form-control" placeholder="Seleccione una hora" required disabled>
+                        <label for="cmbHoraCita">Horas Disponibles:</label>
+                         <select class="form-control" name="cmbHoraCita" id="cmbHoraCita" required disabled>
+                            <option value="">Seleccione Hora</option>
+                        </select>
                     </div>
                     <div class="form-group">
-                        <label for="">Consultorio:</label>
-                        <select class="form-control" name="" id="cmbConsultorio" required>
+                        <label for="cmbConsultorio">Consultorio:</label>
+                        <select class="form-control" name="cmbConsultorio" id="cmbConsultorio" required>
                             <option value="">Seleccione un consultorio</option>
                         </select>
                     </div>
 
                     <div class="form-group">
-                      <label for="comment">Comentarios:</label>
-                      <textarea class="form-control" rows="5" id=""></textarea>
+                      <label for="txfComentario">Comentarios:</label>
+                      <textarea class="form-control" rows="5" id="txfComentario" name="txfComentario"></textarea>
                     </div>
-                    
-                    <div class="form-group">
-                        <label for="">Estado</label>
-                        <select class="form-control" name="" id="" required>
-                            <option value="">Seleccione un estado</option>
-                            <option value="1">Activo</option>
-                            <option value="0">Inactivo</option>
-                        </select>
-                    </div>
-
                 <button type="submit" class="btn btn-primary" name="btnRegistrarCitaMedica" id="btnRegistrarCitaMedica"> Crear Cita Medica</button>
                 </form>
             </div>
@@ -99,23 +91,19 @@ $('#cmbEmpleado').change(function () {
     });
 });
 
+//Lista las horas disponible de un medico en una fecha especifica   //agregar una consulta al modelo
 $('#txfFechaCita').change(function (){
     var fecha = $(this).val();
     var idEmpleado = $('#cmbEmpleado').val();
-    alert(fecha+' '+idEmpleado);
+    $('#cmbHoraCita').removeAttr('disabled');
+    $('#cmbHoraCita').removeAttr('disabled');
+    $.post('<?php echo URL_BASE; ?>agendasMedicas/listarHorasDisponibles', {fecha:fecha, idEmpleado:idEmpleado}, function (data) { 
+        var datos = JSON.parse(data);
+        $.each(datos, function (i, v) {
+            $('#cmbHoraCita').append('<option value="' + v.idAgendaMedica + '">' + v.hora + '</option>')
+        });
+    });
 });
-
-
-
-
-    
-//Lista las horas disponible de un doctor en una fecha especifica   //agregar una consulta al modelo
-    //  $.post('<?php echo URL_BASE; ?>agendasMedicas/listarHorasEmpleado', {}, function (data) { 
-    //     var datos = JSON.parse(data);
-    //     $.each(datos, function (i, v) {
-    //         $('#cmbHoras').append('<option value="' + v.idEmpleado + '">' + v.numeroIdentificacionEmpleado + '</option>');
-    //     });
-    // });
 
 //Lista todos los consultorios de la base de datos
      $.post('<?php echo URL_BASE; ?>consultorios/listarConsultorios', {}, function (data) {

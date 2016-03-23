@@ -5,12 +5,14 @@ session_start();
 class citasMedicasControlador {
 
     private $modelo;
+    private $modeloAgenda;
 
     public function __construct() {
         if (!$_SESSION['valido']) {
             header('Location: ' . URL_BASE);
         }
         $this->modelo = Modelo::cargar('CitasMedicas');
+        $this->modeloAgenda = Modelo::cargar('AgendasMedicas');
     }
 
     public function citas() {
@@ -19,10 +21,15 @@ class citasMedicasControlador {
     }
 
     public function insertarCitaMedica() {
-        $this->modelo->setIdCitaMedica($_POST['']);
-        
+        $this->modelo->setComentariosCitaMedica($_POST['txfComentario']);
+        $this->modelo->setIdBeneficarios($_POST['cmbBeneficiario']);
+        $this->modelo->setIdConsultorio($_POST['cmbConsultorio']);
+        $this->modelo->setIdAgendaMedica($_POST['cmbHoraCita']);
         $registro = $this->modelo->insertarCitaMedica();
-        if ($registro) {
+        $this->modeloAgenda->setIdAgendaMedica($_POST['cmbHoraCita']);
+        $this->modeloAgenda->setDiponibilidadAgendaMedica(0);
+        $registroAgenda = $this->modeloAgenda->editarDisponibilidad();
+        if ($registro && $registroAgenda) {
             $datos['mensaje'] = "Se inserto la Cita Medica correctamente";
         } else {
             $datos['mensaje'] = "No se inserto la Cita Medica";
