@@ -4,7 +4,6 @@ Vista::mostrar('plantillas/_menuSuperior', $datos);
 Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el rol
 ?>
 
-
 <div id="page-wrapper" style=" min-height:30em ">
     <div class="container-fluid fondoFluid" id="formArea">
         <!-- encabezado wrapper -->
@@ -23,7 +22,7 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
                 <img src="<?php echo URL_BASE; ?>Vista/img/logo2.png" alt="" class="img-responsive" style="max-widht:150px; max-height:150px;">
             </div>
         </div>
-        <form method="POST" action="<?php echo URL_BASE . 'citasMedicas/editarCitaMedica'; ?>">
+        <form method="POST" action="<?php echo URL_BASE.'citasMedicas/editarCitaMedica'; ?>">
             
                     <div class="form-group">
                         <label for="cmbEmpleado">Medico asignado: <?php echo $citaMedica[0]['nombresEmpleado']." ".$citaMedica[0]['apellidosEmpleado'] ?></label>
@@ -41,7 +40,6 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
                             <option value="">Seleccione Hora</option>
                         </select>
                     </div>
-                    
                     <div class="form-group">
                         <label for="cmbConsultorio">Consultorio asignado:  <?php echo $citaMedica[0]['numeroConsultorio']; ?></label>
                         <select class="form-control" name="cmbConsultorio" id="cmbConsultorio" required>
@@ -50,7 +48,39 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
                     </div>
                     <div class="form-group">
                       <label for="txfComentario">Comentarios:</label>
-                      <textarea class="form-control" rows="5" id="txfComentario" name="txfComentario"></textarea>
+                      <textarea class="form-control" rows="5" id="txfComentario" name="txfComentario"><?php echo $citaMedica[0]['comentariosCitaMedica'] ?></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="cmbEstado">Estado asignado:
+                        <?php 
+                            switch ($citaMedica[0]['estadoCitaMedica']) {
+                                case '1':
+                                    echo "Cita Asignada";
+                                    break;
+                                case '2':
+                                    echo "Cita En proceso";
+                                    break;
+                                case '3':
+                                    echo "Cita Cancelada";
+                                    break;
+                                case '4':
+                                    echo "Cita Atentida";
+                                    break;
+                                case '5':
+                                    echo "Cita Vencida";
+                                    break;
+                                default:
+                                    echo "Error en el estado de la cita medica";
+                                    break;
+                            }?></label>
+                        <select class="form-control" name="cmbEstado" id="cmbEstado" required>
+                            <option value="">Seleccione el estado de la cita medica</option>
+                            <option value="1">Asignada</option>
+                            <option value="2">En proceso</option>
+                            <option value="3">Cancelada</option>
+                            <option value="4">Atendida</option>
+                            <option value="5">Vencida</option>
+                        </select>
                     </div>
             
             <button type="submit" class="btn btn-primary" name="btnGuardar" id="btnGuardar"> GUARDAR </button>
@@ -120,7 +150,5 @@ $('#txfFechaCita').change(function (){
             $('#cmbConsultorio').append('<option value="' + v.idConsultorio + '">' + v.numeroConsultorio + '</option>');
         });
     });
-
-
 </script>
 

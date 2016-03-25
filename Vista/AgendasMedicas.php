@@ -22,7 +22,23 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
                 <img src="<?php echo URL_BASE; ?>Vista/img/logo2.png" alt="" class="img-responsive" style="max-widht:150px; max-height:150px;">
             </div>
         </div>
+        
+        <div class=" col-md-offset-3 col-md-6 col-md-offset-3">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-5">
+                            <i class="fa fa-book fa-5x"></i>
+                        </div>
+                        <div class="col-xs-7 text-right">
+                       <div class="huge">Agenda Medica</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="row" style="margin-top: 10px"></div>
+        
         <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-7 col-xs-12">
                 <div class="input-group">

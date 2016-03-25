@@ -60,10 +60,11 @@ class Beneficiarios {
     }
     
     public function insertarHistoriaClinica (){
-        $sql="INSERT INTO historias_clinicas (estadoHistoriaClinica, 
+        $sql="INSERT INTO historias_clinicas (
+            fechaAperturaHistoriaClinica,
+            estadoHistoriaClinica, 
             beneficiarios_idBeneficiario)
-            VALUES ('{$this->getEstadoHistoriaClinica()}',
-            '{$this->getIdBeneficiario()}')";
+            VALUES (CURRENT_TIMESTAMP, 1,'{$this->getIdBeneficiario()}')";
         return $this->conexion->consultaSimple($sql);
     }
 
@@ -122,7 +123,13 @@ class Beneficiarios {
                 WHERE idBeneficiario= '{$this->getIdBeneficiario()}';";
         return $this->conexion->consulta($sql);
     }
-
+    
+    public function listarIdBeneficiario2 (){
+        $sql="SELECT * FROM beneficiarios 
+        WHERE numeroIdentificacionBeneficiario = '{$this->getIdentificacionBeneficiario()}'";
+        return $this->conexion->consulta($sql);
+        
+    }
 
     public function listarDocumentoBeneficiario() {
         $sql = "SELECT idBeneficiario, "

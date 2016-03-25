@@ -70,25 +70,18 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
             </div>
         </div>
         <!-- /.row -->       
-        <div class="row letraForms">
-            <div class="col-lg-4">
-                <div class="panel panel-info">
-                    <div class="panel-heading">
-                        <h3 class="panel-title text-center">Busqueda rápida de beneficiario</h3>
-                    </div>
-                    <div class="panel-body">
-                        <nav class="navbar navbar">
-                            <form class="form-horizontal navbar-form" role="search">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Buscar paciente">
-                                </div>
-                                <button type="submit" class="btn btn-info">Buscar</button>
-                            </form>
-                        </nav>
-                    </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-7 col-xs-12">
+                <div class="input-group">
+                    <input type="text" name="txtBuscar" id="txtBuscar" class="form-control" placeholder="Buscar paciente">
+                    <span class="input-group-btn">
+                        <button class="btn btn-info" id="btnBuscar" type="button">Buscar</button>
+                    </span>
                 </div>
             </div>
-            <div class="col-lg-8">
+            <div class="row" style="margin-top: 10px"></div>
+            
+            <div class="col-lg-12">
                 <div class="panel panel-info">
                     <div class="panel-heading">
                         <h3 class="panel-title text-center">Citas para hoy</h3>

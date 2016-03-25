@@ -84,6 +84,7 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
             cont = cont + 1;
             filas += "<tr>";
             filas += "<td>" + v.numeroConsultorio + "</td>";
+            filas += "<td>" + v.nombreCentroMedico + "</td>";
             filas += "<td></td>";
             filas += "<td>";
             filas += "<form action='<?php echo URL_BASE; ?>consultorios/editarConsultorio' method='POST'>";

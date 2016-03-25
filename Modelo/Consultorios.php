@@ -18,16 +18,17 @@ class Consultorios {
     }
 
     public function listarConsultorios() {
-        $sql = "SELECT idConsultorio, numeroConsultorio,  
-            FROM consultorios c
-            INNER JOIN centros_formacion cf ON cf.idCentroFormacion = c.centros_formacion_idCentroFormacion;";
-
+        $sql = "SELECT idConsultorio, numeroConsultorio, 
+            centros_medicos_idCentroMedico, cm.nombreCentroMedico 
+            FROM consultorios c 
+            INNER JOIN centros_medicos cm ON cm.idCentroMedico = c.centros_medicos_idCentroMedico";
         return $this->conexion->consulta($sql);
     }
 
     public function listarIdConsultorio() {
-        $sql = "SELECT idConsultorio, numeroConsultorio FROM consultorios "
-                . "WHERE idConsultorio={$this->getIdConsultorio()};";
+        $sql = "SELECT idConsultorio, numeroConsultorio, nombreCentroMedico FROM consultorios c "
+                ."INNER JOIN centros_medicos cm ON cm.idCentroMedico = c.centros_medicos_idCentroMedico
+                WHERE idConsultorio={$this->getIdConsultorio()};";
 
         return $this->conexion->consulta($sql);
     }

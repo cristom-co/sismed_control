@@ -34,9 +34,11 @@ class beneficiariosControlador {
         $this->modelo->setEstadoBeneficiario($_POST['cmbEstadoBeneficiario']);
         $registro = $this->modelo->insertarBeneficiario();
         
-       //posibles soluciones a insertar la historia clinica 
-       // disparadores en la base de datos 
-       //capturarlo desde el controlador 
+       //La historia clinica inserta correctamente
+       //pero retorna el mensaje de "no se inserto beneficiario"
+       
+        $idBeneficiario = $this->modelo->listarIdBeneficiario2();
+        $this->modelo->setIdBeneficiario($idBeneficiario[0]['idBeneficiario']);
 
         $resgistroHistoria = $this->modelo->insertarHistoriaClinica();
         

@@ -117,6 +117,33 @@ class CitasMedicas {
         WHERE estadoCitaMedica = 4";
         return$this->conexion->consulta($sql);
     }    
+    
+     public function listarCitasMedicasBeneficiario() {
+       $sql ="SELECT idCitaMedica, 
+           fechaHoraRegistroCitaMedica, 
+           am.fechaAgendaMedica, 
+           hs.hora, 
+           duracionCitaMedica,
+           comentariosCitaMedica, 
+           estadoCitaMedica, 
+           b.idBeneficiario,
+           numeroIdentificacionBeneficiario,
+           nombresBeneficiario, 
+           apellidosBeneficiario, 
+           numeroConsultorio,
+           ct.agendas_medicas_idAgendasMedica,
+           nombresEmpleado, 
+           apellidosEmpleado
+        FROM citas_medicas ct
+        INNER JOIN beneficiarios b ON b.idBeneficiario = ct.beneficiarios_idBeneficiario
+        INNER JOIN consultorios c ON c.idConsultorio = ct.consultorios_idConsultorio
+        INNER JOIN agendas_medicas am ON am.idAgendaMedica = ct.agendas_medicas_idAgendasMedica
+        INNER JOIN empleados e ON e.idEmpleado = am.empleados_idEmpleado
+        INNER JOIN hora_20 hs ON hs.idhora_20 = am.hora_20_idhora_20
+        WHERE ct.beneficiarios_idBeneficiario = '{$this->getIdBeneficarios()}'";
+               
+        return$this->conexion->consulta($sql);
+    }
 
     public function editarCitaMedica() {
         $sql = "UPDATE citas_medicas SET 

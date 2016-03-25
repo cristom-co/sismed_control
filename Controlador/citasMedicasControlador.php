@@ -45,6 +45,10 @@ class citasMedicasControlador {
     public function listarCitasMedicasAtentidas (){
         echo json_encode($this->modelo->listarCitasMedicasAtentidas(), TRUE);
     }
+    
+    public function listarCitasMedicasBeneficiario (){
+        echo json_encode($this->modelo->listarCitasMedicasBeneficiario(), TRUE);
+    }
 
     public function editarcitaMedica() {
         $datos['titulo'] = "Editar Cita Medica";
@@ -53,10 +57,10 @@ class citasMedicasControlador {
             $datos['citaMedica'] = $this->modelo->listarIdCitaMedica(); 
             Vista::mostrar('editarCitaMedica', $datos);
         } else {
-            
             $this->modelo->setIdCitaMedica($_POST['idCitaMedica']);
             $this->modelo->setComentariosCitaMedica($_POST['txfComentario']);
             $this->modelo->setIdBeneficarios($_POST['cmbBeneficiario']);
+            $this->modelo->setEstadoCitaMedica($_POST['cmbEstado']);
             $this->modelo->setIdConsultorio($_POST['cmbConsultorio']);
             $this->modelo->setIdAgendaMedica($_POST['cmbHoraCita']);
             
