@@ -26,6 +26,9 @@
                 <li>
                     <a href="<?php echo URL_BASE; ?>consultorios/consultorios">Consultorios</a>
                 </li>
+                <li>
+                    <a href="<?php echo URL_BASE; ?>tipoOrdenes/tipoOrdenes">Tipos de ordenes</a>
+                </li>
             </ul>
         </li>
         <li>
