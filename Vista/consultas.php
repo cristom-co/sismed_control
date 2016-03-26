@@ -9,14 +9,16 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
         <!-- encabezado wrapper -->
         <?php Vista::mostrar('plantillas/_eslogan'); ?>
         <div>
-            <form action="<?php echo URL_BASE . 'consultas/insertarEpisodio'; ?>" method="POST">
+            <form action="<?php echo URL_BASE . 'consultas/insertarConsulta'; ?>" method="POST">
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs" role="tablist">
                     <li role="presentation" class="active"><a href="#Episodio" aria-controls="home" role="tab" data-toggle="tab">Episodio</a></li>
                     <li role="presentation"><a href="#Diagnostico" aria-controls="profile" role="tab" data-toggle="tab">Diagnostico</a></li>
                     <li role="presentation"><a href="#Ordenes" aria-controls="messages" role="tab" data-toggle="tab">Ordenes</a></li>
                     <li role="presentation"><a href="#FormulaMedica" aria-controls="settings" role="tab" data-toggle="tab">Formula Medica</a></li>
+                    <li><button style="margin-left:20%;" type="submit" class="btn btn-primary" name="btnGrabarConsulta" id="btnGrabarConsulta">Guardar</button></li>
                 </ul>
+
                 <div style="margin-top:2%;"></div>
                 <!-- Tab panes -->
                 <div class="tab-content">
@@ -203,8 +205,7 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
                         </div>    
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary" name="btnGrabarConsulta" id="btnGrabarConsulta">Guardar</button>
-            </form>
+<!--EndForm--></form>
         </div>
         <!-------------------------------------------------------------------------------------------------------------------------------------------------->
     </div>

@@ -65,7 +65,7 @@ class Beneficiarios {
         beneficiarios_idBeneficiario) 
         VALUES (
             NULL,
-            CURRENT_TIMESTAMP,
+            CURDATE(),
             '{$this->getEstadoHistoriaClinica()}',
             '{$this->getIdBeneficiario()}')";
         return $this->conexion->consultaSimple($sql);

@@ -120,7 +120,9 @@ class Consultas {
 
     public function listarDiagnostico() {
         $sql = "SELECT idDiagnostico, descripcionDiagnostico, 
-        enfermedades_idEnfermedad, episodios_idEpisodio FROM diagnosticos 
+        enfermedades_idEnfermedad, episodios_idEpisodio, nombreEnfermedad 
+        FROM diagnosticos d
+        INNER JOIN enfermedades e ON e.idEnfermedad = d.enfermedades_idEnfermedad
         WHERE episodios_idEpisodio = '{$this->getIdEpisodio()}'";
         return $this->conexion->consulta($sql);
     }
@@ -163,9 +165,11 @@ class Consultas {
     }
 
     public function listarOrdenes() {
-        $sql = "SELECT idOrden, fechaHoraOrden, cantidadOrden, observacionOrden, 
-        tipos_ordenes_idTipoOrden, diagnosticos_idDiagnostico, cups_idCup 
-        FROM ordenes WHERE diagnosticos_idDiagnostico = '{$this->getIdDiagnostico()}'";
+        $sql = "SELECT idOrden, fechaHoraOrden, cantidadOrden, observacionOrden,
+        tipos_ordenes_idTipoOrden, episodios_idEpisodio, cups_idCup, tipoOrden, descripcionTipoOrden
+        FROM ordenes o
+        INNER JOIN tipos_ordenes t ON t.idTipoOrden = o.tipos_ordenes_idTipoOrden
+        WHERE episodios_idEpisodio = '{$this->getIdEpisodio()}'";
         return $this->conexion->consulta($sql);
     }
 
@@ -173,15 +177,14 @@ class Consultas {
         $sql = "UPDATE ordenes SET fechaHoraOrden= '{$this->getFechaHoraOrden()}',
         cantidadOrden= '{$this->getCantidadOrden()}',
         observacionOrden= '{$this->getObservacionesOrden()}',
-        tipos_ordenes_idTipoOrden= '{$this->getIdTipoOrden()}',
-        cups_idCup= '{$this->getIdCup()}' 
-        WHERE diagnosticos_idDiagnostico = '{$this->getIdDiagnostico()}'";
+        tipos_ordenes_idTipoOrden= '{$this->getIdTipoOrden()}'
+        WHERE idOrden = '{$this->getIdOrden()}'";
         return $this->conexion->consultaSimple($sql);
     }
 
     public function eliminarOrden() {
         $sql = "DELETE FROM ordenes 
-        WHERE diagnosticos_idDiagnostico = '{$this->getIdDiagnostico()}'";
+        WHERE idOrden = '{$this->getIdOrden()}'";
         return $this->conexion->consultaSimple($sql);
     }
 
@@ -204,7 +207,7 @@ class Consultas {
                 . "observacionesFormulaMedica, "
                 . "episodios_idEpisodio "
                 . "FROM formulas_medicas "
-                . "WHERE  episodios_idEpisodio = {$this->getIdEpisodio()}";
+                . "WHERE  episodios_idEpisodio = '{$this->getIdEpisodio()}'";
         return $this->conexion->consulta($sql);
     }
 
@@ -212,13 +215,13 @@ class Consultas {
         $sql = "UPDATE formulas_medicas SET 
                 observacionesFormulaMedica = '{$this->getObservaciones()}',
                 posologiaFormulaMedica = '{$this->getPosologiaFormulaMedica()}',
-                WHERE diagnosticos_idDiagnostico = '{$this->getIdDiagnostico()}'";
+                WHERE episodios_idEpisodio = '{$this->getIdEpisodio()}'";
         return $this->conexion->consultaSimple($sql);
     }
 
     public function eliminarFormulaMedica() {
         $sql = "DELETE FROM formulas_medicas 
-        WHERE diagnosticos_idDiagnostico = '{$this->getIdDiagnostico()}'";
+        WHERE episodios_idEpisodio = '{$this->getIdEpisodio()}'";
         return $this->conexion->consultaSimple($sql);
     }
 
@@ -279,8 +282,8 @@ class Consultas {
     }
     
     public function citaMedicaAtendida() {
-        $sql = "UPDATE citas_medicas SET estadoCitaMedica=4 WHERE idCitaMedica={$this->getIdCitaMedica()};";
-        
+        $sql = "UPDATE citas_medicas SET estadoCitaMedica=4
+        WHERE idCitaMedica={$this->getIdCitaMedica()};";
         return $this->conexion->consulta($sql);
     }
 
@@ -486,5 +489,21 @@ class Consultas {
     function setIdBeneficiario($idBeneficiario) {
         $this->idBeneficiario = $idBeneficiario;
     }
+    function getFechaAperturaHistoria() {
+        return $this->fechaAperturaHistoria;
+    }
+
+    function getEstadoHistoria() {
+        return $this->estadoHistoria;
+    }
+
+    function setFechaAperturaHistoria($fechaAperturaHistoria) {
+        $this->fechaAperturaHistoria = $fechaAperturaHistoria;
+    }
+
+    function setEstadoHistoria($estadoHistoria) {
+        $this->estadoHistoria = $estadoHistoria;
+    }
+
 
 }

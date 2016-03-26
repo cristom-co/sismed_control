@@ -23,24 +23,8 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
                 <img src="<?php echo URL_BASE; ?>Vista/img/logo2.png" alt="" class="img-responsive" style="max-widht:150px; max-height:150px;">
             </div>
         </div>
-        
-        <div class=" col-md-offset-3 col-md-6 col-md-offset-3">
-            <div class="panel panel-info">
-                <div class="panel-heading">
-                    <div class="row">
-                        <div class="col-xs-5">
-                            <i class="fa fa-folder-open-o fa-5x"></i>
-                        </div>
-                        <div class="col-xs-7 text-right">
-                       <div class="huge">Historial Medico</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
         <div class="row" style="margin-top: 10px"></div>
-                <div class="row">
+        <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-7 col-xs-12">
                 <div class="input-group">
                     <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
@@ -54,10 +38,10 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
         <div class="row" style="margin-top: 10px"></div>
         <div class="panel panel-info">
             <div class="panel-heading">
-                <h3 class="panel-title text-center">Historial Medico</h3>
+                <h3 class="panel-title text-center">Citas Medicas</h3>
             </div>
             <div class="panel-body">
-                
+
                 <div class="table-responsive">
                     <table id="tblCitasMedicas" class="table table-condensed table-hover">
                         <thead>
@@ -69,7 +53,7 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
                                     Fecha
                                 </th>
                                 <th>
-                                   Hora
+                                    Hora
                                 </th>
                                 <th>
                                     Duracion
@@ -90,9 +74,9 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
                                     Consultorio
                                 </th>
                                 <th>
-                                    Doctor
+                                    Médico
                                 </th>
-                                <th colspan="2" class='text-center'>Acciones</th>
+                                <th colspan="3" class='text-center'>Acciones</th>
                             </tr>
                         </thead>
                         <tbody>              
@@ -122,52 +106,39 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
             filas += "<td>" + v.comentariosCitaMedica + "</td>";
             switch (v.estadoCitaMedica) {
                 case '1':
-                    estadoCita = "Asignada";
+                    estadoCita = "<span class='label label-primary'>Asignada</span>";
                     break;
                 case '2':
-                    estadoCita = "En progreso";
+                    estadoCita = "<span class='label label-info'>En progreso</span>";
                     break;
                 case '3':
-                    estadoCita = "Cancelada";
+                    estadoCita = "<span class='label label-warning'>Cancelada</span>";
                     break;
                 case '4':
-                    estadoCita ="Atendida";
+                    estadoCita = "<span class='label label-success'>Atendida</span>";
                     break;
                 case '5':
-                    estadoCita ="Perdida";
+                    estadoCita = "<span class='label label-danger'>Perdida</span>";
                     break;
             }
             filas += "<td>" + estadoCita + "</td>";
             filas += "<td>" + v.numeroIdentificacionBeneficiario + "</td>";
-            filas += "<td>" + v.nombresBeneficiario + " "+ v.apellidosBeneficiario + "</td>";
+            filas += "<td>" + v.nombresBeneficiario + " " + v.apellidosBeneficiario + "</td>";
             filas += "<td>" + v.numeroConsultorio + "</td>";
-            //filas += "<td>" + v.agendas_medicas_idAgendasMedica + "</td>";
             filas += "<td>" + v.nombresEmpleado + " " + v.apellidosEmpleado + "</td>";
             filas += "<td>";
-            filas += "<form action='<?php echo URL_BASE; ?>historialMedico/editarHistorialMedico' method='POST'>";
-            filas += "<button class='btn btn-xs btn-success' type='submit' name='btnEditarHistorialMedico'><i class='fa fa-edit'></i></button>";
-            filas += "<input type='hidden' name='idCitaMedica' value='" + v.idCitaMedica  + "'>";
-            filas += "<input type='hidden' name='idBeneficiario' value='" + v.idBeneficiario  + "'>"
+            filas += "<form action='<?php echo URL_BASE; ?>consultas/editarConsulta' method='POST'>";
+            filas += "<button class='btn btn-xs btn-warning center-block' type='submit' name='btnConstulaCitaMedica'><i class='fa fa-stethoscope'></i></button>";
+            filas += "<input type='hidden' name='idCitaMedica' value='" + v.idCitaMedica + "'>";
             filas += "</form>";
             filas += "</td>";
             filas += "<td>";
-            filas += "<button class='btn btn-xs btn-danger' data-toggle='modal' data-target='#modalEliminarCitaMedica" + cont + "' name='btnModalEliminarCitaMedica'><i class='fa fa-close'></i></button>";
-            filas += "<div class = 'modal fade' id='modalEliminarCitaMedica" + cont + "' tabindex = '-1' role = 'dialog'>";
-            filas += "<div class='modal-dialog'>";
-            filas += "<div class='modal-content'>";
-            filas += "<div class='modal-header'>";
-            filas += "<button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>";
-            filas += "<h4 class='modal-title'>Eliminar Cita Medica</h4>";
-            filas += "</div>";
-            filas += "<div class='modal-body'>";
-            filas += "<p>¿Seguro que desea eliminar registro?</p>";
-            filas += "</div>";
-            filas += "<div class='modal-footer'>";
-            filas += "<form action='<?php echo URL_BASE; ?>citasMedicas/eliminarCitaMedica' method='POST'>";
-            filas += "<button type='button' class='btn btn-default' data-dismiss='modal'>Cancelar</button>";
-            filas += "<button class='btn btn-primary' type='submit' name='btnEliminarCitaMedica'> Aceptar </button>";
+            filas += "<form action='<?php echo URL_BASE; ?>consultas/listarConsulta' method='POST'>";
+            filas += "<button class='btn btn-xs btn-success center-block' type='submit' name='btnConstulaCitaMedica'><i class='fa fa-list-alt'></i></button>";
             filas += "<input type='hidden' name='idCitaMedica' value='" + v.idCitaMedica + "'>";
+            filas += "<input type='hidden' name='idBeneficiario' value ='" + v.idBeneficiario + "'>"; //idBeneficiario para la insercion del episodio
             filas += "</form>";
+            filas += "</td>";
             filas += "</div>";
             filas += "</div>";
             filas += "</div>";
@@ -177,5 +148,6 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
         });
         $('#tblCitasMedicas tbody').html(filas);
     });
+
 
 </script>

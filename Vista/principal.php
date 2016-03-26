@@ -32,12 +32,12 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
                                 <i class="fa fa-spinner fa-5x"></i>
                             </div>
                             <div class="col-xs-9 text-right">
-                                <div class="huge">26</div>
+                                <div class="huge" id="ContadorCitas"></div>
                                 <div>Citas del día</div>
                             </div>
                         </div>
                     </div>
-                    <a href="#">
+                    <a href="<?php echo URL_BASE; ?>citasMedicas/citas">
                         <div class="panel-footer">
                             <span class="pull-left">Ir a citas</span>
                             <span class="pull-right glyphicon glyphicon-thumbs-up"></span>
@@ -54,14 +54,15 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
                                 <i class="fa fa-calendar fa-5x"></i>
                             </div>
                             <div class="col-xs-9 text-right">
-                                <div class="huge">10</div>
-                                <div>FEBRERO, 2016</div>
+                                <?php $arrayMeses = array('Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio','Julio', 'Agosto', 'Septiembre','Octubre', 'Noviembre', 'Diciembre'); ?>
+                                <div class="huge" id="dia"><?php echo date('d') ?></div>
+                                <?php echo " de ".$arrayMeses[date('m')-1]." de ".date('Y'); ?>
                             </div>
                         </div>
                     </div>
-                    <a href="#">
+                    <a href="<?php echo URL_BASE; ?>agendasMedicas/agenda">
                         <div class="panel-footer">
-                            <span class="pull-left">Ver calendario</span>
+                            <span class="pull-left">Ver Agendas Medicas</span>
                             <span class="pull-right glyphicon glyphicon-info-sign"></span>
                             <div class="clearfix"></div>
                         </div>
@@ -79,7 +80,7 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
                     </span>
                 </div>
             </div>
-            <div class="row" style="margin-top: 10px"></div>
+            <div class="row" style="margin-bottom:5px;"></div>
             
             <div class="col-lg-12">
                 <div class="panel panel-info">
@@ -88,46 +89,134 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
                     </div>
                     <div class="panel-body">
                         <div class="table-responsive">
-                            <table class="table table-hover table-condensed">
-                                <thead>
-                                    <tr>
-                                        <th>Nombre</th>
-                                        <th>Apellido</th>
-                                        <th>NickName</th>
-                                        <th>Contraseña</th>
-                                        <th>Rol</th>
-                                        <th>Acción</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td>
-                                            <div class="btn-group" role="group" aria-label="...">
-                                                <button type="button" class="btn btn-xs btn-success">Editar Usuario</button>
-                                                <button type="button" class="btn btn-xs btn-danger">Eliminar Usuario</button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+                    <table id="tblCitasMedicas" class="table table-condensed table-hover">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Registro
+                                </th>
+                                <th>
+                                    Fecha
+                                </th>
+                                <th>
+                                    Hora
+                                </th>
+                                <th>
+                                    Duracion
+                                </th>
+                                <th>
+                                    Comentarios
+                                </th>
+                                <th>
+                                    Estado
+                                </th>
+                                <th>
+                                    Cedula
+                                </th>
+                                <th>
+                                    Beneficiario
+                                </th>
+                                <th>
+                                    Consultorio
+                                </th>
+                                <th>
+                                    Médico
+                                </th>
+                                <th colspan="3" class='text-center'>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>              
+                        </tbody>
+                    </table>
+                    <div id="oculto"></div>
+                </div>
                 </div>
             </div>
-
         </div><!-- /.row -->
-
         <!-- row para pruebas e includes -->
         <div class="row">
             <?php //Vista::mostrar('crearAyudaDiagnostica'); ?>
         </div>
     </div><!-- /.container-fluid -->
-
-
 </div><!-- /#page-wrapper -->
 <?php Vista::mostrar('plantillas/_pie'); ?>
+
+<script >
+     $.post('<?php echo URL_BASE; ?>citasMedicas/listarCitasMedicasHoy', {}, function (data) {
+        var datos = JSON.parse(data);
+        var filas;
+        var cont = 0;
+        var estadoCita;
+        $.each(datos, function (i, v) {
+            cont = cont + 1;
+            filas += "<tr>";
+            filas += "<td>" + v.fechaHoraRegistroCitaMedica + "</td>";
+            filas += "<td>" + v.fechaAgendaMedica + "</td>";
+            filas += "<td>" + v.hora + "</td>";
+            filas += "<td>" + v.duracionCitaMedica + "</td>";
+            filas += "<td>" + v.comentariosCitaMedica + "</td>";
+            switch (v.estadoCitaMedica) {
+                case '1':
+                    estadoCita = "<span class='label label-primary'>Asignada</span>";
+                    break;
+                case '2':
+                    estadoCita = "<span class='label label-info'>En progreso</span>";
+                    break;
+                case '3':
+                    estadoCita = "<span class='label label-warning'>Cancelada</span>";
+                    break;
+                case '4':
+                    estadoCita = "<span class='label label-success'>Atendida</span>";
+                    break;
+                case '5':
+                    estadoCita = "<span class='label label-danger'>Perdida</span>";
+                    break;
+            }
+            filas += "<td>" + estadoCita + "</td>";
+            filas += "<td>" + v.numeroIdentificacionBeneficiario + "</td>";
+            filas += "<td>" + v.nombresBeneficiario + " " + v.apellidosBeneficiario + "</td>";
+            filas += "<td>" + v.numeroConsultorio + "</td>";
+            filas += "<td>" + v.nombresEmpleado + " " + v.apellidosEmpleado + "</td>";
+            filas += "<td>";
+            filas += "<form action='<?php echo URL_BASE; ?>consultas/consulta' method='POST'>";
+            filas += "<button class='btn btn-xs btn-warning' type='submit' name='btnConstulaCitaMedica'><i class='fa fa-stethoscope'></i></button>";
+            filas += "<input type='hidden' name='idCitaMedica' value='" + v.idCitaMedica + "'>";
+            filas += "<input type='hidden' name='idBeneficiario' value ='" + v.idBeneficiario + "'>"; //idBeneficiario para la insercion del episodio
+            filas += "</form>";
+            filas += "</td>";
+            filas += "<td>";
+            filas += "<form action='<?php echo URL_BASE; ?>citasMedicas/editarCitaMedica' method='POST'>";
+            filas += "<button class='btn btn-xs btn-success' type='submit' name='btnEditarCitaMedica'><i class='fa fa-edit'></i></button>";
+            filas += "<input type='hidden' name='idCitaMedica' value='" + v.idCitaMedica + "'>";
+            filas += "</form>";
+            filas += "</td>";
+            filas += "<td>";
+            filas += "<button class='btn btn-xs btn-danger' data-toggle='modal' data-target='#modalCancelarCitaMedica" + cont + "' name='btnModalCancelarCitaMedica'><i class='fa fa-close'></i></button>";
+            filas += "<div class = 'modal fade' id='modalCancelarCitaMedica" + cont + "' tabindex = '-1' role = 'dialog'>";
+            filas += "<div class='modal-dialog'>";
+            filas += "<div class='modal-content'>";
+            filas += "<div class='modal-header'>";
+            filas += "<button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>";
+            filas += "<h4 class='modal-title'>Cancelar Cita Medica</h4>";
+            filas += "</div>";
+            filas += "<div class='modal-body'>";
+            filas += "<p>¿Seguro que desea cancelar la cita?</p>";
+            filas += "</div>";
+            filas += "<div class='modal-footer'>";
+            filas += "<form action='<?php echo URL_BASE; ?>citasMedicas/estadoCitaMedica' method='POST'>";
+            filas += "<button type='button' class='btn btn-default' data-dismiss='modal'>Cancelar</button>";
+            filas += "<button class='btn btn-primary' type='submit' name='btnCancelarCitaMedica'> Aceptar </button>";
+            filas += "<input type='hidden' name='idCitaMedica' value='" + v.idCitaMedica + "'>";
+            filas += "<input type='hidden' name='IdEstadoCitaMedica' value='3'>";
+            filas += "</form>";
+            filas += "</div>";
+            filas += "</div>";
+            filas += "</div>";
+            filas += "</div>";
+            filas += "</td>";
+            filas += "</tr>";
+        });
+        $('#tblCitasMedicas tbody').html(filas);
+        $('#ContadorCitas').html(cont);
+    });
+</script>

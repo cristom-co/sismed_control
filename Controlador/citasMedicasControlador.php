@@ -54,6 +54,10 @@ class citasMedicasControlador {
     public function listarCitasMedicasBeneficiario (){
         echo json_encode($this->modelo->listarCitasMedicasBeneficiario(), TRUE);
     }
+    
+     public function listarCitasMedicasHoy (){
+        echo json_encode($this->modelo->listarCitasMedicasHoy(), TRUE);
+    }
 
     public function editarcitaMedica() {
         if (!$_POST){
