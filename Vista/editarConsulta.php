@@ -65,6 +65,7 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
                     $('#').append("<input type='hidden' name='idEpisodio' value='"+ response+"'>");
                 });
             </script> <!-- consultar el id del episodio creado mediante el id de la cita medica -->
+
             <!-------------------------------------------------------------------------------------------------------------------------------------------------->
             <!-- Tab para los diagnosticos --------------------------------------------------------------------------------------------------------------------->
             

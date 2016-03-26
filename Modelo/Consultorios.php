@@ -4,6 +4,7 @@ class Consultorios {
 
     private $idConsultorio;
     private $numeroConsultorio;
+    private $idCentroMedico;
     private $conexion;
 
     public function __construct() {
@@ -11,8 +12,10 @@ class Consultorios {
     }
 
     public function insertarConsultorio() {
-        $sql = "INSERT INTO consultorios(idConsultorio, numeroConsultorio) "
-                . "VALUES (null, '{$this->getNumeroConsultorio()}');";
+        $sql = "INSERT INTO consultorios(idConsultorio, numeroConsultorio,
+        centros_medicos_idCentroMedico) VALUES (null, 
+        '{$this->getNumeroConsultorio()}',
+        '{$this->getIdCentroMedico()}');";
 
         return $this->conexion->consultaSimple($sql);
     }
@@ -34,8 +37,10 @@ class Consultorios {
     }
 
     public function editarConsultorio() {
-        $sql = "UPDATE consultorios SET numeroConsultorio='{$this->getNumeroConsultorio()}' "
-                . "WHERE idConsultorio={$this->getIdConsultorio()};";
+        $sql = "UPDATE consultorios SET 
+        numeroConsultorio='{$this->getNumeroConsultorio()}',
+        centros_medicos_idCentroMedico='{$this->getIdCentroMedico()}'
+        WHERE idConsultorio={$this->getIdConsultorio()};";
 
         return $this->conexion->consultaSimple($sql);
     }
@@ -46,12 +51,20 @@ class Consultorios {
         return $this->conexion->consultaSimple($sql);
     }
 
+    public function getIdCentroMedico(){
+        return $this->idCentroMedico;
+    }
+    
     public function getIdConsultorio() {
         return $this->idConsultorio;
     }
 
     public function getNumeroConsultorio() {
         return $this->numeroConsultorio;
+    }
+
+    public function setIdCentroMedico($idCentroMedico) {
+        $this->idCentroMedico = $idCentroMedico;
     }
 
     public function setIdConsultorio($idConsultorio) {

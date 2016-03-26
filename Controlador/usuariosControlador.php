@@ -18,7 +18,7 @@ class usuariosControlador {
     public function insertarUsuario() {
         $datos['titulo'] = "Registrar Usuario";
         if (!$_POST) :
-            Vista::mostrar('registrarUsuario', $datos);
+            header("location: usuarios");
         else :
             $this->modelo->setContrasenia($_POST['txfContrasenia']);
             $this->modelo->setIdRol($_POST['cmbRol']);
@@ -44,14 +44,18 @@ class usuariosControlador {
     }
 
     public function editarUsuario() {
-        $datos['titulo'] = "Editar usuario";
-        $this->modelo->setIdUsuario($_POST['idUsuario']);
-        if (!isset($_POST['btnGuardar'])) {
-            $datos['usuario'] = $this->modelo->listarIdUsuario();
-            Vista::mostrar('editarUsuario', $datos);
-        } else {
-            $datos['mensaje'] = $this->modelo->editarUsuario();
-            Vista::mostrar('usuarios', $datos);
+        if (isset($_POST['btnEditarUsuario'])) {
+            $datos['titulo'] = "Editar usuario";
+            $this->modelo->setIdUsuario($_POST['idUsuario']);
+            if (!isset($_POST['btnGuardar'])) {
+                $datos['usuario'] = $this->modelo->listarIdUsuario();
+                Vista::mostrar('editarUsuario', $datos);
+            } else {
+                $datos['mensaje'] = $this->modelo->editarUsuario();
+                Vista::mostrar('usuarios', $datos);
+            }
+        }else{
+            header("location: usuarios");
         }
     }
 
@@ -61,14 +65,20 @@ class usuariosControlador {
     }
 
     public function eliminarUsuario() {
-        $this->modelo->setIdUsuario($_POST['idUsuario']);
-        $registro = $this->modelo->eliminarUsuario();
-        if ($registro) {
-            $datos['mensaje'] = "Registro eliminado correctamente";
-        } else {
-            $datos['mensaje'] = "Error al eliminar registro";
+        if (isset($_POST['btnEliminarUsuario'])){
+            $this->modelo->setIdUsuario($_POST['idUsuario']);
+            $registro = $this->modelo->eliminarUsuario();
+            if ($registro) {
+                $datos['mensaje'] = "Registro eliminado correctamente";
+            } else {
+                $datos['mensaje'] = "Error al eliminar registro";
+            }
+            Vista::mostrar('usuarios', $datos);
         }
-        Vista::mostrar('usuarios', $datos);
+        else{
+            header("location: usuarios");
+        }
+        
     }
 
 }

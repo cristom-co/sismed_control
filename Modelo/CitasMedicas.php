@@ -13,6 +13,8 @@ class CitasMedicas {
     private $idConsultorio;
     private $idAgendaMedica;
     private $conexion;
+    //Table beneficiarios
+    private $identificacionBeneficiario;
 
     public function __construct() {
         $this->conexion = new Conexiones();
@@ -140,7 +142,7 @@ class CitasMedicas {
         INNER JOIN agendas_medicas am ON am.idAgendaMedica = ct.agendas_medicas_idAgendasMedica
         INNER JOIN empleados e ON e.idEmpleado = am.empleados_idEmpleado
         INNER JOIN hora_20 hs ON hs.idhora_20 = am.hora_20_idhora_20
-        WHERE ct.beneficiarios_idBeneficiario = '{$this->getIdBeneficarios()}'";
+        WHERE b.numeroIdentificacionBeneficiario = '{$this->getIdentificacionBeneficiario()}'";
                
         return$this->conexion->consulta($sql);
     }
@@ -155,10 +157,21 @@ class CitasMedicas {
         return $this->conexion->consultaSimple($sql);
     }
     
+    public function estadoCitaMedica (){
+        $sql="UPDATE citas_medicas 
+        SET estadoCitaMedica = '{$this->getEstadoCitaMedica()}'
+        WHERE idCitaMedica = '{$this->getIdCitaMedica()}'";
+        return $this->conexion->consultaSimple($sql);
+    }
+
 
     public function eliminarCitaMedica() {
         $sql = "DELETE FROM citas_medicas WHERE idCitaMedica = '{$this->getIdCitaMedica()}'";
         return $this->conexion->consultaSimple($sql);
+    }
+
+    function getIdentificacionBeneficiario(){
+        return $this->identificacionBeneficiario;
     }
 
     function getIdCitaMedica() {
@@ -199,6 +212,10 @@ class CitasMedicas {
 
     function getIdAgendaMedica() {
         return $this->idAgendaMedica;
+    }
+    
+    function setIdentificacionBeneficiario($identificacionBeneficiario) {
+        $this->identificacionBeneficiario = $identificacionBeneficiario;
     }
 
     function setIdCitaMedica($idCitaMedica) {

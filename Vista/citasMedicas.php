@@ -101,7 +101,6 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
                         </tbody>
                     </table>
                     <div id="oculto"></div>
-                    <div id="prueba"></div>
                 </div>
             </div>
 
@@ -166,15 +165,16 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
             filas += "<div class='modal-content'>";
             filas += "<div class='modal-header'>";
             filas += "<button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>";
-            filas += "<h4 class='modal-title'>Eliminar Cita Medica</h4>";
+            filas += "<h4 class='modal-title'>Cancelar Cita Medica</h4>";
             filas += "</div>";
             filas += "<div class='modal-body'>";
-            filas += "<p>¿Seguro que desea eliminar registro?</p>";
+            filas += "<p>¿Seguro que desea cancelar esta cita medica?</p>";
             filas += "</div>";
             filas += "<div class='modal-footer'>";
-            filas += "<form action='<?php echo URL_BASE; ?>citasMedicas/eliminarCitaMedica' method='POST'>";
+            filas += "<form action='<?php echo URL_BASE; ?>citasMedicas/estadoCitaMedica' method='POST'>";
             filas += "<button type='button' class='btn btn-default' data-dismiss='modal'>Cancelar</button>";
             filas += "<button class='btn btn-primary' type='submit' name='btnEliminarCitaMedica'> Aceptar </button>";
+            filas += "<input type='hidden' name='IdEstadoCitaMedica' value='3'>";
             filas += "<input type='hidden' name='idCitaMedica' value='" + v.idCitaMedica + "'>";
             filas += "</form>";
             filas += "</div>";

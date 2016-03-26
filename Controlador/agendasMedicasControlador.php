@@ -19,22 +19,27 @@ class agendasMedicasControlador {
     }
 
     public function insertarAgendaMedica() {
-        $idHora = $_POST['chk'];
-        $cont = count($idHora);
-        for ($i = 0; $i < $cont; $i++) {
-            $this->modelo->setFechaAgendaMedica($_POST['txfFechaAgendaMedica']);
-            $this->modelo->setDiponibilidadAgendaMedica(1);
-            $this->modelo->setIdEmpleado($_POST['cmbIdentificacionEmpleado']);
-            $this->modelo->setIdHora($idHora[$i]);
-            $registro = $this->modelo->insertarAgendaMedica();
+        if (!$_POST){
+            header("location: agenda");
         }
-        if ($registro) {
-            $datos['mensaje'] = "Se inserto Agenda Medica correctamente";
-        } else {
-            $datos['mensaje'] = "No se inserto Agenda Medica";
+        else{
+            $idHora = $_POST['chk'];
+            $cont = count($idHora);
+            for ($i = 0; $i < $cont; $i++) {
+                $this->modelo->setFechaAgendaMedica($_POST['txfFechaAgendaMedica']);
+                $this->modelo->setDiponibilidadAgendaMedica(1);
+                $this->modelo->setIdEmpleado($_POST['cmbIdentificacionEmpleado']);
+                $this->modelo->setIdHora($idHora[$i]);
+                $registro = $this->modelo->insertarAgendaMedica();
+            }
+            if ($registro) {
+                $datos['mensaje'] = "Se inserto Agenda Medica correctamente";
+            } else {
+                $datos['mensaje'] = "No se inserto Agenda Medica";
+            }
+            $datos['titulo'] = "Agendas Medicas";
+            Vista::mostrar('AgendasMedicas', $datos);
         }
-        $datos['titulo'] = "Agendas Medicas";
-        Vista::mostrar('AgendasMedicas', $datos);
     }
 
     public function listarAgendasMedicas() {
@@ -69,16 +74,21 @@ class agendasMedicasControlador {
     }
 
     public function eliminarAgendaMedica() {
-        $this->modelo->setIdEmpleado($_POST['idEmpleado']);
-        $this->modelo->setFechaAgendaMedica($_POST['fecha']);
-        $registro = $this->modelo->eliminarAgendaMedica();
-        if ($registro) {
-            $datos['mensaje'] = "Registro eliminado correctamente";
-        } else {
-            $datos['mensaje'] = "Error al eliminar registro";
+        if (!$_POST){
+            header("location: agenda");
         }
-        $datos['titulo'] = "Agendas Medicas";
-        Vista::mostrar('AgendasMedicas', $datos);
+        else{
+            $this->modelo->setIdEmpleado($_POST['idEmpleado']);
+            $this->modelo->setFechaAgendaMedica($_POST['fecha']);
+            $registro = $this->modelo->eliminarAgendaMedica();
+            if ($registro) {
+                $datos['mensaje'] = "Registro eliminado correctamente";
+            } else {
+                $datos['mensaje'] = "Error al eliminar registro";
+            }
+            $datos['titulo'] = "Agendas Medicas";
+            Vista::mostrar('AgendasMedicas', $datos);
+        }
     }
 
 }

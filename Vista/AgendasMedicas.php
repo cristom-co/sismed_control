@@ -50,7 +50,7 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
                 </div>
             </div>
             <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                <button type="button" class="btn btn-info col-xs-12" data-toggle="modal" data-target="#modalRegistrarAgendaMedica">Crear Agenda Medica</button>
+                <button type="button" class="btn btn-info col-xs-12" data-toggle="modal" data-target="#modalRegistrarAgendaMedica"> Crear Agenda </button>
             </div>
         </div>
         <div class="row" style="margin-top: 10px"></div>

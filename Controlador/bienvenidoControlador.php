@@ -6,6 +6,7 @@ class bienvenidoControlador {
         if (!$_SESSION['valido']) {
             header('Location: '.URL_BASE);
         };
+        date_default_timezone_set('America/Bogota');
     }
     
     

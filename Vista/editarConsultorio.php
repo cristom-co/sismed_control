@@ -29,11 +29,11 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
                 <input class="form-control" type="text" name="txfNumeroConsultorio" id="txfNumeroConsultorio" value="<?php echo $consultorio[0]['numeroConsultorio']; ?>">
             </div>
             <div class="form-group">
-                        <label for="cmbCentroMedico">Centro Medico: <?php echo $consultorio[0]['nombreCentroMedico'] ?> </label>
-                         <select class="form-control" name="cmbCentroMedico" id="cmbCentroMedico" required>
-                            <option value="">Seleccione un Centro Medico</option>
-                        </select>
-                    </div>
+                <label for="cmbCentroMedico">Centro Medico: <?php echo $consultorio[0]['nombreCentroMedico'] ?> </label>
+                <select class="form-control" name="cmbCentroMedico" id="cmbCentroMedico" required>
+                    <option value="">Seleccione un Centro Medico</option>
+                </select>
+            </div>
             <input type="hidden" name="idConsultorio" value="<?php echo $consultorio[0]['idConsultorio']; ?>">
             <button type="submit" class="btn btn-primary" name="btnGuardar" id="btnGuardar"> GUARDAR </button>
             <button class="btn btn-primary" name="btnAtras" id="btnAtras"><a style="text-decoration: none;color:#fff" href="<?php echo URL_BASE . 'consultorios/consultorios'; ?>">ATRAS</a></button>

@@ -21,21 +21,26 @@ class citasMedicasControlador {
     }
 
     public function insertarCitaMedica() {
-        $this->modelo->setComentariosCitaMedica($_POST['txfComentario']);
-        $this->modelo->setIdBeneficarios($_POST['cmbBeneficiario']);
-        $this->modelo->setIdConsultorio($_POST['cmbConsultorio']);
-        $this->modelo->setIdAgendaMedica($_POST['cmbHoraCita']);
-        $registro = $this->modelo->insertarCitaMedica();
-        $this->modeloAgenda->setIdAgendaMedica($_POST['cmbHoraCita']);
-        $this->modeloAgenda->setDiponibilidadAgendaMedica(0);
-        $registroAgenda = $this->modeloAgenda->editarDisponibilidad();
-        if ($registro && $registroAgenda) {
-            $datos['mensaje'] = "Se inserto la Cita Medica correctamente";
-        } else {
-            $datos['mensaje'] = "No se inserto la Cita Medica";
+        if (!$_POST){
+            header("location: citas");
         }
-        $datos['titulo'] = "Citas Medicas";
-        Vista::mostrar('citasMedicas', $datos);
+        else{
+            $this->modelo->setComentariosCitaMedica($_POST['txfComentario']);
+            $this->modelo->setIdBeneficarios($_POST['cmbBeneficiario']);
+            $this->modelo->setIdConsultorio($_POST['cmbConsultorio']);
+            $this->modelo->setIdAgendaMedica($_POST['cmbHoraCita']);
+            $registro = $this->modelo->insertarCitaMedica();
+            $this->modeloAgenda->setIdAgendaMedica($_POST['cmbHoraCita']);
+            $this->modeloAgenda->setDiponibilidadAgendaMedica(0);
+            $registroAgenda = $this->modeloAgenda->editarDisponibilidad();
+            if ($registro && $registroAgenda) {
+                $datos['mensaje'] = "Se inserto la Cita Medica correctamente";
+            } else {
+                $datos['mensaje'] = "No se inserto la Cita Medica";
+            }
+            $datos['titulo'] = "Citas Medicas";
+            Vista::mostrar('citasMedicas', $datos);
+        }
     }
 
     public function listarCitasMedicas() {
@@ -51,39 +56,68 @@ class citasMedicasControlador {
     }
 
     public function editarcitaMedica() {
-        $datos['titulo'] = "Editar Cita Medica";
-        $this->modelo->setIdcitaMedica($_POST['idCitaMedica']);
-        if (!isset($_POST['btnGuardar'])) {
-            $datos['citaMedica'] = $this->modelo->listarIdCitaMedica(); 
-            Vista::mostrar('editarCitaMedica', $datos);
-        } else {
-            $this->modelo->setIdCitaMedica($_POST['idCitaMedica']);
-            $this->modelo->setComentariosCitaMedica($_POST['txfComentario']);
-            $this->modelo->setIdBeneficarios($_POST['cmbBeneficiario']);
-            $this->modelo->setEstadoCitaMedica($_POST['cmbEstado']);
-            $this->modelo->setIdConsultorio($_POST['cmbConsultorio']);
-            $this->modelo->setIdAgendaMedica($_POST['cmbHoraCita']);
-            
-            $registro = $this->modelo->editarCitaMedica();
-            if ($registro) {
-                $datos['mensaje'] = "Cita Medica Editado correctamente";
+        if (!$_POST){
+            header("location: citas");
+        }
+        else{
+            $datos['titulo'] = "Editar Cita Medica";
+            $this->modelo->setIdcitaMedica($_POST['idCitaMedica']);
+            if (!isset($_POST['btnGuardar'])) {
+                $datos['citaMedica'] = $this->modelo->listarIdCitaMedica(); 
+                Vista::mostrar('editarCitaMedica', $datos);
             } else {
-                $datos['mensaje'] = "No se edito el Cita Medica";
+                
+                $this->modelo->setIdCitaMedica($_POST['idCitaMedica']);
+                $this->modelo->setComentariosCitaMedica($_POST['txfComentario']);
+                $this->modelo->setEstadoCitaMedica($_POST['cmbEstado']);
+                $this->modelo->setIdConsultorio($_POST['cmbConsultorio']);
+                $this->modelo->setIdAgendaMedica($_POST['cmbHoraCita']);
+                
+                $registro = $this->modelo->editarCitaMedica();
+                if ($registro) {
+                    $datos['mensaje'] = "Cita Medica Editada correctamente";
+                } else {
+                    $datos['mensaje'] = "No se edito el Cita Medica";
+                }
+                $datos['titulo'] = "Citas Medicas";
+                Vista::mostrar('citasMedicas', $datos);
+            }
+        }
+    }
+    
+    public function eliminarcitaMedica() {
+        if (!$_POST){
+            header("location: citas");
+        }
+        else{
+            $this->modelo->setIdCitaMedica($_POST['idCitaMedica']);
+            $registro = $this->modelo->eliminarCitaMedica();
+            if ($registro) {
+                $datos['mensaje'] = "Registro eliminado correctamente";
+            } else {
+                $datos['mensaje'] = "Error al eliminar registro";
             }
             $datos['titulo'] = "Citas Medicas";
             Vista::mostrar('citasMedicas', $datos);
         }
     }
     
-    public function eliminarcitaMedica() {
-        $this->modelo->setIdCitaMedica($_POST['idCitaMedica']);
-        $registro = $this->modelo->eliminarCitaMedica();
-        if ($registro) {
-            $datos['mensaje'] = "Registro eliminado correctamente";
-        } else {
-            $datos['mensaje'] = "Error al eliminar registro";
+    public function estadoCitaMedica (){
+        if (!$_POST){
+            header("location: citas");
         }
-        $datos['titulo'] = "Citas Medicas";
-        Vista::mostrar('citasMedicas', $datos);
+        else{
+            $this->modelo->setIdCitaMedica($_POST['idCitaMedica']);
+            $this->modelo->setEstadoCitaMedica($_POST['IdEstadoCitaMedica']);
+            $registro = $this->modelo->estadoCitaMedica();
+            if($registro) {
+                $datos['mensaje'] = "La cita cambio de estado correctamente";
+            }
+            else {
+                $datos['mensaje'] = "la cita no cambio de estado";
+            }
+            $datos['titulo'] = "Citas Medicas";
+            Vista::mostrar('citasMedicas', $datos);
+        }
     }
 }

@@ -14,7 +14,7 @@
 class Controlador {
 
     public static function principal() {
-
+        date_default_timezone_set('America/Bogota');
         //Invoco a las clases del Nucleo
         require 'Configuracion.php';
         require 'Modelo.php';

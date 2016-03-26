@@ -33,8 +33,10 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
                 <input type="text" id="txfDescipcionRol" name="txfDescipcionRol" value="<?php echo $rol[0]['descripcionRol']; ?>" class="form-control">
                 <span id="errorPasswors" hidden style="color: red"></span>
             </div>
+            <input type="hidden" name="idRol" value="<?php echo $rol[0]['idRol']?>"/>
             <button type="submit" class="btn btn-primary" name="btnGuardar" id="btnGuardar"> GUARDAR </button>
             <button class="btn btn-primary" name="btnAtras" id="btnAtras"><a style="text-decoration: none;color:#fff" href="<?php echo URL_BASE . 'roles/roles'; ?>">ATRAS</a></button>
+        
         </form>
         
     </div><!-- /.container-fluid -->

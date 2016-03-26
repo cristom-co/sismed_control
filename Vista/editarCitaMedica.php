@@ -22,6 +22,7 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
                 <img src="<?php echo URL_BASE; ?>Vista/img/logo2.png" alt="" class="img-responsive" style="max-widht:150px; max-height:150px;">
             </div>
         </div>
+        
         <form method="POST" action="<?php echo URL_BASE.'citasMedicas/editarCitaMedica'; ?>">
             
                     <div class="form-group">
@@ -82,10 +83,8 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
                             <option value="5">Vencida</option>
                         </select>
                     </div>
-            
+                <input type="hidden" name="idCitaMedica" value="<?php echo $citaMedica[0]['idCitaMedica']; ?>"/>
             <button type="submit" class="btn btn-primary" name="btnGuardar" id="btnGuardar"> GUARDAR </button>
-            <button class="btn btn-primary" name="btnAtras" id="btnAtras"><a style="text-decoration: none;color:#fff" href="<?php echo URL_BASE . 'citasMedicas/citas'; ?>">ATRAS</a></button>
-            <input type="hidden" name="idCitaMedica" value="<?php echo $citaMedica[0]['idcitaMedica']; ?>">
         </form>
     </div><!-- /.container-fluid -->
 </div><!-- /#page-wrapper -->
