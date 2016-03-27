@@ -51,6 +51,7 @@ class CitasMedicas {
            duracionCitaMedica,
            comentariosCitaMedica, 
            estadoCitaMedica, 
+           b.idBeneficiario,
            numeroIdentificacionBeneficiario,
            nombresBeneficiario, 
            apellidosBeneficiario, 
@@ -64,7 +65,7 @@ class CitasMedicas {
         INNER JOIN agendas_medicas am ON am.idAgendaMedica = ct.agendas_medicas_idAgendasMedica
         INNER JOIN empleados e ON e.idEmpleado = am.empleados_idEmpleado
         INNER JOIN hora_20 hs ON hs.idhora_20 = am.hora_20_idhora_20
-        WHERE idCitaMedica = '{$this->getIdCitaMedica()}'";
+        WHERE ct.idCitaMedica = '{$this->getIdCitaMedica()}'";
         return $this->conexion->consulta($sql);
     }
 
@@ -92,7 +93,7 @@ class CitasMedicas {
         INNER JOIN hora_20 hs ON hs.idhora_20 = am.hora_20_idhora_20
         WHERE estadoCitaMedica != 4";
                
-        return$this->conexion->consulta($sql);
+        return $this->conexion->consulta($sql);
     }
 
     public function listarCitasMedicasAtentidas() {
@@ -110,7 +111,8 @@ class CitasMedicas {
            numeroConsultorio,
            ct.agendas_medicas_idAgendasMedica,
            nombresEmpleado, 
-           apellidosEmpleado
+           apellidosEmpleado,
+           am.idAgendaMedica
         FROM citas_medicas ct
         INNER JOIN beneficiarios b ON b.idBeneficiario = ct.beneficiarios_idBeneficiario
         INNER JOIN consultorios c ON c.idConsultorio = ct.consultorios_idConsultorio
@@ -118,7 +120,7 @@ class CitasMedicas {
         INNER JOIN empleados e ON e.idEmpleado = am.empleados_idEmpleado
         INNER JOIN hora_20 hs ON hs.idhora_20 = am.hora_20_idhora_20
         WHERE estadoCitaMedica = 4";
-        return$this->conexion->consulta($sql);
+        return $this->conexion->consulta($sql);
     }    
     
      public function listarCitasMedicasHoy() {
@@ -144,7 +146,7 @@ class CitasMedicas {
         INNER JOIN empleados e ON e.idEmpleado = am.empleados_idEmpleado
         INNER JOIN hora_20 hs ON hs.idhora_20 = am.hora_20_idhora_20
         WHERE am.fechaAgendaMedica = CURDATE()";
-        return$this->conexion->consulta($sql);
+        return $this->conexion->consulta($sql);
     }    
     
      public function listarCitasMedicasBeneficiario() {
@@ -169,9 +171,9 @@ class CitasMedicas {
         INNER JOIN agendas_medicas am ON am.idAgendaMedica = ct.agendas_medicas_idAgendasMedica
         INNER JOIN empleados e ON e.idEmpleado = am.empleados_idEmpleado
         INNER JOIN hora_20 hs ON hs.idhora_20 = am.hora_20_idhora_20
-        WHERE b.numeroIdentificacionBeneficiario = '{$this->getIdentificacionBeneficiario()}'";
-               
-        return$this->conexion->consulta($sql);
+        WHERE b.numeroIdentificacionBeneficiario = '{$this->getIdentificacionBeneficiario()}'
+        OR am.fechaAgendaMedica = '{$this->getFechaCitaMedica()}'";
+        return $this->conexion->consulta($sql);
     }
 
     public function editarCitaMedica() {

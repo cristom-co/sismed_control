@@ -118,11 +118,13 @@ class Beneficiarios {
                 direccionBeneficiario, 
                 telefonoBeneficiario, 
                 movilBeneficiario, 
-                correoBeneficiario 
+                correoBeneficiario,
+                cf.nombreCentroFormacion
                 FROM beneficiarios b 
                 INNER JOIN tipos_documentos t ON b.tipos_documentos_idTipoDocumento = t.idTipoDocumento 
                 INNER JOIN generos g ON b.generos_idGenero = g.idGenero 
-                INNER JOIN funcionarios ON funcionarios_idFuncionario = idFuncionario 
+                INNER JOIN funcionarios f ON b.funcionarios_idFuncionario = f.idFuncionario 
+                INNER JOIN centros_formacion cf ON cf.idCentroFormacion = f.centros_formacion_idCentroFormacion
                 WHERE idBeneficiario= '{$this->getIdBeneficiario()}';";
         return $this->conexion->consulta($sql);
     }

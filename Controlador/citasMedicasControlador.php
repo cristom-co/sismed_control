@@ -21,10 +21,8 @@ class citasMedicasControlador {
     }
 
     public function insertarCitaMedica() {
-        if (!$_POST){
-            header("location: citas");
-        }
-        else{
+        if ($_POST){
+            
             $this->modelo->setComentariosCitaMedica($_POST['txfComentario']);
             $this->modelo->setIdBeneficarios($_POST['cmbBeneficiario']);
             $this->modelo->setIdConsultorio($_POST['cmbConsultorio']);
@@ -41,9 +39,18 @@ class citasMedicasControlador {
             $datos['titulo'] = "Citas Medicas";
             Vista::mostrar('citasMedicas', $datos);
         }
+        else{
+            header("location: citas");
+           
+        }
+    }
+    
+    public function listarIdCitaMedica() {
+        $this->modelo->setIdCitaMedica($_POST['idCitaMedica']);
+        echo json_encode($this->modelo->listarIdCitaMedica(), TRUE);
     }
 
-    public function listarCitasMedicas() {
+    public function listarCitasMedicas (){
         echo json_encode($this->modelo->listarCitasMedicas(), TRUE);
     }
     
@@ -52,6 +59,8 @@ class citasMedicasControlador {
     }
     
     public function listarCitasMedicasBeneficiario (){
+        $this->modelo->setIdentificacionBeneficiario($_POST['beneficiario']);
+        $this->modelo->setFechaCitaMedica($_POST['fecha']);
         echo json_encode($this->modelo->listarCitasMedicasBeneficiario(), TRUE);
     }
     

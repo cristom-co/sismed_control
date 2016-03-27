@@ -47,7 +47,7 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
             <div class="col-lg-6 col-md-6 col-sm-7 col-xs-12">
                 <div class="input-group">
                     <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
-                    <input type="text" name="txtBuscar" id="txtBuscar" class="form-control" placeholder="Rol">
+                    <input type="text" name="txtBuscar" id="txtBuscar" class="form-control" placeholder="Rol" maxlength="20">
                     <span class="input-group-btn">
                         <button class="btn btn-info" id="btnBuscar" type="button">Buscar</button>
                     </span>

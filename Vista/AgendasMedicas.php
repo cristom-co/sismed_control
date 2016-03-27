@@ -24,17 +24,23 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
         </div>
         <div class="row" style="margin-top: 10px"></div>
         <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-7 col-xs-12">
-                <div class="input-group">
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
-                    <input type="text" name="txtBuscar" id="txtBuscar" class="form-control" placeholder="Identificacion medico">
-                    <span class="input-group-btn">
+            <div class="col-lg-8 col-md-8 col-sm-7 col-xs-12">
+                    <div class="input-group" style="">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
+                        <input type="text" name="txtBuscar" id="txtBuscar" class="form-control" placeholder="Identificacion benficiario">
+                        <span style=""class="input-group-btn">
                         <button class="btn btn-info" id="btnBuscar" type="button">Buscar</button>
-                    </span>
+                        </span>
+                        <div style="margin-left:5px;"></div>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
+                        <input type="text" name="txfFechaBusqueda" id="txfFechaBusqueda" class="form-control" placeholder="Fecha cita medica">
+                        <span class="input-group-btn">
+                        <button class="btn btn-info" id="btnFecha" type="button">Buscar</button>
+                        </span>
                 </div>
             </div>
             <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                <button type="button" class="btn btn-info col-xs-12" data-toggle="modal" data-target="#modalRegistrarAgendaMedica">Crear Agenda Medica</button>
+                <button type="button" class="btn btn-info col-xs-12" data-toggle="modal" data-target="#modalRegistrarAgendaMedica">Crear Cita Medica</button>
             </div>
         </div>
         <div class="row" style="margin-top: 10px"></div>
@@ -48,6 +54,9 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
                     <table id="tblAgendaMedica" class="table table-condensed table-hover">
                         <thead>
                             <tr>
+                                <th>
+                                    Fecha
+                                </th>
                                 <th>
                                     Identificacion
                                 </th>
@@ -73,6 +82,12 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
 <?php Vista::mostrar('plantillas/_pie', $datos); ?>
 
 <script type="text/javascript">
+    
+    $('#txfFechaBusqueda').datetimepicker({
+    	timepicker: false,
+	    format: 'Y-m-d'
+    });
+    
     $.post('<?php echo URL_BASE; ?>agendasMedicas/listarAgendasMedicas', {}, function (data) {
         var datos = JSON.parse(data);
         var filas;
@@ -81,6 +96,7 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
         $.each(datos, function (i, v) {
             idEmpleado[cont] = v.empleados_idEmpleado;
             filas += "<tr>";
+            filas += "<td>" + v.fechaAgendaMedica + "</td>";
             filas += "<td>" + v.numeroIdentificacionEmpleado + "</td>";
             filas += "<td>" + v.nombresEmpleado + " " + v.apellidosEmpleado + "</td>";
             filas += "<td>";
@@ -168,6 +184,7 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
                 $.each(datos, function (i, v) {
                     idEmpleado[cont] = v.empleados_idEmpleado;
                     filas += "<tr>";
+                    filas += "<td>" + v.fechaAgendaMedica + "</td>";
                     filas += "<td>" + v.numeroIdentificacionEmpleado + "</td>";
                     filas += "<td>" + v.nombresEmpleado + " " + v.apellidosEmpleado + "</td>";
                     filas += "<td>";
@@ -218,7 +235,7 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
                 });
             } else {
                 filas += "<tr>";
-                filas += "<td colspan='6'>No existe Funcionario con este Numero de documento</td>";
+                filas += "<td colspan='6'>No existe Medico con este Numero de documento</td>";
                 filas += "</tr>";
             }
             $('#tblAgendaMedica tbody').html(filas);

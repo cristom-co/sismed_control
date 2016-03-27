@@ -16,11 +16,11 @@
                     </div>
                     <div class="form-group">
                         <label for="txfContrasenia">Contraseña</label>
-                        <input type="password" id="txfContrasenia" name="txfContrasenia" class="form-control" placeholder="Contraseña: " required>
+                        <input type="password" id="txfContrasenia" name="txfContrasenia" class="form-control" placeholder="Contraseña: " maxlength="16" required>
                     </div>
                     <div class="form-group">
                         <label for="txfContraseniaConf">Contraseña</label>
-                        <input type="password" id="txfContraseniaConf" name="txfContraseniaConf" class="form-control" placeholder="Contraseña: " required>
+                        <input type="password" id="txfContraseniaConf" name="txfContraseniaConf" class="form-control" placeholder="Contraseña: " maxlength="16" required>
                         <span id="errorPasswors" hidden style="color: red"></span>
                     </div>
                     <div class="form-group">

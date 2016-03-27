@@ -26,7 +26,7 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
             <legend>Editar Rol</legend>
             <div class="form-group">
                 <label for="txfNombreRol">Nombre rol: </label>
-                <input class="form-control" type="text" name="txfNombreRol" id="txfNombreRol" value="<?php echo $rol[0]['nombreRol']; ?>">
+                <input class="form-control" type="text" name="txfNombreRol" id="txfNombreRol" maxlength="45" value="<?php echo $rol[0]['nombreRol']; ?>">
             </div>
             <div class="form-group">
                 <label for="txfDescipcionRol">Descripcion rol</label>

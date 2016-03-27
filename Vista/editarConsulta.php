@@ -25,19 +25,19 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
                     <div role="tabpanel" class="tab-pane active row" id="Episodio">
                         <div class="form-group col-xs-3">
                             <label for="txfFechaHora">Fecha / Hora de la atencion:</label>
-                            <input type="text" id="txfFechaHora" name="txfFechaHora" class="form-control" placeholder="" value="<?php echo $episodio[0]['fechaHoraAtencionEpisodio'];?>" >
+                            <input type="text" id="txfFechaHora"  maxlength="30" name="txfFechaHora" class="form-control" placeholder="" value="<?php echo $episodio[0]['fechaHoraAtencionEpisodio'];?>" >
                         </div>
                         <div class="form-group col-xs-3">
                             <label for="txfPeso">Peso: </label>
-                            <input type="text" id="txfPeso" name="txfPeso" class="form-control" placeholder=""  value="<?php echo $episodio[0]['pesoEpisodio'];?>">
+                            <input type="text" id="txfPeso"  maxlength="30" name="txfPeso" class="form-control" placeholder=""  value="<?php echo $episodio[0]['pesoEpisodio'];?>">
                         </div>
                         <div class="form-group col-xs-3">
                             <label for="txfTemperatura">Temperatura: </label>
-                            <input type="text" id="txfTemperatura" name="txfTemperatura" class="form-control" placeholder="" value="<?php echo $episodio[0]['temperaturaEpisodio'];?>">
+                            <input type="text" id="txfTemperatura"  maxlength="30" name="txfTemperatura" class="form-control" placeholder="" value="<?php echo $episodio[0]['temperaturaEpisodio'];?>">
                         </div>
                         <div class="form-group col-xs-3">
                             <label for="txfPresion">Presion: </label>
-                            <input type="text" id="txfPresion" name="txfPresion" class="form-control" placeholder="" value="<?php echo $episodio[0]['presionArterialEpisodio'];?>" >
+                            <input type="text" id="txfPresion"  maxlength="30" name="txfPresion" class="form-control" placeholder="" value="<?php echo $episodio[0]['presionArterialEpisodio'];?>" >
                         </div>
                         <div class="form-group col-xs-12">
                             <label for="txfAnamnesis">Anamnesis: </label>
@@ -84,11 +84,11 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
                                     <div class="modal-body">
                                         <div class="form-group">
                                             <label for="txfFechaHoraOrden">Fecha/Hora orden</label>
-                                            <input type="text" id="txfFechaHoraOrden" name="txfFechaHoraOrden" class="form-control" placeholder="Fecha/Hora orden">  
+                                            <input type="text" id="txfFechaHoraOrden"  maxlength="30" name="txfFechaHoraOrden" class="form-control" placeholder="Fecha/Hora orden">  
                                         </div>
                                         <div class="form-group">
                                             <label for="txfCantidadOrden">Cantidad</label>
-                                            <input type="text" id="txfCantidadOrden" name="txfCantidadOrden" class="form-control" placeholder="Cantidad">  
+                                            <input type="text" id="txfCantidadOrden"  maxlength="30" name="txfCantidadOrden" class="form-control" placeholder="Cantidad">  
                                         </div>
                                         <div class="form-group">
                                             <label for="txfObservacionOrden">Observacion</label>
@@ -159,11 +159,11 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
                                         </div>
                                         <div class="form-group">
                                             <label for="txfCantidadedicamento">Cantidad</label>
-                                            <input type="text" id="txfCantidadedicamento" name="txfCantidadedicamento" class="form-control" placeholder="Cantidad">  
+                                            <input type="text" id="txfCantidadedicamento"  maxlength="30" name="txfCantidadedicamento" class="form-control" placeholder="Cantidad">  
                                         </div>
                                         <div class="form-group">
                                             <label for="txfDosis">Dosis o posologia</label>
-                                            <input type="text" id="txfDosis" name="txfDosis" class="form-control" placeholder="Dosis o posologia">  
+                                            <input type="text" id="txfDosis"  maxlength="30" name="txfDosis" class="form-control" placeholder="Dosis o posologia">  
                                         </div>
                                         <button type="button" class="btn btn-primary" name="btnAgregarMedicamento" id="btnAgregarMedicamento"> ENVIAR </button>
                                     </div>

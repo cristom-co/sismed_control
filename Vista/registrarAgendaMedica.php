@@ -14,7 +14,7 @@
                     </div>
                     <div class="form-group">
                         <label for="cmbIdentificacionEmpleado">Identifiación Empleado</label>
-                        <select class="form-control" name="cmbIdentificacionEmpleado" id="cmbIdentificacionEmpleado" required>
+                        <select class="form-control" name="cmbIdentificacionEmpleado" id="cmbIdentificacionEmpleado" maxlength="20" required>
                             <option value="">Seleccione empleado</option>
                         </select>
                     </div>

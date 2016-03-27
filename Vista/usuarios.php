@@ -4,9 +4,6 @@ Vista::mostrar('plantillas/_menuSuperior', $datos);
 Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el rol
 ?>
 
-
-
-
 <div id="page-wrapper" style=" min-height:30em ">
     <div class="container-fluid fondoFluid" id="formArea">
         <!-- encabezado wrapper -->
@@ -45,7 +42,7 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
             <div class="col-lg-6 col-md-6 col-sm-7 col-xs-12">
                 <div class="input-group">
                     <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
-                    <input type="text" name="txtBuscar" id="txtBuscar" class="form-control" placeholder="Correo electronico">
+                    <input type="text" name="txtBuscar" id="txtBuscar" class="form-control" placeholder="Correo electronico" maxlength="30">
                     <span class="input-group-btn">
                         <button class="btn btn-info" id="btnBuscar" type="button">Buscar</button>
                     </span>

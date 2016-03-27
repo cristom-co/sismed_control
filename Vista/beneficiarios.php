@@ -61,19 +61,13 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
                                     Nombres
                                 </th>
                                 <th>
-                                    Apellidos
-                                </th>
-                                <th>
                                     Genero
                                 </th>
                                 <th>
                                     Fecha de nacimiento
                                 </th>
                                 <th>
-                                    Documento funcionario
-                                </th>
-                                <th>
-                                    Nombres Funcionario
+                                    Funcionario
                                 </th>
                                 <th>
                                     Direccion
@@ -86,9 +80,6 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
                                 </th>
                                 <th>
                                     correo electronico
-                                </th>
-                                <th>
-                                    Estado
                                 </th>
                                 <th colspan="2">Acciones</th>
                             </tr>
@@ -108,22 +99,22 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
         var datos = JSON.parse(data);
         var filas;
         var cont = 0;
+        var estado;
         $.each(datos, function (i, v) {
             cont = cont + 1;
             filas += "<tr>";
             filas += "<td>" + v.numeroIdentificacionBeneficiario + "</td>";
             filas += "<td>" + v.tipoDocumento + "</td>";
-            filas += "<td>" + v.nombresBeneficiario + "</td>";
-            filas += "<td>" + v.apellidosBeneficiario + "</td>";
+            filas += "<td>" + v.nombresBeneficiario +" "+ v.apellidosBeneficiario  + "</td>";
             filas += "<td>" + v.tipoGenero + "</td>";
             filas += "<td>" + v.fechaNacimientoBeneficiario + "</td>";
-            filas += "<td>" + v.numeroIdentificacionFuncionario + "</td>";
+            //filas += "<td>" + v.numeroIdentificacionFuncionario + "</td>";
             filas += "<td>" + v.nombresFuncionario + " " + v.apellidosFuncionario + "</td>";
             filas += "<td>" + v.direccionBeneficiario + "</td>";
             filas += "<td>" + v.telefonoBeneficiario + "</td>";
             filas += "<td>" + v.movilBeneficiario + "</td>";
             filas += "<td>" + v.correoBeneficiario + "</td>";
-            filas += "<td>" + v.estadoBeneficiario + "</td>";
+            //filas += "<td>" + v.estadoBeneficiario + "</td>";
             filas += "<td>";
             filas += "<form action='<?php echo URL_BASE; ?>beneficiarios/editarBeneficiario' method='POST'>";
             filas += "<button class='btn btn-xs btn-success' type='submit' name='btnEditarBeneficiario'><i class='fa fa-edit'></i></button>";

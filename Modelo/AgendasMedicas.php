@@ -66,6 +66,32 @@ class AgendasMedicas {
         return $this->conexion->consulta($sql);
     }
 
+    
+    public function listarAgendaFecha() {
+        $sql = "SELECT idAgendaMedica, "
+                . "fechaAgendaMedica, "
+                . "disponibilidadAgendaMedica, "
+                . "empleados_idEmpleado, "
+                . "numeroIdentificacionEmpleado, "
+                . "nombresEmpleado, "
+                . "apellidosEmpleado "
+                . "FROM agendas_medicas "
+                . "INNER JOIN empleados ON empleados_idEmpleado = idEmpleado "
+                . "INNER JOIN hora_20 ON hora_20_idhora_20 = idhora_20 "
+                . "WHERE fechaAgendaMedica = '{$this->getFechaAgendaMedica()}'"
+                . "GROUP BY idEmpleado";
+        
+        return $this->conexion->consulta($sql);
+    }
+    
+    public function listarAgendaDatosEmpleado (){ //Funcion para listarConsultaMedica
+        $sql="select e.nombresEmpleado, e.apellidosEmpleado, e.numeroIdentificacionEmpleado, td.tipoDocumento from agendas_medicas am
+        inner join empleados e ON e.idEmpleado = am.empleados_idEmpleado
+        inner join tipos_documentos td ON td.idTipoDocumento = e.tipos_documentos_idTipoDocumento
+        where idAgendaMedica = '{$this->getIdAgendaMedica()}';";
+        return $this->conexion->consulta($sql);
+    }
+
     public function listarHorasEmpleado() {
         $sql = "SELECT hora "
                 . "FROM agendas_medicas "
