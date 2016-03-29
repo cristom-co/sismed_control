@@ -1,7 +1,7 @@
 <?php
 Vista::mostrar('plantillas/_encabezado', $datos);
 Vista::mostrar('plantillas/_menuSuperior', $datos);
-Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el tipo de orden
+Vista::mostrar('plantillas/_menuLateral');
 ?>
 <div id="page-wrapper" style=" min-height:30em ">
     <div class="container-fluid fondoFluid" id="formArea">
@@ -28,20 +28,20 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ti
             <div class="col-lg-6 col-md-6 col-sm-7 col-xs-12">
                 <div class="input-group">
                     <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
-                    <input type="text" name="txtBuscar" id="txtBuscar" class="form-control" placeholder="TipoOrden">
+                    <input type="text" name="txtBuscar" id="txtBuscar" class="form-control" placeholder="Tipo de orden">
                     <span class="input-group-btn">
                         <button class="btn btn-info" id="btnBuscar" type="button">Buscar</button>
                     </span>
                 </div>
             </div>
             <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                <button type="button" class="btn btn-info col-xs-12" data-toggle="modal" data-target="#modalRegistrarTipoOrden">Crear Tipo de Orden</button>
+                <button type="button" class="btn btn-info col-xs-12" data-toggle="modal" data-target="#modalRegistrarTipoOrden">Crear orden</button>
             </div>
         </div>
         <div class="row" style="margin-top: 10px"></div>
         <div class="panel panel-info">
             <div class="panel-heading">
-                <h3 class="panel-title text-center">Tipo de Orden</h3>
+                <h3 class="panel-title text-center">Tipo de orden</h3>
             </div>
             <div class="panel-body">
                 <div class="table-responsive">

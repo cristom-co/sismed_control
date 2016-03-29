@@ -39,5 +39,7 @@
     
     $.datetimepicker.setLocale('es');
 </script>
+<!--Jquery form ajax-->
+<script src="<?php echo URL_BASE; ?>Vista/js/jquery.form.js"></script>
 </body>
 </html>

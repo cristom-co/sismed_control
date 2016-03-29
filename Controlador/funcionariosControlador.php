@@ -10,6 +10,7 @@ class funcionariosControlador {
         if (!$_SESSION['valido']) {
             header('Location: ' . URL_BASE);
         }
+        
         $this->modelo = Modelo::cargar('Funcionarios');
     }
 

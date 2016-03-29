@@ -1,16 +1,13 @@
 <?php
 Vista::mostrar('plantillas/_encabezado', $datos);
 Vista::mostrar('plantillas/_menuSuperior', $datos);
-Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el rol
+Vista::mostrar('plantillas/_menuLateral');
 ?>
 
 <div id="page-wrapper" style=" min-height:30em ">
     <div class="container-fluid fondoFluid" id="formArea">
         <!-- encabezado wrapper -->
         <?php Vista::mostrar('plantillas/_eslogan'); ?>
-        
-        <h3><?php echo $empleado[0]['idEmpleado']; ?></h3>
-        
         <div class="panel panel-info">
             <div class="panel-heading">Cita Medica</div>
             <div class="panel-body">
@@ -164,7 +161,6 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
         </div>
         <input type="hidden" id="idEpisodio" name="idEpisodio" value="<?php echo $episodio[0]['idEpisodio'] ?>"/>
         <input type="hidden" id="idFormula" name="idFormula" value="<?php echo $formula[0]['idFormulaMedica'] ?>"/>
-        <!-------------------------------------------------------------------------------------------------------------------------------------------------->
     </div>
 </div><!-- /.container-fluid -->
 </div><!-- /#page-wrapper -->
@@ -204,4 +200,32 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
         });
         $('#tblMedicamentos').append(fila);
     });
+</script>
+
+<script type="text/javascript">
+
+    function PrintElem(elem)
+    {
+        Popup($(elem).html());
+    }
+    
+    ;
+    function Popup(data) 
+    {
+        var mywindow = window.open('', 'Historial Medico', 'height=400,width=600');
+        mywindow.document.write('<html><head><title>Historial Medico</title>');
+        /*optional stylesheet*/ 
+        mywindow.document.write('</head><body >');
+        mywindow.document.write(data);
+        mywindow.document.write('</body></html>');
+
+        mywindow.document.close(); // necessary for IE >= 10
+        mywindow.focus(); // necessary for IE >= 10
+
+        mywindow.print();
+        mywindow.close();
+
+        return true;
+    }
+
 </script>

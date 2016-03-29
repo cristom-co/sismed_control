@@ -1,7 +1,7 @@
 <?php
 Vista::mostrar('plantillas/_encabezado', $datos);
 Vista::mostrar('plantillas/_menuSuperior', $datos);
-Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el rol
+Vista::mostrar('plantillas/_menuLateral');
 ?>
 
 <div id="page-wrapper" style=" min-height:30em ">
@@ -16,7 +16,7 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
                     <li role="presentation"><a href="#Diagnostico" aria-controls="profile" role="tab" data-toggle="tab">Diagnostico</a></li>
                     <li role="presentation"><a href="#Ordenes" aria-controls="messages" role="tab" data-toggle="tab">Ordenes</a></li>
                     <li role="presentation"><a href="#FormulaMedica" aria-controls="settings" role="tab" data-toggle="tab">Formula Medica</a></li>
-                    <li><button style="margin-left:20%;" type="submit" class="btn btn-primary" name="btnGrabarConsulta" id="btnGrabarConsulta">Guardar</button></li>
+                    <li><button style="margin-left:20%;" type="submit" class="btn btn-primary" name="btnGrabarConsulta" id="btnGrabarConsulta">Actualizar</button></li>
                 </ul>
                 <div style="margin-top:2%;"></div>
                 <!-- Tab panes -->
@@ -75,13 +75,15 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
                         </div>
                         <div id="modalOrden" class="modal fade" role="dialog">
                             <div class="modal-dialog">
-                                <!-- Modal content-->
+                                <!-- Modal content--><!-- Modal para crear ordenes --> 
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                                         <h4 class="modal-title">Insertar Orden</h4>
                                     </div>
                                     <div class="modal-body">
+                                        <form id="frmOrden" action="<?php echo URL_BASE;?>consultas/insetarOrden" method="POST">
+                                        
                                         <div class="form-group">
                                             <label for="txfFechaHoraOrden">Fecha/Hora orden</label>
                                             <input type="text" id="txfFechaHoraOrden"  maxlength="30" name="txfFechaHoraOrden" class="form-control" placeholder="Fecha/Hora orden">  
@@ -100,8 +102,25 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
                                                 <option value="">Seleccione Tipo Orden</option>
                                             </select>
                                         </div>
-                                        <button type="button" class="btn btn-primary" name="btnAgregarOrden" id="btnAgregarOrden"> ENVIAR </button>
+                                        <input type="hidden" name="idEpisodio" value="<?php echo $episodio[0]['idEpisodio']?>"/>
+                                        <button type="submit" class="btn btn-primary" name="frmOrden2" id="frmOrden2"> ENVIAR </button>
                                     </div>
+                                        <script type="text/javascript">
+                                            var frm = $('#frmOrden');
+                                            frm.submit(function (ev) {
+                                                $.ajax({
+                                                    type: frm.attr('method'),
+                                                    url: frm.attr('action'),
+                                                    data: frm.serialize(),
+                                                    success: function (data) {
+                                                        alert('ok');
+                                                    }
+                                                });
+                                        
+                                                ev.preventDefault();
+                                            });
+                                        </script>
+                                    </form>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-success" data-dismiss="modal">Cerrar</button>
                                     </div>
@@ -234,13 +253,14 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
             $('#cmbTipoOrden').append('<option value="' + v.idTipoOrden + '">' + v.descripcionTipoOrden + '</option>');
         });
     });
+    
+    
     //Ordenes
-    
-    
     var idEpisodio = $('#idEpisodio').val();
     $.post('<?php echo URL_BASE; ?>consultas/listarOrdenes', {idEpisodio:idEpisodio}, function(data) {
         var datos= JSON.parse(data);
         var fila='';
+        var cont=0;
         $.each(datos, function(i, v) {
             fila +='<tr>';
             fila += "<td>" + v.fechaHoraOrden + "</td>";
@@ -254,37 +274,6 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
     });
     
     
-    
-    var cont = 0;
-    $('#btnAgregarOrden').click(function () {
-        var tipoOrden = $('#cmbTipoOrden').val();
-        $.post('<?php echo URL_BASE; ?>tipoOrdenes/listarTipoOrden', {tipoOrden: tipoOrden}, function (data) {
-            var datos = JSON.parse(data);
-            var fechaOrden = $('#txfFechaHoraOrden').val();
-            var cantOrden = $('#txfCantidadOrden').val();
-            var observacionOrden = $('#txfObservacionOrden').val();
-            var fila = "<tr id='" + cont + "'>";
-            var descripcionTipoOrden;
-            $('#Ordenes').append("<input type='hidden' value='" + fechaOrden + "' name='fechaOrden[]'>");
-            $('#Ordenes').append("<input type='hidden' value='" + cantOrden + "' name='cantOrden[]'>");
-            $('#Ordenes').append("<input type='hidden' value='" + observacionOrden + "' name='observacionOrden[]'>");
-            $('#Ordenes').append("<input type='hidden' value='" + tipoOrden + "' name='tipoOrden[]'>");
-            $.each(datos, function (i, v) {
-                descripcionTipoOrden = v.descripcionTipoOrden;
-            });
-            fila += "<td>" + fechaOrden + "</td>";
-            fila += "<td>" + cantOrden + "</td>";
-            fila += "<td>" + observacionOrden + "</td>";
-            fila += "<td>" + descripcionTipoOrden + "</td>";
-            fila += "<td><button type='button' class='btn btn-xs btn-danger btnEliminarOrden' id='btnEliminarOrden" + cont + "'><i class='fa fa-close'></i></button></td>";
-            fila += "</tr>";
-            $('#tblOrdenes').append(fila);
-            $('#txfFechaHoraOrden').val('');
-            $('#txfCantidadOrden').val('');
-            $('#txfObservacionOrden').val('');
-            cont++;
-        });
-    });
     //Formula medica
     
     var idFormula = $('#idFormula').val();
@@ -305,39 +294,7 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
     });
     
     
-    var contF = 0;
-    $('#btnAgregarMedicamento').click(function () {
-        var idMedicamento = $('#cmbMedicamento').val();
-        $.post('<?php echo URL_BASE; ?>medicamentos/listarIdMedicamento', {idMedicamento: idMedicamento}, function (data) {
-            var datos = JSON.parse(data);
-            var cantMedicamento = $('#txfCantidadedicamento').val();
-            var dosis = $('#txfDosis').val();
-            var codigo;
-            var nombreMedicamento;
-            var descMedicamento;
-            var fila = "<tr id='" + contF + "'>";
-            $('#FormulaMedica').append("<input type='hidden' value='" + idMedicamento + "' name='idMedicamento[]'>");
-            $('#FormulaMedica').append("<input type='hidden' value='" + cantMedicamento + "' name='cantMedicamento[]'>");
-            $('#FormulaMedica').append("<input type='hidden' value='" + dosis + "' name='dosis[]'>");
-            $.each(datos, function (i, v) {
-                codigo = v.codigoMedicamento;
-                nombreMedicamento = v.nombreGenericoMedicamento;
-                descMedicamento = v.descripcionMedicamento;
-            });
-            fila += "<td>" + codigo + "</td>";
-            fila += "<td>" + nombreMedicamento + "</td>";
-            fila += "<td>" + descMedicamento + "</td>";
-            fila += "<td>" + cantMedicamento + "</td>";
-            fila += "<td>" + dosis + "</td>";
-            fila += "<td><button type='button' class='btn btn-xs btn-danger btnEliminarMedicamento' id='btnEliminarMedicamento" + contF + "'><i class='fa fa-close'></i></button></td>";
-            fila += "</tr>";
-            $('#tblMedicamentos').append(fila);
-            $('#txfCantidadedicamento').val('');
-            $('#txfDosis').val('');
-            contF++;
-        });
-    });
-
+    
     $('#txfFechaHora').datetimepicker({
         timepicker: false,
         format: 'Y-m-d H:m:s'

@@ -1,7 +1,7 @@
 <?php
 Vista::mostrar('plantillas/_encabezado', $datos);
 Vista::mostrar('plantillas/_menuSuperior', $datos);
-Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el rol
+Vista::mostrar('plantillas/_menuLateral');
 ?>
 
 <div id="page-wrapper" style=" min-height:30em ">
@@ -26,27 +26,27 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
                     <div role="tabpanel" class="tab-pane active row" id="Episodio">
                         <div class="form-group col-xs-3">
                             <label for="txfFechaHora">Fecha / Hora de la atencion: </label>
-                            <input type="text" id="txfFechaHora"  maxlength="30"  name="txfFechaHora" class="form-control" placeholder="" required >
+                            <input type="text" id="txfFechaHora"  maxlength="30"  name="txfFechaHora" class="form-control" placeholder=""  >
                         </div>
                         <div class="form-group col-xs-3">
                             <label for="txfPeso">Peso: </label>
-                            <input type="text" id="txfPeso"  maxlength="30" name="txfPeso" class="form-control" placeholder="" required>
+                            <input type="text" id="txfPeso"  maxlength="30" name="txfPeso" class="form-control" placeholder="" >
                         </div>
                         <div class="form-group col-xs-3">
                             <label for="txfTemperatura">Temperatura: </label>
-                            <input type="text" id="txfTemperatura"  maxlength="30" name="txfTemperatura" class="form-control" placeholder="" required>
+                            <input type="text" id="txfTemperatura"  maxlength="30" name="txfTemperatura" class="form-control" placeholder="" >
                         </div>
                         <div class="form-group col-xs-3">
                             <label for="txfPresion">Presion: </label>
-                            <input type="text" id="txfPresion"  maxlength="30" name="txfPresion" class="form-control" placeholder="" required>
+                            <input type="text" id="txfPresion"  maxlength="30" name="txfPresion" class="form-control" placeholder="" >
                         </div>
                         <div class="form-group col-xs-12">
                             <label for="txfAnamnesis">Anamnesis: </label>
-                            <textarea class="form-control" rows="3" maxlength="300" id="txfAnamnesis" name="txfAnamnesis" required></textarea>
+                            <textarea class="form-control" rows="3" maxlength="300" id="txfAnamnesis" name="txfAnamnesis" ></textarea>
                         </div>
                         <div class="form-group col-xs-12">
                             <label for="txfExploracion">Exploracion: </label>
-                            <textarea class="form-control" rows="3" maxlength="300" id="txfExploracion" name="txfExploracion" required></textarea>
+                            <textarea class="form-control" rows="3" maxlength="300" id="txfExploracion" name="txfExploracion" ></textarea>
                         </div>
                         <input type="hidden" name="idCitaMedica" value="<?php echo $idCitaMedica ?>"/>
                         <input type="hidden" name="idBeneficiario" value="<?php echo $idBeneficiario ?>"/>
@@ -56,13 +56,13 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
                     <div role="tabpanel" class="tab-pane row" id="Diagnostico">
                         <div class="form-group col-xs-12">
                             <label for="cmbEnfermedad">Enfermedad: </label>
-                            <select class="form-control" name="cmbEnfermedad" id="cmbEnfermedad" required>
+                            <select class="form-control" name="cmbEnfermedad" id="cmbEnfermedad" >
                                 <option value="">Seleccione una enfermedad</option>
                             </select>
                         </div>
                         <div class="form-group col-xs-12">
                             <label for="txfDescripcionDiagnostico">Descripcion: </label>
-                            <textarea class="form-control" rows="5" maxlength="300" id="txfDescripcionDiagnostico" name="txfDescripcionDiagnostico" required></textarea>
+                            <textarea class="form-control" rows="5" maxlength="300" id="txfDescripcionDiagnostico" name="txfDescripcionDiagnostico" ></textarea>
                         </div>
                         <input type="hidden" name="idEpisodio" value=""/>
                     </div>
@@ -84,19 +84,19 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
                                     <div class="modal-body">
                                         <div class="form-group">
                                             <label for="txfFechaHoraOrden">Fecha/Hora orden</label>
-                                            <input type="text" id="txfFechaHoraOrden"  maxlength="30" name="txfFechaHoraOrden" class="form-control" placeholder="Fecha/Hora orden" required>  
+                                            <input type="text" id="txfFechaHoraOrden"  maxlength="30" name="txfFechaHoraOrden" class="form-control" placeholder="Fecha/Hora orden" >  
                                         </div>
                                         <div class="form-group">
                                             <label for="txfCantidadOrden">Cantidad</label>
-                                            <input type="text" id="txfCantidadOrden"  maxlength="30" name="txfCantidadOrden" class="form-control" placeholder="Cantidad" required>  
+                                            <input type="text" id="txfCantidadOrden"  maxlength="30" name="txfCantidadOrden" class="form-control" placeholder="Cantidad" >  
                                         </div>
                                         <div class="form-group">
                                             <label for="txfObservacionOrden">Observacion</label>
-                                            <textarea class="form-control" rows="5" maxlength="300" id="txfObservacionOrden" name="txfObservacionOrden" required></textarea>
+                                            <textarea class="form-control" rows="5" maxlength="300" id="txfObservacionOrden" name="txfObservacionOrden" ></textarea>
                                         </div>
                                         <div class="form-group">
                                             <label for="cmbTipoOrden">Tipo orden</label>
-                                            <select class="form-control" name="cmbTipoOrden" id="cmbTipoOrden" required>
+                                            <select class="form-control" name="cmbTipoOrden" id="cmbTipoOrden" >
                                                 <option value="">Seleccione Tipo Orden</option>
                                             </select>
                                         </div>
@@ -153,17 +153,17 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
                                     <div class="modal-body">
                                         <div class="form-group">
                                             <label for="cmbMedicamento">Medicamento</label>
-                                            <select class="form-control" name="cmbMedicamento" id="cmbMedicamento" required>
+                                            <select class="form-control" name="cmbMedicamento" id="cmbMedicamento" >
                                                 <option value="">Seleccione medicamento</option>
                                             </select>
                                         </div>
                                         <div class="form-group">
                                             <label for="txfCantidadedicamento">Cantidad</label>
-                                            <input type="text" id="txfCantidadedicamento"  maxlength="30" name="txfCantidadedicamento" class="form-control" placeholder="Cantidad" required>  
+                                            <input type="text" id="txfCantidadedicamento"  maxlength="30" name="txfCantidadedicamento" class="form-control" placeholder="Cantidad" >  
                                         </div>
                                         <div class="form-group">
                                             <label for="txfDosis">Dosis o posologia</label>
-                                            <input type="text" id="txfDosis"  maxlength="30" name="txfDosis" class="form-control" placeholder="Dosis o posologia" required>  
+                                            <input type="text" id="txfDosis"  maxlength="30" name="txfDosis" class="form-control" placeholder="Dosis o posologia" >  
                                         </div>
                                         <button type="button" class="btn btn-primary" name="btnAgregarMedicamento" id="btnAgregarMedicamento"> ENVIAR </button>
                                     </div>
@@ -195,7 +195,7 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
                                         <th>Acciones</th>
                                     </tr>
                                 </thead>
-                                <tbody>              
+                                <tbody id="tbody">              
                                 </tbody>
                             </table>
                             <div class="form-group">
@@ -213,6 +213,16 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
 </div><!-- /#page-wrapper -->
 <?php Vista::mostrar('plantillas/_pie', $datos); ?>
 <script type="text/javascript">
+
+function capturarId(o){
+    var puntero=o.id;
+    var p=document.getElementById(puntero);
+    var padre=p.parentNode;
+    // var abuelo=padre.parentNode;
+    // return $(puntero).parent().attr('id');
+    return padre;
+}
+$(document).ready(function(){
     $.post('<?php echo URL_BASE; ?>enfermedades/listarEnfermedades', {}, function (data) {
         var datos = JSON.parse(data);
         $.each(datos, function (i, v) {
@@ -244,10 +254,10 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
             var observacionOrden = $('#txfObservacionOrden').val();
             var fila = "<tr id='" + cont + "'>";
             var descripcionTipoOrden;
-            $('#Ordenes').append("<input type='hidden' value='" + fechaOrden + "' name='fechaOrden[]'>");
-            $('#Ordenes').append("<input type='hidden' value='" + cantOrden + "' name='cantOrden[]'>");
-            $('#Ordenes').append("<input type='hidden' value='" + observacionOrden + "' name='observacionOrden[]'>");
-            $('#Ordenes').append("<input type='hidden' value='" + tipoOrden + "' name='tipoOrden[]'>");
+            $('#Ordenes').append("<input type='hidden' id='"+ cont +"' value='" + fechaOrden + "' name='fechaOrden[]'>");
+            $('#Ordenes').append("<input type='hidden' id='"+ cont +"' value='" + cantOrden + "' name='cantOrden[]'>");
+            $('#Ordenes').append("<input type='hidden' id='"+ cont +"' value='" + observacionOrden + "' name='observacionOrden[]'>");
+            $('#Ordenes').append("<input type='hidden' id='"+ cont +"' value='" + tipoOrden + "' name='tipoOrden[]'>");
             $.each(datos, function (i, v) {
                 descripcionTipoOrden = v.descripcionTipoOrden;
             });
@@ -256,6 +266,7 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
             fila += "<td>" + observacionOrden + "</td>";
             fila += "<td>" + descripcionTipoOrden + "</td>";
             fila += "<td><button type='button' class='btn btn-xs btn-danger btnEliminarOrden' id='btnEliminarOrden" + cont + "'><i class='fa fa-close'></i></button></td>";
+            fila += "<input type='hidden' name='eliminarOrden' id='eliminarOrden' value='"+cont+"'>";
             fila += "</tr>";
             $('#tblOrdenes').append(fila);
             $('#txfFechaHoraOrden').val('');
@@ -264,6 +275,16 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
             cont++;
         });
     });
+    
+    
+    
+    $('#btnEliminarOrden').click(function() {
+       var orden = "#" + $('#eliminarOrden').val();
+       //Elimina todos los elementos con el id (cont)
+       $("tr").remove(orden);
+       $("input").remove(orden);
+    });
+    
     //Formula medica
     var contF = 0;
     $('#btnAgregarMedicamento').click(function () {
@@ -289,15 +310,18 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
             fila += "<td>" + descMedicamento + "</td>";
             fila += "<td>" + cantMedicamento + "</td>";
             fila += "<td>" + dosis + "</td>";
-            fila += "<td><button type='button' class='btn btn-xs btn-danger btnEliminarMedicamento' id='btnEliminarMedicamento" + contF + "'><i class='fa fa-close'></i></button></td>";
+            fila += "<td id='td'><button type='button' onclick='alert(capturarId(this))' class='btn btn-xs btn-danger btnEliminarMedicamento0' name='btnEliminarMedicamento" + contF + "' id='btnEliminarMedicamento" + contF + "'><i class='fa fa-close'></i></button></td>";
             fila += "</tr>";
             $('#tblMedicamentos').append(fila);
             $('#txfCantidadedicamento').val('');
             $('#txfDosis').val('');
             contF++;
+            
         });
+        
     });
-
+    
+       
     $('#txfFechaHora').datetimepicker({
         timepicker: false,
         format: 'Y-m-d H:m:s'
@@ -306,5 +330,10 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
     $('#txfFechaHoraOrden').datetimepicker({
         format: 'Y-m-d H:m'
     });
+});    
+
 
 </script>
+
+
+

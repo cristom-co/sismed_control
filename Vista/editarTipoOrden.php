@@ -1,7 +1,7 @@
 <?php
 Vista::mostrar('plantillas/_encabezado', $datos);
 Vista::mostrar('plantillas/_menuSuperior', $datos);
-Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el tipo de orden
+Vista::mostrar('plantillas/_menuLateral');
 ?>
 
 <div id="page-wrapper" style=" min-height:30em ">

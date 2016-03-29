@@ -1,7 +1,7 @@
 <?php
 Vista::mostrar('plantillas/_encabezado', $datos);
 Vista::mostrar('plantillas/_menuSuperior', $datos);
-Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el rol
+Vista::mostrar('plantillas/_menuLateral');
 ?>
 
 <div id="page-wrapper" style=" min-height:30em ">
@@ -40,7 +40,7 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
                 </div>
             </div>
             <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                <button type="button" class="btn btn-info col-xs-12" data-toggle="modal" data-target="#modalRegistrarAgendaMedica">Crear Cita Medica</button>
+                <button type="button" class="btn btn-info col-xs-12" data-toggle="modal" data-target="#modalRegistrarAgendaMedica">Crear Agenda Medica</button>
             </div>
         </div>
         <div class="row" style="margin-top: 10px"></div>

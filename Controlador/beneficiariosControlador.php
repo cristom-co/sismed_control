@@ -42,7 +42,7 @@ class beneficiariosControlador {
     
             $resgistroHistoria = $this->modelo->insertarHistoriaClinica();
             
-            if ($registro && $registroHistoria) {
+            if ($registro || $registroHistoria) { //corregir esto 
                 $datos['mensaje'] = "Se inserto Beneficiario correctamente";
             } else {
                 $datos['mensaje'] = "No se inserto Beneficiario";

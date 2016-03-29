@@ -12,6 +12,10 @@ class usuariosControlador {
         if (!$_SESSION['valido']) {
             header('Location: ' . URL_BASE);
         }
+        if ($_SESSION['rol']== 3 || $_SESSION['rol']== 2) {
+            header('location: '.URL_BASE);
+        }
+        
         $this->modelo = Modelo::cargar('Usuarios');
     }
 

@@ -82,7 +82,7 @@ class Empleados {
                 . "INNER JOIN tipos_documentos ON tipos_documentos_idTipoDocumento = idTipoDocumento "
                 . "INNER JOIN cargos ON cargos_idCargo = idCargo "
                 . "INNER JOIN especialidades ON especialidades_idEspecialidad = idEspecialidad "
-                . "INNER JOIN generos ON generos_idGenero = idGenero;";
+                . "INNER JOIN generos ON generos_idGenero = idGenero ORDER BY nombresEmpleado;";
 
         return $this->conexion->consulta($sql);
     }
