@@ -4,7 +4,6 @@ Vista::mostrar('plantillas/_menuSuperior', $datos);
 Vista::mostrar('plantillas/_menuLateral');
 ?>
 
-
 <div id="page-wrapper" style=" min-height:30em ">
     <div class="container-fluid fondoFluid" id="formArea">
         <!-- encabezado wrapper -->

@@ -98,7 +98,4 @@ Vista::mostrar('plantillas/_menuLateral');
     </div><!-- /.container-fluid -->
 </div><!-- /#page-wrapper -->
 <?php Vista::mostrar('plantillas/_pie'); ?>
-<script type="text/javascript">
-
-</script>
 
