@@ -84,7 +84,7 @@ Vista::mostrar('plantillas/_menuLateral');
         </div>
         
         <div class="panel panel-info">
-            <div class="panel-heading">diagnostico</div>
+            <div class="panel-heading">Diagnostico</div>
             <div class="panel-body">
                 <table class="table table-bordered">
                     <tr>

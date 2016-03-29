@@ -98,7 +98,7 @@ class AgendasMedicas {
                 . "INNER JOIN hora_20 ON hora_20_idhora_20 = idhora_20 "
                 . "INNER JOIN empleados ON empleados_idEmpleado=idEmpleado "
                 . "WHERE idEmpleado={$this->getIdEmpleado()} "
-                . "AND fechaAgendaMedica = CURDATE() ORDER BY ASC hora";
+                . "AND fechaAgendaMedica = CURDATE()";
         return $this->conexion->consulta($sql);
     }
     

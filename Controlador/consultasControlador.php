@@ -117,8 +117,7 @@ class consultasControlador {
 
     }
 
-
-    public function editarConsulta() {
+public function editarConsulta() {
         
             if ($_POST['btnGrabarConsulta']){
                
@@ -137,7 +136,6 @@ class consultasControlador {
                 //Edita el episodio con los datos enviados
                 $registro = $this->modelo->editarEpisodio();
                 
-
                //Diagnostico----------------------------------------------------
                 //si los datos enviados son diferente a vacio
                 if (!empty($_POST['cmbEnfermedad']) || !empty($_POST['txfDescripcionDiagnostico'])) {
@@ -176,11 +174,11 @@ class consultasControlador {
                 $datos['diagnostico'] = $this->modelo->listarDiagnostico();
                 $datos['formula'] = $this->modelo->listarFormulaMedica();
                 $datos['titulo']= "Editar Consulta";
+                $datos['citaMedica'] = $_POST['idCitaMedica'];
                 Vista::mostrar('editarConsulta',$datos);
             }
         
     }
-
     public function listarConsulta() {
         if ($_POST){
         $this->modelo->setIdCitaMedica($_POST['idCitaMedica']);
@@ -215,39 +213,67 @@ class consultasControlador {
     }
     
     public function insertarOrden (){
-        if (isset($_POST['fechaOrden']) || isset($_POST['cantOrden']) || isset($_POST['observacionOrden']) || isset($_POST['tipoOrden'])) {
-            $this->modelo->setFechaHoraOrden($_POST['fechaOrden']);
-            $this->modelo->setCantidadOrden($_POST['cantOrden']);
-            $this->modelo->setObservacionesOrden($_POST['observacionOrden']);
-            $this->modelo->setIdTipoOrden($_POST['tipoOrden']);
-            $this->modelo->setIdEpisodio($_POST['idEpisodio']); //Agregar a la vista
+    
+        if ($_POST){
+            $this->modelo->setFechaHoraOrden($_POST['txfFechaHoraOrden']);
+            $this->modelo->setCantidadOrden($_POST['txfCantidadOrden']);
+            $this->modelo->setObservacionesOrden($_POST['txfObservacionOrden']);
+            $this->modelo->setIdTipoOrden($_POST['cmbTipoOrden']);
+            $this->modelo->setIdEpisodio($_POST['idEpisodio']); 
             $registro = $this->modelo->insertarOrden();
             
-            if ($registro) {
-                    return true;
-                } else {
-                    return false;
-                }   
+            if($registro){
+                $datos['mensaje']="Se inserto la orden";
+            }else {
+                $datos['mensaje']="no se inserto la orden";
+            }
             
+            $this->modelo->setIdCitaMedica($_POST['idCitaMedica']);
+            $datos['episodio'] = $this->modelo->listarEpisodio();
+            $this->modelo->setIdEpisodio($datos['episodio'][0]['idEpisodio']);
+            $datos['diagnostico'] = $this->modelo->listarDiagnostico();
+            $datos['formula'] = $this->modelo->listarFormulaMedica();
+            $datos['titulo']= "Editar Consulta";
+            $datos['citaMedica'] = $_POST['idCitaMedica'];
+            
+            Vista::mostrar('editarConsulta',$datos);
+            
+            
+        }else {
+            header('location: consulta');
         }
+            
+            //echo "fecha: ". $_POST['txfFechaHoraOrden']. "<br>";
+            //echo "cantidad: ". $_POST['txfCantidadOrden']. "<br>";
+            //echo "observaciones: ". $_POST['txfObservacionOrden']. "<br>";
+            //echo "tipo orden: ". $_POST['cmbTipoOrden']. "<br>";
+            //echo "Id episodio: ". $_POST['idEpisodio']. "<br>";
+            
+        
     }
     
-    public function editarOrden (){
-        if (isset($_POST['idOrden']) || isset($_POST['fechaOrden']) || isset($_POST['cantOrden']) || isset($_POST['observacionOrden']) || isset($_POST['tipoOrden'])) {
-            $this->modelo->setIdOrden($_POST['idOrden']); //Agregar a la vista
-            $this->modelo->setFechaHoraOrden($_POST['fechaOrden']);
-            $this->modelo->setCantidadOrden($_POST['cantOrden']);
-            $this->modelo->setObservacionesOrden($_POST['observacionOrden']);
-            $this->modelo->setIdTipoOrden($_POST['tipoOrden']);
-            $this->modelo->setIdEpisodio($_POST['idEpisodio']);
-            $registro = $this->modelo->editarOrden();
-        }
-    }
     
     public function eliminarOrden (){
-        if (isset($_POST['idOrden'])){
+        if ($_POST){
             $this->modelo->setIdOrden($_POST['idOrden']); //Agregar a la vista
-            $this0->modelo->eliminarOrden();
+            $registro = $this->modelo->eliminarOrden();
+            
+            if($registro){
+                $datos['mensaje']="Se edito la orden";
+            }else {
+                $datos['mensaje']="no se edito la orden";
+            }
+            
+            $this->modelo->setIdCitaMedica($_POST['idCitaMedica']); //Agrega a la vista // Enviar desde el controlador
+            $datos['episodio'] = $this->modelo->listarEpisodio();
+            $this->modelo->setIdEpisodio($datos['episodio'][0]['idEpisodio']);
+            $datos['diagnostico'] = $this->modelo->listarDiagnostico();
+            $datos['formula'] = $this->modelo->listarFormulaMedica();
+            $datos['titulo']= "Editar Consulta";
+            $datos['citaMedica'] = $_POST['idCitaMedica'];
+            
+            Vista::mostrar('editarConsulta',$datos);
+            
         }
     }
     
@@ -256,11 +282,38 @@ class consultasControlador {
         $this->modelo->setIdFormulaMedica($_POST['idFormula']);
         echo json_encode($this->modelo->listarMedicamentosFormula());
     }
-
-    public function insertarMedicamento (){}
+    public function insertarMedicamento (){
+        if($_POST){
+            
+            $this->modelo->setIdFormulaMedica($_POST['idFormula']); //Comprobar en la vista
+            $this->modelo->setIdMedicamentoFormula($_POST['cmbMedicamento']);
+            $this->modelo->setCantidadMedicamento($_POST['txfCantidadedicamento']);
+            $this->modelo->setDosificacionMedicamento($_POST['txfDosis']);
+            $registro = $this->modelo->insertarMedicamentoFormula();
+            
+            
+            if($registro){
+                $datos['mensaje']="Se inserto el medicamento";
+            }else {
+                $datos['mensaje']="no se inserto el medicamento";
+            }
+            
+            $this->modelo->setIdCitaMedica($_POST['idCitaMedica']);
+            $datos['episodio'] = $this->modelo->listarEpisodio();
+            $this->modelo->setIdEpisodio($datos['episodio'][0]['idEpisodio']);
+            $datos['diagnostico'] = $this->modelo->listarDiagnostico();
+            $datos['formula'] = $this->modelo->listarFormulaMedica();
+            $datos['titulo']= "Editar Consulta";
+            $datos['citaMedica'] = $_POST['idCitaMedica'];
+            
+            Vista::mostrar('editarConsulta',$datos);
+            
+            
+        }else {
+            header('location: consulta');
+        }
+    }
     
-    public function editarMedicamento (){}
     
     public function eliminarMedicamento (){}
-
 }

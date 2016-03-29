@@ -22,10 +22,6 @@ Vista::mostrar('plantillas/_menuLateral');
                 <img src="<?php echo URL_BASE; ?>Vista/img/logo2.png" alt="" class="img-responsive" style="max-widht:150px; max-height:150px;">
             </div>
         </div>
-        
-            <div class="row">
-            <div class="col-md-12">
-
             <div class=" col-md-offset-3 col-md-6 col-md-offset-3">
                 <div class="panel panel-info">
                     <div class="panel-heading">
@@ -41,9 +37,7 @@ Vista::mostrar('plantillas/_menuLateral');
                     </div>
                 </div>
             </div>
-
         <div class="row" style="margin-top: 5%"></div>
-
         <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-7 col-xs-12">
                 <div class="input-group">
@@ -83,100 +77,6 @@ Vista::mostrar('plantillas/_menuLateral');
     </div><!-- /.container-fluid -->
 </div><!-- /#page-wrapper -->
 <?php Vista::mostrar('plantillas/_pie', $datos); ?>
-<script type="text/javascript">
-    $.post('<?php echo URL_BASE; ?>cargos/listarCargos', {}, function (data) {
-        var datos = JSON.parse(data);
-        var filas;
-        var cont = 0;
-        $.each(datos, function (i, v) {
-            cont = cont + 1;
-            filas += "<tr>";
-            filas += "<td>" + v.descripcionCargo + "</td>";
-            filas += "<td>";
-            filas += "<form action='<?php echo URL_BASE; ?>cargos/editarCargo' method='POST'>";
-            filas += "<button class='btn btn-xs btn-success' type='submit' name='btnEditarCargo'><i class='fa fa-edit'></i></button>";
-            filas += "<input type='hidden' name='idCargo' value='" + v.idCargo + "'>";
-            filas += "</form>";
-            filas += "</td>";
-            filas += "<td>";
-            filas += "<button class='btn btn-xs btn-danger' data-toggle='modal' data-target='#modalEliminarCargo" + cont + "' name='btnModalEliminarRol'><i class='fa fa-close'></i></button>";
-            filas += "<div class = 'modal fade' id='modalEliminarCargo" + cont + "' tabindex = '-1' role = 'dialog'>";
-            filas += "<div class='modal-dialog'>";
-            filas += "<div class='modal-content'>";
-            filas += "<div class='modal-header'>";
-            filas += "<button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>";
-            filas += "<h4 class='modal-title'>Eliminar Cargo</h4>";
-            filas += "</div>";
-            filas += "<div class='modal-body'>";
-            filas += "<p>¿Seguro que desea eliminar registro?</p>";
-            filas += "</div>";
-            filas += "<div class='modal-footer'>";
-            filas += "<form action='<?php echo URL_BASE; ?>cargos/eliminarCargo' method='POST'>";
-            filas += "<button type='button' class='btn btn-default' data-dismiss='modal'>Cancelar</button>";
-            filas += "<button class='btn btn-primary' type='submit' name='btnEliminarCargo'> Aceptar </button>";
-            filas += "<input type='hidden' name='idCargo' value='" + v.idCargo + "'>";
-            filas += "</form>";
-            filas += "</div>";
-            filas += "</div>";
-            filas += "</div>";
-            filas += "</div>";
-            filas += "</td>";
-            filas += "</tr>";
-        });
-        $('#tblCargos tbody').html(filas);
-    });
-
-    $('#btnBuscar').click(function () {
-        var cargo = $('#txtBuscar').val();
-        $.post('<?php echo URL_BASE; ?>cargos/listarDescCargo', {cargo: cargo}, function (data) {
-            var datos = JSON.parse(data);
-            var filas;
-            var cont = 0;
-            if (datos != false) {
-                $.each(datos, function (i, v) {
-                    cont = cont + 1;
-                    filas += "<tr>";
-                    filas += "<td>" + v.descripcionCargo + "</td>";
-                    filas += "<td>";
-                    filas += "<form action='<?php echo URL_BASE; ?>cargos/editarCargo' method='POST'>";
-                    filas += "<button class='btn btn-xs btn-success' type='submit' name='btnEditarCargo'><i class='fa fa-edit'></i></button>";
-                    filas += "<input type='hidden' name='idCargo' value='" + v.idCargo + "'>";
-                    filas += "</form>";
-                    filas += "</td>";
-                    filas += "<td>";
-                    filas += "<button class='btn btn-xs btn-danger' data-toggle='modal' data-target='#modalEliminarCargo" + cont + "' name='btnModalEliminarRol'><i class='fa fa-close'></i></button>";
-                    filas += "<div class = 'modal fade' id='modalEliminarCargo" + cont + "' tabindex = '-1' role = 'dialog'>";
-                    filas += "<div class='modal-dialog'>";
-                    filas += "<div class='modal-content'>";
-                    filas += "<div class='modal-header'>";
-                    filas += "<button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>";
-                    filas += "<h4 class='modal-title'>Eliminar Cargo</h4>";
-                    filas += "</div>";
-                    filas += "<div class='modal-body'>";
-                    filas += "<p>¿Seguro que desea eliminar registro?</p>";
-                    filas += "</div>";
-                    filas += "<div class='modal-footer'>";
-                    filas += "<form action='<?php echo URL_BASE; ?>cargos/eliminarCargo' method='POST'>";
-                    filas += "<button type='button' class='btn btn-default' data-dismiss='modal'>Cancelar</button>";
-                    filas += "<button class='btn btn-primary' type='submit' name='btnEliminarCargo'> Aceptar </button>";
-                    filas += "<input type='hidden' name='idCargo' value='" + v.idCargo + "'>";
-                    filas += "</form>";
-                    filas += "</div>";
-                    filas += "</div>";
-                    filas += "</div>";
-                    filas += "</div>";
-                    filas += "</td>";
-                    filas += "</tr>";
-                });
-            } else {
-                filas += "<tr>";
-                filas += "<td colspan='3'>No existe este Cargo</td>";
-                filas += "</tr>";
-            }
-            $('#tblCargos tbody').html(filas);
-        });
-    });
-</script>
-
+<script type="text/javascript" src="<?php echo URL_BASE; ?>Vista/js/cargos.js"></script>
 <?php Vista::mostrar('registrarCargo'); ?>
 

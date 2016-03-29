@@ -75,51 +75,6 @@ Vista::mostrar('plantillas/_menuLateral');
     </div><!-- /.container-fluid -->
 </div><!--page-wrapper -->
 <?php Vista::mostrar('plantillas/_pie', $datos); ?>
-<script type="text/javascript">
-    $.post('<?php echo URL_BASE; ?>consultorios/listarConsultorios', {}, function (data) {
-        var datos = JSON.parse(data);
-        var filas;
-        var cont = 0;
-        $.each(datos, function (i, v) {
-            cont = cont + 1;
-            filas += "<tr>";
-            filas += "<td>" + v.numeroConsultorio + "</td>";
-            filas += "<td>" + v.nombreCentroMedico + "</td>";
-            filas += "<td></td>";
-            filas += "<td>";
-            filas += "<form action='<?php echo URL_BASE; ?>consultorios/editarConsultorio' method='POST'>";
-            filas += "<button class='btn btn-xs btn-success' type='submit' name='btnEditarConsultorio'><i class='fa fa-edit'></i></button>";
-            filas += "<input type='hidden' name='idConsultorio' value='" + v.idConsultorio + "'>";
-            filas += "</form>";
-            filas += "</td>";
-            filas += "<td>";
-            filas += "<button class='btn btn-xs btn-danger' data-toggle='modal' data-target='#modalEliminarConsultorio" + cont + "' name='btnModalEliminarConsultorio'><i class='fa fa-close'></i></button>";
-            filas += "<div class = 'modal fade' id='modalEliminarConsultorio" + cont + "' tabindex = '-1' role = 'dialog'>";
-            filas += "<div class='modal-dialog'>";
-            filas += "<div class='modal-content'>";
-            filas += "<div class='modal-header'>";
-            filas += "<button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>";
-            filas += "<h4 class='modal-title'>Eliminar Consultorio</h4>";
-            filas += "</div>";
-            filas += "<div class='modal-body'>";
-            filas += "<p>¿Seguro que desea eliminar registro?</p>";
-            filas += "</div>";
-            filas += "<div class='modal-footer'>";
-            filas += "<form action='<?php echo URL_BASE; ?>consultorios/eliminarConsultorio' method='POST'>";
-            filas += "<button type='button' class='btn btn-default' data-dismiss='modal'>Cancelar</button>";
-            filas += "<button class='btn btn-primary' type='submit' name='btnEliminarConsultorio'> Aceptar </button>";
-            filas += "<input type='hidden' name='idConsultorio' value='" + v.idConsultorio + "'>";
-            filas += "</form>";
-            filas += "</div>";
-            filas += "</div>";
-            filas += "</div>";
-            filas += "</div>";
-            filas += "</td>";
-            filas += "</tr>";
-        });
-        $('#tblConsultorios tbody').html(filas);
-    });
-</script>
-
+<script type="text/javascript" src="<?php echo URL_BASE; ?>Vista/js/consultorios.js"></script>
 <?php Vista::mostrar('registrarConsultorio'); ?>
 

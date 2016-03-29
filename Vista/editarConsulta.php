@@ -66,9 +66,9 @@ Vista::mostrar('plantillas/_menuLateral');
                         </div>
                         <input type="hidden" name="idEpisodio" value=""/>
                     </div>
-
+                    
+    <!--EndForm--></form>
                     <!-- Tab para las ordenes ------------------------------------------------------------------------------------------------------------------------->
-
                     <div role="tabpanel" class="tab-pane" id="Ordenes">
                         <div class="row">
                             <button type="button" class="btn btn-primary col-xs-2" data-toggle="modal" data-target="#modalOrden">Agregar Orden</button>
@@ -82,7 +82,7 @@ Vista::mostrar('plantillas/_menuLateral');
                                         <h4 class="modal-title">Insertar Orden</h4>
                                     </div>
                                     <div class="modal-body">
-                                        <form id="frmOrden" action="<?php echo URL_BASE;?>consultas/insetarOrden" method="POST">
+                        <form id="frmOrden" action="<?php echo URL_BASE;?>consultas/insertarOrden" method="POST">
                                         
                                         <div class="form-group">
                                             <label for="txfFechaHoraOrden">Fecha/Hora orden</label>
@@ -103,24 +103,11 @@ Vista::mostrar('plantillas/_menuLateral');
                                             </select>
                                         </div>
                                         <input type="hidden" name="idEpisodio" value="<?php echo $episodio[0]['idEpisodio']?>"/>
+                                        <input type="hidden" name="idCitaMedica" value="<?php echo $citaMedica; ?>"/>
                                         <button type="submit" class="btn btn-primary" name="frmOrden2" id="frmOrden2"> ENVIAR </button>
                                     </div>
-                                        <script type="text/javascript">
-                                            var frm = $('#frmOrden');
-                                            frm.submit(function (ev) {
-                                                $.ajax({
-                                                    type: frm.attr('method'),
-                                                    url: frm.attr('action'),
-                                                    data: frm.serialize(),
-                                                    success: function (data) {
-                                                        alert('ok');
-                                                    }
-                                                });
-                                        
-                                                ev.preventDefault();
-                                            });
-                                        </script>
-                                    </form>
+
+                        </form>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-success" data-dismiss="modal">Cerrar</button>
                                     </div>
@@ -155,7 +142,6 @@ Vista::mostrar('plantillas/_menuLateral');
                     </div>
 
                     <!-- Tab para las formulas medicas ----------------------------------------------------------------------------------------------------------------->
-
                     <div role="tabpanel" class="tab-pane" id="FormulaMedica">
                         <input type="hidden" name="idDiagnostico" value=""/>
                         <div class="row">
@@ -169,6 +155,7 @@ Vista::mostrar('plantillas/_menuLateral');
                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                                         <h4 class="modal-title">Insertar Medicamento</h4>
                                     </div>
+                    <form id="frmMedicamento" action="<?php echo URL_BASE;?>consultas/insertarMedicamento" method="POST">
                                     <div class="modal-body">
                                         <div class="form-group">
                                             <label for="cmbMedicamento">Medicamento</label>
@@ -184,14 +171,16 @@ Vista::mostrar('plantillas/_menuLateral');
                                             <label for="txfDosis">Dosis o posologia</label>
                                             <input type="text" id="txfDosis"  maxlength="30" name="txfDosis" class="form-control" placeholder="Dosis o posologia">  
                                         </div>
-                                        <button type="button" class="btn btn-primary" name="btnAgregarMedicamento" id="btnAgregarMedicamento"> ENVIAR </button>
+                                        <button type="submit" class="btn btn-primary" name="btnAgregarMedicamento" id="btnAgregarMedicamento"> ENVIAR </button>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-success" data-dismiss="modal">Cerrar</button>
                                     </div>
                                 </div>
                                 <input type="hidden" name="idFormula" id="idFormula" value="<?php echo $formula[0]['idFormulaMedica']?>"/>
+                                <input type="hidden" name="idCitaMedica" value="<?php echo $citaMedica; ?>"/>
                             </div>
+                    </form>
                         </div>
                         <div class="table-responsive">
                             <table id="tblMedicamentos" class="table table-condensed table-hover">
@@ -225,7 +214,7 @@ Vista::mostrar('plantillas/_menuLateral');
                         </div>    
                     </div>
                 </div>
-<!--EndForm--></form>
+
         </div>
         <!-------------------------------------------------------------------------------------------------------------------------------------------------->
     </div>
@@ -239,14 +228,12 @@ Vista::mostrar('plantillas/_menuLateral');
             $('#cmbEnfermedad').append('<option value="' + v.idEnfermedad + '">' + v.nombreEnfermedad + '</option>');
         });
     });
-
     $.post('<?php echo URL_BASE; ?>medicamentos/listarMedicamentos', {}, function (data) {
         var datos = JSON.parse(data);
         $.each(datos, function (i, v) {
             $('#cmbMedicamento').append('<option value="' + v.idMedicamento + '">' + v.nombreGenericoMedicamento + '</option>');
         });
     });
-
     $.post('<?php echo URL_BASE; ?>tipoOrdenes/listarTipoOrdenes', {}, function (data) {
         var datos = JSON.parse(data);
         $.each(datos, function (i, v) {
@@ -262,12 +249,12 @@ Vista::mostrar('plantillas/_menuLateral');
         var fila='';
         var cont=0;
         $.each(datos, function(i, v) {
+            cont = cont + 1;
             fila +='<tr>';
             fila += "<td>" + v.fechaHoraOrden + "</td>";
             fila += "<td>" + v.cantidadOrden + "</td>";
             fila += "<td>" + v.observacionOrden + "</td>";
             fila += "<td>" + v.descripcionTipoOrden + "</td>";
-            fila += "<td><button type='button' class='btn btn-xs btn-danger btnEliminarOrden' id='btnEliminarOrden" + cont + "'><i class='fa fa-close'></i></button></td>";
             fila += "</tr>";
         });
         $('#tblOrdenes').append(fila);
@@ -280,7 +267,9 @@ Vista::mostrar('plantillas/_menuLateral');
     $.post('<?php echo URL_BASE; ?>consultas/listarMedicamentos', {idFormula:idFormula}, function(data) {
         var datos= JSON.parse(data);
         var fila='';
+        var cont=0;
         $.each(datos, function(i, v) {
+            
             fila +='<tr>';
             fila += "<td>" + v.codigoMedicamento + "</td>";
             fila += "<td>" + v.nombreGenericoMedicamento + "</td>";
@@ -299,11 +288,8 @@ Vista::mostrar('plantillas/_menuLateral');
         timepicker: false,
         format: 'Y-m-d H:m:s'
     });
-
     $('#txfFechaHoraOrden').datetimepicker({
         format: 'Y-m-d H:m'
     });
-
     
-
 </script>
