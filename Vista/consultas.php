@@ -29,12 +29,12 @@ Vista::mostrar('plantillas/_menuLateral');
                             <input type="text" id="txfFechaHora"  maxlength="30"  name="txfFechaHora" class="form-control" placeholder=""  >
                         </div>
                         <div class="form-group col-xs-3">
-                            <label for="txfPeso">Peso: </label>
-                            <input type="text" id="txfPeso"  maxlength="30" name="txfPeso" class="form-control" placeholder="" >
+                            <label for="txfPeso">Peso(kg): </label>
+                            <input type="number" id="txfPeso"  maxlength="30" name="txfPeso" class="form-control" placeholder="" >
                         </div>
                         <div class="form-group col-xs-3">
                             <label for="txfTemperatura">Temperatura: </label>
-                            <input type="text" id="txfTemperatura"  maxlength="30" name="txfTemperatura" class="form-control" placeholder="" >
+                            <input type="numbe" id="txfTemperatura"  maxlength="30" name="txfTemperatura" class="form-control" placeholder="" >
                         </div>
                         <div class="form-group col-xs-3">
                             <label for="txfPresion">Presion: </label>
@@ -88,7 +88,7 @@ Vista::mostrar('plantillas/_menuLateral');
                                         </div>
                                         <div class="form-group">
                                             <label for="txfCantidadOrden">Cantidad</label>
-                                            <input type="text" id="txfCantidadOrden"  maxlength="30" name="txfCantidadOrden" class="form-control" placeholder="Cantidad" >  
+                                            <input type="number" id="txfCantidadOrden"  maxlength="30" name="txfCantidadOrden" class="form-control" placeholder="Cantidad" >  
                                         </div>
                                         <div class="form-group">
                                             <label for="txfObservacionOrden">Observacion</label>
@@ -159,7 +159,7 @@ Vista::mostrar('plantillas/_menuLateral');
                                         </div>
                                         <div class="form-group">
                                             <label for="txfCantidadedicamento">Cantidad</label>
-                                            <input type="text" id="txfCantidadedicamento"  maxlength="30" name="txfCantidadedicamento" class="form-control" placeholder="Cantidad" >  
+                                            <input type="number" id="txfCantidadedicamento"  maxlength="30" name="txfCantidadedicamento" class="form-control" placeholder="Cantidad" >  
                                         </div>
                                         <div class="form-group">
                                             <label for="txfDosis">Dosis o posologia</label>

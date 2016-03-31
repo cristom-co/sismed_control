@@ -60,15 +60,15 @@
                     </div>
                     <div class="form-group">
                         <label for="txfTelefonoEmpleado">Telefono</label>
-                        <input type="text" id="txfTelefonoEmpleado" name="txfTelefonoEmpleado" class="form-control" placeholder="Telefono: " required>
+                        <input type="number" id="txfTelefonoEmpleado" name="txfTelefonoEmpleado" class="form-control" placeholder="Telefono: " required>
                     </div>
                     <div class="form-group">
                         <label for="txfMovilEmpleado">Movil</label>
-                        <input type="text" id="txfMovilEmpleado" name="txfMovilEmpleado" class="form-control" placeholder="Movil: " required>
+                        <input type="number" id="txfMovilEmpleado" name="txfMovilEmpleado" class="form-control" placeholder="Movil: " required>
                     </div>
                     <div class="form-group">
                         <label for="txfCorreoEmpleado">Correo electronico</label>
-                        <input type="text" id="txfCorreoEmpleado" name="txfCorreoEmpleado" class="form-control" placeholder="Correo electronico: " required>
+                        <input type="email" id="txfCorreoEmpleado" name="txfCorreoEmpleado" class="form-control" placeholder="Correo electronico: " required>
                     </div>
                     <div class="form-group">
                         <label for="cmbEstadoEmpleado">Estado</label>
@@ -110,7 +110,8 @@
     
     $('#txfFechaNacimientoEmpleado').datetimepicker({
         timepicker: false,
-	    format: 'Y-m-d'
+	    format: 'Y-m-d',
+	    maxDate:'0'
     });
 
 

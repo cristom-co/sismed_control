@@ -50,21 +50,21 @@
                     </div>
                     <div class="form-group">
                         <label for="txfTelefonoBeneficiario">Telefono</label>
-                        <input type="text" id="txfTelefonoBeneficiario" name="txfTelefonoBeneficiario" class="form-control" placeholder="Telefono: " required>
+                        <input type="number" id="txfTelefonoBeneficiario" name="txfTelefonoBeneficiario" class="form-control" placeholder="Telefono: " required>
                     </div>
                     <div class="form-group">
                         <label for="txfMovilBeneficiario">Movil</label>
-                        <input type="text" id="txfMovilBeneficiario" name="txfMovilBeneficiario" class="form-control" placeholder="Movil: " required>
+                        <input type="number" id="txfMovilBeneficiario" name="txfMovilBeneficiario" class="form-control" placeholder="Movil: " required>
                     </div>
                     <div class="form-group">
                         <label for="txfCorreoBeneficiario">Correo electronico</label>
-                        <input type="text" id="txfCorreoBeneficiario" name="txfCorreoBeneficiario" class="form-control" placeholder="Correo electronico: " required>
+                        <input type="email" id="txfCorreoBeneficiario" name="txfCorreoBeneficiario" class="form-control" placeholder="Correo electronico: " required>
                     </div>
                     <div class="form-group">
                         <label for="cmbCronico">Cronico</label>
                         <select class="form-control" name="cmbCronico" id="cmbCronico">
-                            <option value="1">Cronico</option>
                             <option value="0">No cronico</option>
+                            <option value="1">Cronico</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -100,7 +100,8 @@
     
     $('#txfFechaNacimientoBeneficiario').datetimepicker({
 	    timepicker: false,
-    	format: 'Y-m-d'
+    	format: 'Y-m-d', 
+    	maxDate: '0'
     });
 
 </script>

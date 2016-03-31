@@ -54,13 +54,21 @@
 <script type="text/javascript">
 
 //Lista los empleados existente en la base de datos
- $.post('<?php echo URL_BASE; ?>empleados/listarEmpleados', {}, function (data) {
+ $.post('<?php echo URL_BASE; ?>empleados/listarMedicos', {}, function (data) {
         var datos = JSON.parse(data);
         $.each(datos, function (i, v) {
             $('#cmbEmpleado').append('<option value="' + v.idEmpleado + '">' + v.nombresEmpleado + " "+ v.apellidosEmpleado + '</option>');
         });
     });
 
+var f=new Date();
+if ((f.getMonth() +1)<10) {
+	var mes = '0'+(f.getMonth() +1);
+}else{
+	var mes = (f.getMonth() +1);
+}
+
+var hoy = f.getFullYear() + "-" + mes + "-" + f.getDate();
    
 $('#cmbEmpleado').change(function () {
     var idEmpleado = $(this).val();
@@ -70,8 +78,10 @@ $('#cmbEmpleado').change(function () {
         var fechasDisponibles=[]; 
         var datos = JSON.parse(data);
         $.each(datos, function (i, v) {
-            fechasDisponibles[f]=v.fechaAgendaMedica;
-	        f++;
+            if ((hoy < v.fechaAgendaMedica)||(hoy == v.fechaAgendaMedica)) {
+                fechasDisponibles[f]=v.fechaAgendaMedica;
+                f++;
+            }
         });
         if(fechasDisponibles.length !== 0){
             $('#txfFechaCita').datetimepicker({
@@ -79,6 +89,7 @@ $('#cmbEmpleado').change(function () {
 	            format: 'Y-m-d',
 	            allowDates: fechasDisponibles, 
 	            formatDate:'Y-m-d'
+	            
             });
         }else{
            $('#txfFechaCita').datetimepicker({

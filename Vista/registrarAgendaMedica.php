@@ -13,14 +13,12 @@
                         <input type="text" name="txfFechaAgendaMedica" id="txfFechaAgendaMedica" class="form-control" placeholder="Fecha" value="" required>
                     </div>
                     <div class="form-group">
-                        <label for="cmbIdentificacionEmpleado">Identifiación Empleado</label>
+                        <label for="cmbIdentificacionEmpleado">Identifiación Medico</label>
                         <select class="form-control" name="cmbIdentificacionEmpleado" id="cmbIdentificacionEmpleado" maxlength="20" required>
-                            <option value="">Seleccione empleado</option>
+                            <option value="">Seleccione medico</option>
                         </select>
                     </div>
                     <div id="divHoras">
-                        
-                        
                     </div>
                 <button type="submit" class="btn btn-primary" name="btnRegistrarAgendaMedica" id="btnRegistrarAgendaMedica"> Crear Agenda </button>
                 </form>
@@ -43,7 +41,7 @@
         });
     });
     
-     $.post('<?php echo URL_BASE; ?>empleados/listarEmpleados', {}, function (data) {
+     $.post('<?php echo URL_BASE; ?>empleados/listarMedicos', {}, function (data) {
         var datos = JSON.parse(data);
         $.each(datos, function (i, v) {
             $('#cmbIdentificacionEmpleado').append('<option value="' + v.idEmpleado + '">' + v.numeroIdentificacionEmpleado + " - " + v.nombresEmpleado + " " + v.apellidosEmpleado + '</option>');
@@ -52,7 +50,8 @@
     
     $('#txfFechaAgendaMedica').datetimepicker({
     	timepicker: false,
-	    format: 'Y-m-d'
+	    format: 'Y-m-d', 
+	    minDate: '0'
     });
 </script>
 

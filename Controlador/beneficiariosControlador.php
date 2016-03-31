@@ -98,7 +98,7 @@ class beneficiariosControlador {
                     $datos['mensaje'] = "No se edito el funcionario";
                 }
                 $datos['titulo'] = "Beneficiarios";
-                Vista::mostrar('funcionarios', $datos);
+                Vista::mostrar('beneficiarios', $datos);
             }
         }
     }

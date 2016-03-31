@@ -9,9 +9,9 @@
                 <li>
                     <a href="<?php echo URL_BASE; ?>usuarios/usuarios">Usuarios</a>
                 </li>
-                <li>
-                    <a href="<?php echo URL_BASE; ?>roles/roles">Roles</a>
-                </li>
+                <!--<li>-->
+                <!--    <a href="<?php //echo URL_BASE; ?>roles/roles">Roles</a>-->
+                <!--</li>-->
             </ul>
         </li>
         <li>

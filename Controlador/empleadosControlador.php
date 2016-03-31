@@ -51,6 +51,10 @@ class empleadosControlador {
     public function listarEmpleados() {
         echo json_encode($this->modelo->listarEmpleados(), true);
     }
+    
+    public function listarMedicos() {
+        echo json_encode($this->modelo->listarMedicos(), true);
+    }
 
     public function listarDocumentoEmpleado() {
         $this->modelo->setIdentificacionEmpleado($_POST['empleado']);

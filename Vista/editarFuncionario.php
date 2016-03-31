@@ -71,15 +71,15 @@ Vista::mostrar('plantillas/_menuLateral');
             </div>
             <div class="form-group">
                 <label for="txfTelefonoFuncionario">Telefono</label>
-                <input type="text" id="txfTelefonoFuncionario" name="txfTelefonoFuncionario" class="form-control" value="<?php echo $funcionario[0]['telefonoFuncionario']; ?>">
+                <input type="number" id="txfTelefonoFuncionario" name="txfTelefonoFuncionario" class="form-control" value="<?php echo $funcionario[0]['telefonoFuncionario']; ?>">
             </div>
             <div class="form-group">
                 <label for="txfMovilFuncionario">Movil</label>
-                <input type="text" id="txfMovilFuncionario" name="txfMovilFuncionario" class="form-control" value="<?php echo $funcionario[0]['movilFuncionario']; ?>">
+                <input type="number" id="txfMovilFuncionario" name="txfMovilFuncionario" class="form-control" value="<?php echo $funcionario[0]['movilFuncionario']; ?>">
             </div>
             <div class="form-group">
                 <label for="txfCorreoFuncionario">Correo electronico</label>
-                <input type="text" id="txfCorreoFuncionario" name="txfCorreoFuncionario" class="form-control" value="<?php echo $funcionario[0]['correoFuncionario']; ?>">
+                <input type="email" id="txfCorreoFuncionario" name="txfCorreoFuncionario" class="form-control" value="<?php echo $funcionario[0]['correoFuncionario']; ?>">
             </div>
             <div class="form-group">
                 <label for="cmbEstadoFuncionario">Estado</label>

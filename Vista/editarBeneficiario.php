@@ -66,15 +66,15 @@ Vista::mostrar('plantillas/_menuLateral');
             </div>
             <div class="form-group">
                 <label for="txfTelefonoBeneficiario">Telefono</label>
-                <input type="text" id="txfTelefonoBeneficiario" name="txfTelefonoBeneficiario" class="form-control" value="<?php echo $beneficiario[0]['telefonoBeneficiario']; ?>">
+                <input type="number" id="txfTelefonoBeneficiario" name="txfTelefonoBeneficiario" class="form-control" value="<?php echo $beneficiario[0]['telefonoBeneficiario']; ?>">
             </div>
             <div class="form-group">
                 <label for="txfMovilBeneficiario">Movil</label>
-                <input type="text" id="txfMovilBeneficiario" name="txfMovilBeneficiario" class="form-control" value="<?php echo $beneficiario[0]['movilBeneficiario']; ?>">
+                <input type="number" id="txfMovilBeneficiario" name="txfMovilBeneficiario" class="form-control" value="<?php echo $beneficiario[0]['movilBeneficiario']; ?>">
             </div>
             <div class="form-group">
                 <label for="txfCorreoBeneficiario">Correo electronico</label>
-                <input type="text" id="txfCorreoBeneficiario" name="txfCorreoBeneficiario" class="form-control" value="<?php echo $beneficiario[0]['correoBeneficiario']; ?>">
+                <input type="email" id="txfCorreoBeneficiario" name="txfCorreoBeneficiario" class="form-control" value="<?php echo $beneficiario[0]['correoBeneficiario']; ?>">
             </div>
             <div class="form-group">
                 <label for="cmbCronico">Cronico</label>
