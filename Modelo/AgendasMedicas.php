@@ -11,6 +11,7 @@ class AgendasMedicas {
     private $apellidosEmpleado;
     private $idHora;
     private $hora;
+    private $idConsultorio;
     private $conexion;
 
     public function __construct() {
@@ -22,28 +23,29 @@ class AgendasMedicas {
                 . "fechaAgendaMedica, "
                 . "disponibilidadAgendaMedica, "
                 . "empleados_idEmpleado, "
-                . "hora_20_idhora_20) "
+                . "hora_20_idhora_20,consultorios_idConsultorio) "
                 . "VALUES (null, "
                 . "'{$this->getFechaAgendaMedica()}', "
                 . "{$this->getDiponibilidadAgendaMedica()}, "
                 . "{$this->getIdEmpleado()}, "
-                . "{$this->getIdHora()}) ";
+                . "{$this->getIdHora()},'{$this->getIdConsultorio()}') ";
         return $this->conexion->consultaSimple($sql);
     }
 
     public function listarAgendasMedicas() {
-        $sql = "SELECT idAgendaMedica, "
-                . "fechaAgendaMedica, "
-                . "disponibilidadAgendaMedica, "
-                . "empleados_idEmpleado, "
-                . "numeroIdentificacionEmpleado, "
-                . "nombresEmpleado, "
-                . "apellidosEmpleado "
-                . "FROM agendas_medicas "
-                . "INNER JOIN empleados ON empleados_idEmpleado = idEmpleado "
-                . "INNER JOIN hora_20 ON hora_20_idhora_20 = idhora_20 "
-                . "WHERE fechaAgendaMedica = CURDATE()"
-                . "GROUP BY idEmpleado";
+        $sql = "SELECT idAgendaMedica, 
+                fechaAgendaMedica, 
+                disponibilidadAgendaMedica, 
+                empleados_idEmpleado, 
+                numeroIdentificacionEmpleado, 
+                nombresEmpleado, 
+                apellidosEmpleado, numeroConsultorio 
+                FROM agendas_medicas 
+                INNER JOIN empleados ON empleados_idEmpleado = idEmpleado 
+                INNER JOIN hora_20 ON hora_20_idhora_20 = idhora_20
+                INNER JOIN consultorios c ON c.idConsultorio = consultorios_idConsultorio
+                WHERE fechaAgendaMedica = CURDATE()
+                GROUP BY idEmpleado";
 
         return $this->conexion->consulta($sql);
     }
@@ -55,10 +57,11 @@ class AgendasMedicas {
                 . "empleados_idEmpleado, "
                 . "numeroIdentificacionEmpleado, "
                 . "nombresEmpleado, "
-                . "apellidosEmpleado "
+                . "apellidosEmpleado, numeroConsultorio "
                 . "FROM agendas_medicas "
                 . "INNER JOIN empleados ON empleados_idEmpleado = idEmpleado "
-                . "INNER JOIN hora_20 ON hora_20_idhora_20 = idhora_20 "
+                . "INNER JOIN hora_20 ON hora_20_idhora_20 = idhora_20 
+                INNER JOIN consultorios c ON c.idConsultorio = consultorios_idConsultorio"
                 . "WHERE fechaAgendaMedica = CURDATE() "
                 . "AND numeroIdentificacionEmpleado = '{$this->getNumeroIdentificacionEmpleado()}' "
                 . "GROUP BY idEmpleado";
@@ -74,10 +77,11 @@ class AgendasMedicas {
                 . "empleados_idEmpleado, "
                 . "numeroIdentificacionEmpleado, "
                 . "nombresEmpleado, "
-                . "apellidosEmpleado "
+                . "apellidosEmpleado, c.numeroConsultorio "
                 . "FROM agendas_medicas "
                 . "INNER JOIN empleados ON empleados_idEmpleado = idEmpleado "
-                . "INNER JOIN hora_20 ON hora_20_idhora_20 = idhora_20 "
+                . "INNER JOIN hora_20 ON hora_20_idhora_20 = idhora_20
+                INNER JOIN consultorios c ON c.idConsultorio = consultorios_idConsultorio"
                 . "WHERE fechaAgendaMedica = '{$this->getFechaAgendaMedica()}'"
                 . "GROUP BY idEmpleado";
         
@@ -173,6 +177,10 @@ class AgendasMedicas {
     public function getHora() {
         return $this->hora;
     }
+    
+    public function getIdConsultorio() {
+        return $this->idConsultorio;
+    }
 
     public function setIdAgendaMedica($idAgendaMedica) {
         $this->idAgendaMedica = $idAgendaMedica;
@@ -210,4 +218,7 @@ class AgendasMedicas {
         $this->hora = $hora;
     }
 
+    public function setIdConsultorio($idConsultorio) {
+        $this->idConsultorio = $idConsultorio;
+    }
 }

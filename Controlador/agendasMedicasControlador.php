@@ -29,6 +29,7 @@ class agendasMedicasControlador {
                 $this->modelo->setFechaAgendaMedica($_POST['txfFechaAgendaMedica']);
                 $this->modelo->setDiponibilidadAgendaMedica(1);
                 $this->modelo->setIdEmpleado($_POST['cmbIdentificacionEmpleado']);
+                $this->modelo->setIdConsultorio($_POST['cmbConsultorio']);
                 $this->modelo->setIdHora($idHora[$i]);
                 $registro = $this->modelo->insertarAgendaMedica();
             }

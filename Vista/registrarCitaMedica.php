@@ -30,13 +30,7 @@
                             <option value="">Seleccione Hora</option>
                         </select>
                     </div>
-                    <div class="form-group">
-                        <label for="cmbConsultorio">Consultorio:</label>
-                        <select class="form-control" name="cmbConsultorio" id="cmbConsultorio" required>
-                            <option value="">Seleccione un consultorio</option>
-                        </select>
-                    </div>
-
+                
                     <div class="form-group">
                       <label for="txfComentario">Comentarios:</label>
                       <textarea class="form-control" rows="5" id="txfComentario" name="txfComentario"></textarea>
@@ -52,7 +46,6 @@
 </div>
 
 <script type="text/javascript">
-
 //Lista los empleados existente en la base de datos
  $.post('<?php echo URL_BASE; ?>empleados/listarMedicos', {}, function (data) {
         var datos = JSON.parse(data);
@@ -62,10 +55,10 @@
     });
 
 var f=new Date();
-if ((f.getMonth() +1)<10) {
-	var mes = '0'+(f.getMonth() +1);
+if ((f.getMonth() -1)<10) {
+	var mes = '0'+(f.getMonth() -1);
 }else{
-	var mes = (f.getMonth() +1);
+	var mes = (f.getMonth() -1);
 }
 
 var hoy = f.getFullYear() + "-" + mes + "-" + f.getDate();

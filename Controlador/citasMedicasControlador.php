@@ -25,7 +25,6 @@ class citasMedicasControlador {
             
             $this->modelo->setComentariosCitaMedica($_POST['txfComentario']);
             $this->modelo->setIdBeneficarios($_POST['cmbBeneficiario']);
-            $this->modelo->setIdConsultorio($_POST['cmbConsultorio']);
             $this->modelo->setIdAgendaMedica($_POST['cmbHoraCita']);
             $registro = $this->modelo->insertarCitaMedica();
             $this->modeloAgenda->setIdAgendaMedica($_POST['cmbHoraCita']);
@@ -83,7 +82,6 @@ class citasMedicasControlador {
                 $this->modelo->setIdCitaMedica($_POST['idCitaMedica']);
                 $this->modelo->setComentariosCitaMedica($_POST['txfComentario']);
                 $this->modelo->setEstadoCitaMedica($_POST['cmbEstado']);
-                $this->modelo->setIdConsultorio($_POST['cmbConsultorio']);
                 $this->modelo->setIdAgendaMedica($_POST['cmbHoraCita']);
                 
                 $registro = $this->modelo->editarCitaMedica();

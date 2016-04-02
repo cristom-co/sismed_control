@@ -26,27 +26,27 @@ Vista::mostrar('plantillas/_menuLateral');
                     <div role="tabpanel" class="tab-pane active row" id="Episodio">
                         <div class="form-group col-xs-3">
                             <label for="txfFechaHora">Fecha / Hora de la atencion: </label>
-                            <input type="text" id="txfFechaHora"  maxlength="30"  name="txfFechaHora" class="form-control" placeholder=""  >
+                            <input type="text" id="txfFechaHora"  maxlength="30"  name="txfFechaHora" class="form-control" placeholder=""  required>
                         </div>
                         <div class="form-group col-xs-3">
                             <label for="txfPeso">Peso(kg): </label>
-                            <input type="number" id="txfPeso"  maxlength="30" name="txfPeso" class="form-control" placeholder="" >
+                            <input type="number" id="txfPeso"  maxlength="30" name="txfPeso" class="form-control" placeholder=""  required>
                         </div>
                         <div class="form-group col-xs-3">
                             <label for="txfTemperatura">Temperatura: </label>
-                            <input type="numbe" id="txfTemperatura"  maxlength="30" name="txfTemperatura" class="form-control" placeholder="" >
+                            <input type="number" id="txfTemperatura"  maxlength="30" name="txfTemperatura" class="form-control" placeholder=""  required>
                         </div>
                         <div class="form-group col-xs-3">
                             <label for="txfPresion">Presion: </label>
-                            <input type="text" id="txfPresion"  maxlength="30" name="txfPresion" class="form-control" placeholder="" >
+                            <input type="text" id="txfPresion"  maxlength="30" name="txfPresion" class="form-control" placeholder=""  required>
                         </div>
                         <div class="form-group col-xs-12">
                             <label for="txfAnamnesis">Anamnesis: </label>
-                            <textarea class="form-control" rows="3" maxlength="300" id="txfAnamnesis" name="txfAnamnesis" ></textarea>
+                            <textarea class="form-control" rows="3" maxlength="300" id="txfAnamnesis" name="txfAnamnesis" required></textarea>
                         </div>
                         <div class="form-group col-xs-12">
                             <label for="txfExploracion">Exploracion: </label>
-                            <textarea class="form-control" rows="3" maxlength="300" id="txfExploracion" name="txfExploracion" ></textarea>
+                            <textarea class="form-control" rows="3" maxlength="300" id="txfExploracion" name="txfExploracion" required></textarea>
                         </div>
                         <input type="hidden" name="idCitaMedica" value="<?php echo $idCitaMedica ?>"/>
                         <input type="hidden" name="idBeneficiario" value="<?php echo $idBeneficiario ?>"/>
@@ -62,7 +62,7 @@ Vista::mostrar('plantillas/_menuLateral');
                         </div>
                         <div class="form-group col-xs-12">
                             <label for="txfDescripcionDiagnostico">Descripcion: </label>
-                            <textarea class="form-control" rows="5" maxlength="300" id="txfDescripcionDiagnostico" name="txfDescripcionDiagnostico" ></textarea>
+                            <textarea class="form-control" rows="5" maxlength="300" id="txfDescripcionDiagnostico" name="txfDescripcionDiagnostico" required></textarea>
                         </div>
                         <input type="hidden" name="idEpisodio" value=""/>
                     </div>
@@ -200,7 +200,7 @@ Vista::mostrar('plantillas/_menuLateral');
                             </table>
                             <div class="form-group">
                                 <label for="txfObservacionesFormula">Observaciones: </label>
-                                <textarea class="form-control" rows="3" maxlength="300" id="txfObservacionesFormula" name="txfObservacionesFormula"></textarea>
+                                <textarea class="form-control" rows="3" maxlength="300" id="txfObservacionesFormula" name="txfObservacionesFormula" required></textarea>
                             </div>
                         </div>    
                     </div>
@@ -211,6 +211,3 @@ Vista::mostrar('plantillas/_menuLateral');
 </div><!-- /#page-wrapper -->
 <?php Vista::mostrar('plantillas/_pie', $datos); ?>
 <script type="text/javascript" src="<?php echo URL_BASE; ?>Vista/js/consultas.js"></script>
-
-
-

@@ -18,6 +18,12 @@
                             <option value="">Seleccione medico</option>
                         </select>
                     </div>
+                    <div class="form-group">
+                        <label for="cmbConsultorio">Consultorio</label>
+                        <select class="form-control" name="cmbConsultorio" id="cmbConsultorio" maxlength="20" required>
+                            <option value="">Seleccione Consultorio</option>
+                        </select>
+                    </div>
                     <div id="divHoras">
                     </div>
                 <button type="submit" class="btn btn-primary" name="btnRegistrarAgendaMedica" id="btnRegistrarAgendaMedica"> Crear Agenda </button>
@@ -52,6 +58,13 @@
     	timepicker: false,
 	    format: 'Y-m-d', 
 	    minDate: '0'
+    });
+    
+    $.post('<?php echo URL_BASE; ?>consultorios/listarConsultorios', {}, function (data) {
+        var datos = JSON.parse(data);
+        $.each(datos, function (i, v) {
+            $('#cmbConsultorio').append('<option value="' + v.idConsultorio + '">' + v.numeroConsultorio + '</option>');
+        });
     });
 </script>
 

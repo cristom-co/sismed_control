@@ -14,6 +14,7 @@ $.post(url_base+'/agendasMedicas/listarAgendasMedicas', {}, function (data) {
         idEmpleado[cont] = v.empleados_idEmpleado;
         filas += "<tr>";
         filas += "<td>" + v.fechaAgendaMedica + "</td>";
+        //agregar el numero del consultorio 
         filas += "<td>" + v.numeroIdentificacionEmpleado + "</td>";
         filas += "<td>" + v.nombresEmpleado + " " + v.apellidosEmpleado + "</td>";
         filas += "<td>";
@@ -102,6 +103,7 @@ $('#btnBuscar').click(function () {
                 idEmpleado[cont] = v.empleados_idEmpleado;
                 filas += "<tr>";
                 filas += "<td>" + v.fechaAgendaMedica + "</td>";
+                
                 filas += "<td>" + v.numeroIdentificacionEmpleado + "</td>";
                 filas += "<td>" + v.nombresEmpleado + " " + v.apellidosEmpleado + "</td>";
                 filas += "<td>";

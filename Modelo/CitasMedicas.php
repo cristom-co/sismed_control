@@ -10,7 +10,6 @@ class CitasMedicas {
     private $comentariosCitaMedica;
     private $estadoCitaMedica;
     private $idBeneficarios;
-    private $idConsultorio;
     private $idAgendaMedica;
     private $conexion;
     //Table beneficiarios
@@ -28,7 +27,6 @@ class CitasMedicas {
                 . "comentariosCitaMedica, "
                 . "estadoCitaMedica, "
                 . "beneficiarios_idBeneficiario, "
-                . "consultorios_idConsultorio, "
                 . "agendas_medicas_idAgendasMedica) "
                 . "VALUES("
                 . "NULL ,"
@@ -37,7 +35,6 @@ class CitasMedicas {
                 . "'{$this->getComentariosCitaMedica()}', "
                 . "1, "
                 . "'{$this->getIdBeneficarios()}', "
-                . "'{$this->getIdConsultorio()}', "
                 . "'{$this->getIdAgendaMedica()}')";
                 
         return $this->conexion->consultaSimple($sql);
@@ -55,14 +52,14 @@ class CitasMedicas {
            numeroIdentificacionBeneficiario,
            nombresBeneficiario, 
            apellidosBeneficiario, 
-           numeroConsultorio,
            ct.agendas_medicas_idAgendasMedica,
            nombresEmpleado, 
-           apellidosEmpleado
+           apellidosEmpleado,
+			c.numeroConsultorio
         FROM citas_medicas ct
         INNER JOIN beneficiarios b ON b.idBeneficiario = ct.beneficiarios_idBeneficiario
-        INNER JOIN consultorios c ON c.idConsultorio = ct.consultorios_idConsultorio
         INNER JOIN agendas_medicas am ON am.idAgendaMedica = ct.agendas_medicas_idAgendasMedica
+		INNER JOIN consultorios c ON c.idConsultorio = am.consultorios_idConsultorio
         INNER JOIN empleados e ON e.idEmpleado = am.empleados_idEmpleado
         INNER JOIN hora_20 hs ON hs.idhora_20 = am.hora_20_idhora_20
         WHERE ct.idCitaMedica = '{$this->getIdCitaMedica()}'";
@@ -81,14 +78,14 @@ class CitasMedicas {
            numeroIdentificacionBeneficiario,
            nombresBeneficiario, 
            apellidosBeneficiario, 
-           numeroConsultorio,
            ct.agendas_medicas_idAgendasMedica,
            nombresEmpleado, 
-           apellidosEmpleado
+           apellidosEmpleado,
+			c.numeroConsultorio
         FROM citas_medicas ct
         INNER JOIN beneficiarios b ON b.idBeneficiario = ct.beneficiarios_idBeneficiario
-        INNER JOIN consultorios c ON c.idConsultorio = ct.consultorios_idConsultorio
         INNER JOIN agendas_medicas am ON am.idAgendaMedica = ct.agendas_medicas_idAgendasMedica
+		INNER JOIN consultorios c ON c.idConsultorio = am.consultorios_idConsultorio
         INNER JOIN empleados e ON e.idEmpleado = am.empleados_idEmpleado
         INNER JOIN hora_20 hs ON hs.idhora_20 = am.hora_20_idhora_20
         WHERE estadoCitaMedica != 4";
@@ -108,15 +105,14 @@ class CitasMedicas {
            numeroIdentificacionBeneficiario,
            nombresBeneficiario, 
            apellidosBeneficiario, 
-           numeroConsultorio,
            ct.agendas_medicas_idAgendasMedica,
            nombresEmpleado, 
            apellidosEmpleado,
-           am.idAgendaMedica
+			c.numeroConsultorio
         FROM citas_medicas ct
         INNER JOIN beneficiarios b ON b.idBeneficiario = ct.beneficiarios_idBeneficiario
-        INNER JOIN consultorios c ON c.idConsultorio = ct.consultorios_idConsultorio
         INNER JOIN agendas_medicas am ON am.idAgendaMedica = ct.agendas_medicas_idAgendasMedica
+		INNER JOIN consultorios c ON c.idConsultorio = am.consultorios_idConsultorio
         INNER JOIN empleados e ON e.idEmpleado = am.empleados_idEmpleado
         INNER JOIN hora_20 hs ON hs.idhora_20 = am.hora_20_idhora_20
         WHERE estadoCitaMedica = 4";
@@ -135,14 +131,14 @@ class CitasMedicas {
            numeroIdentificacionBeneficiario,
            nombresBeneficiario, 
            apellidosBeneficiario, 
-           numeroConsultorio,
            ct.agendas_medicas_idAgendasMedica,
            nombresEmpleado, 
-           apellidosEmpleado
+           apellidosEmpleado,
+			c.numeroConsultorio
         FROM citas_medicas ct
         INNER JOIN beneficiarios b ON b.idBeneficiario = ct.beneficiarios_idBeneficiario
-        INNER JOIN consultorios c ON c.idConsultorio = ct.consultorios_idConsultorio
         INNER JOIN agendas_medicas am ON am.idAgendaMedica = ct.agendas_medicas_idAgendasMedica
+		INNER JOIN consultorios c ON c.idConsultorio = am.consultorios_idConsultorio
         INNER JOIN empleados e ON e.idEmpleado = am.empleados_idEmpleado
         INNER JOIN hora_20 hs ON hs.idhora_20 = am.hora_20_idhora_20
         WHERE am.fechaAgendaMedica = CURDATE()";
@@ -161,14 +157,14 @@ class CitasMedicas {
            numeroIdentificacionBeneficiario,
            nombresBeneficiario, 
            apellidosBeneficiario, 
-           numeroConsultorio,
            ct.agendas_medicas_idAgendasMedica,
            nombresEmpleado, 
-           apellidosEmpleado
+           apellidosEmpleado,
+			c.numeroConsultorio
         FROM citas_medicas ct
         INNER JOIN beneficiarios b ON b.idBeneficiario = ct.beneficiarios_idBeneficiario
-        INNER JOIN consultorios c ON c.idConsultorio = ct.consultorios_idConsultorio
         INNER JOIN agendas_medicas am ON am.idAgendaMedica = ct.agendas_medicas_idAgendasMedica
+		INNER JOIN consultorios c ON c.idConsultorio = am.consultorios_idConsultorio
         INNER JOIN empleados e ON e.idEmpleado = am.empleados_idEmpleado
         INNER JOIN hora_20 hs ON hs.idhora_20 = am.hora_20_idhora_20
         WHERE b.numeroIdentificacionBeneficiario = '{$this->getIdentificacionBeneficiario()}'
@@ -180,7 +176,6 @@ class CitasMedicas {
         $sql = "UPDATE citas_medicas SET 
             comentariosCitaMedica='{$this->getComentariosCitaMedica()}',
             estadoCitaMedica='{$this->getEstadoCitaMedica()}',
-            consultorios_idConsultorio='{$this->getIdConsultorio()}',
             agendas_medicas_idAgendasMedica='{$this->getIdAgendaMedica()}' 
             WHERE idCitaMedica='{$this->getIdCitaMedica()}'";
         return $this->conexion->consultaSimple($sql);

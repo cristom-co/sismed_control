@@ -58,6 +58,9 @@ Vista::mostrar('plantillas/_menuLateral');
                                     Fecha
                                 </th>
                                 <th>
+                                    Consultorio
+                                </th>
+                                <th>
                                     Identificacion
                                 </th>
                                 <th>
