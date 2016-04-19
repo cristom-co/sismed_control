@@ -89,6 +89,9 @@ Vista::mostrar('plantillas/_menuLateral');
 </div><!-- /#page-wrapper -->
 <?php Vista::mostrar('plantillas/_pie', $datos); ?>
 <script type="text/javascript">
+
+
+
     $.post('<?php echo URL_BASE; ?>usuarios/listarUsuarios', {}, function (data) {
         var datos = JSON.parse(data);
         var filas;

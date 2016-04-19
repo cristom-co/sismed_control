@@ -125,7 +125,7 @@ Vista::mostrar('plantillas/_menuLateral');
             </div>
         </div>
         
-        <div class="panel panel-info">
+        <div id="formulaMedica" class="panel panel-info">
             <div class="panel-heading">Formula Medica</div>
             <div class="panel-body">
                 <table class="table table-bordered">
@@ -161,13 +161,36 @@ Vista::mostrar('plantillas/_menuLateral');
         </div>
         <input type="hidden" id="idEpisodio" name="idEpisodio" value="<?php echo $episodio[0]['idEpisodio'] ?>"/>
         <input type="hidden" id="idFormula" name="idFormula" value="<?php echo $formula[0]['idFormulaMedica'] ?>"/>
+        
+        <!--Funcion para imprimir el documento fisico-->
+        <style type='text/css' media='print'> 
+            .noimp {display:none} 
+        </style>
+        <button class="btn btn-primary noimp" id="btnImprimir" type="button" ><i class='fa fa-print fa-10x'></i> Imprimir</button>
+        
+        <button type="button" id="btnImprimirFormula" class="btn btn-primary noimp" onclick="javascript:imprSelec('formulaMedica')"><i class='fa fa-print fa-10x'></i> Imprimir Formula</button>
     </div>
+
 </div><!-- /.container-fluid -->
 </div><!-- /#page-wrapper -->
 <?php Vista::mostrar('plantillas/_pie', $datos); ?>
 
-<script>
+<script type="text/javascript">
+
+	function imprSelec(formulaMedica){
+    	var ficha=document.getElementById(formulaMedica);
+    	var ventimp=window.open(' ','popimpr');
+    	ventimp.document.write(ficha.innerHTML);
+    	ventimp.document.close();
+    	ventimp.print();
+    	ventimp.close();
+    }
     
+    $('#btnImprimir').click(function(){
+        window.print();
+    });
+    
+
     var idEpisodio = $('#idEpisodio').val();
     $.post('<?php echo URL_BASE; ?>consultas/listarOrdenes', {idEpisodio:idEpisodio}, function(data) {
         var datos= JSON.parse(data);

@@ -49,12 +49,19 @@ class usuariosControlador {
 
     public function editarUsuario() {
         if (isset($_POST['btnEditarUsuario'])) {
+            
             $datos['titulo'] = "Editar usuario";
             $this->modelo->setIdUsuario($_POST['idUsuario']);
+            
             if (!isset($_POST['btnGuardar'])) {
                 $datos['usuario'] = $this->modelo->listarIdUsuario();
                 Vista::mostrar('editarUsuario', $datos);
             } else {
+                
+                $this->modelo->setContrasenia($_POST['txfContrasenia']);
+                $this->modelo->setIdRol($_POST['cmbRol']);
+                $this->modelo->setEstadoUsuario($_POST['cmbEstadoUsuario']);
+                
                 $datos['mensaje'] = $this->modelo->editarUsuario();
                 Vista::mostrar('usuarios', $datos);
             }
@@ -62,6 +69,34 @@ class usuariosControlador {
             header("location: usuarios");
         }
     }
+    
+    public function editarContrasenia (){
+            // echo '-'.$_POST['txfContraseniaActual'].'<br>';
+            // echo '-'.$_POST['idUsuario'].'<br>';
+            $this->modelo->setContrasenia($_POST['txfContraseniaActual']);
+            $this->modelo->setIdUsuario($_POST['idUsuario']);
+            $respuesta = $this->modelo->verificarContrasenia();
+            if ($respuesta)
+            {
+                $this->modelo->setContrasenia($_POST['txfNuevaContrasenia']);
+                $registro = $this->modelo->editarContrasenia();
+                if ($registro)
+                {
+                    $datos['mensaje'] = "Registro Actulizado Correctamente";
+                }
+                else
+                {
+                    $datos['mensaje'] = "Fallo La Actualizacion Del Registro";
+                }
+                Vista::mostrar('usuarios',$datos);   
+            } 
+            else
+            {
+                $datos['mensaje'] = "La contraseña actual no corresponde";
+                Vista::mostrar('usuarios',$datos);
+            }
+    }
+    
 
     public function usuarios() {
         $datos['titulo'] = "Usuarios";
