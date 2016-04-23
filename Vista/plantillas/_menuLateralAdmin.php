@@ -73,6 +73,9 @@
         <li>
             <a href="<?php echo URL_BASE; ?>historialMedico/historial"><i class="fa fa-h-square fa-2x"></i> Historial Medico </a>
         </li>
+        <li>
+            <a href="<?php echo URL_BASE; ?>reportes/reportes"><i class="fa fa-print fa-2x"></i> Reportes </a>
+        </li>
         
     </ul>
 </div>
