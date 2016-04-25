@@ -102,8 +102,8 @@ class Reportes {
                 INNER JOIN tipos_documentos ON tipos_documentos_idTipoDocumento = idTipoDocumento 
                 INNER JOIN generos ON generos_idGenero = idGenero 
                 INNER JOIN centros_formacion ON centros_formacion_idCentroFormacion = idCentroFormacion 
-                INNER JOIN regionales ON regionales_idRegional = idRegional
-				WHERE centros_formacion_idCentroFormacion = {'$this->getIdCentroFormacion()'}";
+                INNER JOIN regionales ON regionales_idRegional = idRegional 
+				WHERE centros_formacion_idCentroFormacion = {$this->getIdCentroFormacion()}";
         return $this->conexion->consulta($sql);
     }
 
