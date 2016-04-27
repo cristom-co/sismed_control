@@ -26,31 +26,35 @@ Vista::mostrar('plantillas/_menuLateral');
         <div class="row" style="margin-top: 20px"></div>
         
         <div class="row">
-            <form action="<?php echo URL_BASE . 'reportes/consultasFechas'; ?>" method="POST" class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
+            <form class="form-group" action="<?php echo URL_BASE . 'reportes/consultasFechas'; ?>" method="POST" class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
                 <legend>Reporte por fecha</legend>
                 <div class="form-group col-xs-5">
-                    <input type="text" id="txfechaInicio" name="txfechaInicio" class="form-control" placeholder="Fecha inicio">
+                    <input type="text" id="txfechaInicio" name="txfechaInicio" class="form-control" placeholder="Fecha inicio" required>
                 </div>
                 <div class="form-group col-xs-5">
-                    <input type="text" id="txfechaFin" name="txfechaFin" class="form-control" placeholder="Fecha fin">
+                    <input type="text" id="txfechaFin" name="txfechaFin" class="form-control" placeholder="Fecha fin" required>
                 </div>
                 <div class="form-group col-xs-2">
                     <button type="submit" class="btn btn-primary" name="btnGenerar" id="btnGenerar"> GENERAR </button>
+            
                 </div>
             </form>
         </div>
+        
+
+        
         <div class="row" style="margin-top: 10px"></div>
         <div class="row">
-            <form action="<?php echo URL_BASE . 'reportes/consultaDoctor'; ?>" method="POST" class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
+            <form action="<?php echo URL_BASE . 'reportes/consultaDoctor'; ?>" method="POST" class="col-xs-12">
                 <legend>Reporte por fecha y medico</legend>
                 <div class="form-group col-xs-3">
-                    <input type="text" id="txfechaInicio1" name="txfechaInicio1" class="form-control" placeholder="Fecha inicio">
+                    <input type="text" id="txfechaInicio1" name="txfechaInicio1" class="form-control" placeholder="Fecha inicio" required>
                 </div>
                 <div class="form-group col-xs-3">
-                    <input type="text" id="txfechaFin1" name="txfechaFin1" class="form-control" placeholder="Fecha fin">
+                    <input type="text" id="txfechaFin1" name="txfechaFin1" class="form-control" placeholder="Fecha fin" required>
                 </div>
                 <div class="form-group col-xs-3">
-                    <input type="text" id="txfDocumentoMedico" name="txfDocumentoMedico" class="form-control" placeholder="Documento medico">
+                    <input type="text" id="txfDocumentoMedico" name="txfDocumentoMedico" class="form-control" placeholder="Documento medico" required>
                 </div>
                 <div class="form-group col-xs-2 col-xs-offset-1">
                     <button type="submit" class="btn btn-primary" name="btnGenerar1" id="btnGenerar1"> GENERAR </button>
@@ -59,7 +63,7 @@ Vista::mostrar('plantillas/_menuLateral');
         </div>
         <div class="row" style="margin-top: 10px"></div>
         <div class="row">
-            <form action="<?php echo URL_BASE . 'reportes/consultaFuncionario'; ?>" method="POST" class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
+            <form action="<?php echo URL_BASE . 'reportes/consultaFuncionario'; ?>" method="POST" class="col-xs-12">
                 <legend>Reporte funcionarios por centro de formacion</legend>
                 <div class="form-group col-xs-10">
                         <select class="form-control" name="cmbCentroFormacion" id="cmbCentroFormacion" required>
@@ -73,10 +77,10 @@ Vista::mostrar('plantillas/_menuLateral');
         </div>
         <div class="row" style="margin-top: 10px"></div>
         <div class="row">
-            <form action="<?php echo URL_BASE . 'reportes/consultaBeneficiario'; ?>" method="POST" class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
+            <form action="<?php echo URL_BASE . 'reportes/consultaBeneficiario'; ?>" method="POST" class="col-xs-12 ">
                 <legend>Reporte citas beneficiario</legend>
                 <div class="form-group col-xs-10">
-                    <input type="text" id="txfDocumentoBeneficiario" name="txfDocumentoBeneficiario" class="form-control" placeholder="Documento Beneficiario">
+                    <input type="text" id="txfDocumentoBeneficiario" name="txfDocumentoBeneficiario" class="form-control" placeholder="Documento Beneficiario" required>
                 </div>
                 <div class="form-group col-xs-2">
                     <button type="submit" class="btn btn-primary" name="btnGenerar3" id="btnGenerar3"> GENERAR </button>
@@ -85,13 +89,13 @@ Vista::mostrar('plantillas/_menuLateral');
         </div>
         <div class="row" style="margin-top: 10px"></div>
         <div class="row">
-            <form action="<?php echo URL_BASE . 'reportes/consultaRemisiones'; ?>" method="POST" class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
+            <form action="<?php echo URL_BASE . 'reportes/consultaRemisiones'; ?>" method="POST" class="col-xs-12 ">
                 <legend>Reporte remisiones</legend>
                 <div class="form-group col-xs-5">
-                    <input type="text" id="txfechaInicio2" name="txfechaInicio2" class="form-control" placeholder="Fecha inicio">
+                    <input type="text" id="txfechaInicio2" name="txfechaInicio2" class="form-control" placeholder="Fecha inicio" required>
                 </div>
                 <div class="form-group col-xs-5">
-                    <input type="text" id="txfechaFin2" name="txfechaFin2" class="form-control" placeholder="Fecha fin">
+                    <input type="text" id="txfechaFin2" name="txfechaFin2" class="form-control" placeholder="Fecha fin" required>
                 </div>
                 <div class="form-group col-xs-2">
                     <button type="submit" class="btn btn-primary" name="btnGenerar4" id="btnGenerar4"> GENERAR </button>

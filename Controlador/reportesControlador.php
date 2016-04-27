@@ -8,6 +8,10 @@ class reportesControlador{
         if (!$_SESSION['valido']) {
             header('Location: ' . URL_BASE);
         }
+          if ($_SESSION['rol'] != 1) {
+            header('location: '.URL_BASE);
+        }
+        
         $this->modelo = Modelo::cargar('Reportes');
     }
     
