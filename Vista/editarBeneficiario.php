@@ -91,8 +91,6 @@ Vista::mostrar('plantillas/_menuLateral');
                 </select>
             </div>
             <button type="submit" class="btn btn-primary" name="btnGuardar" id="btnGuardar"> GUARDAR </button>
-            <button class="btn btn-primary" name="btnContrasena" id="btnContrasena">CAMBIAR CONTRASEÑA</button> 
-            <button class="btn btn-primary" name="btnAtras" id="btnAtras"><a style="text-decoration: none;color:#fff" href="<?php echo URL_BASE . 'beneficiarios/beneficiarios'; ?>">ATRAS</a></button>
             <input type="hidden" name="idBeneficiario" value="<?php echo $beneficiario[0]['idBeneficiario']; ?>">
         </form>
     </div><!-- /.container-fluid -->
