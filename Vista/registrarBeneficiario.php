@@ -83,25 +83,4 @@
         </div>
     </div>
 </div>
-<script type="text/javascript">
-    $.post('<?php echo URL_BASE; ?>tipos/listarTipoDocumento', {}, function (data) {
-        var datos = JSON.parse(data);
-        $.each(datos, function (i, v) {
-            $('#cmbTipoDocumento').append('<option value="' + v.idTipoDocumento + '">' + v.tipoDocumento + '</option>');
-        });
-    });
-
-    $.post('<?php echo URL_BASE; ?>funcionarios/listarFuncionarios', {}, function (data) {
-        var datos = JSON.parse(data);
-        $.each(datos, function (i, v) {
-            $('#cmbIdFuncionario').append('<option value="' + v.idFuncionario + '">' + v.numeroIdentificacionFuncionario + '</option>');
-        });
-    });
-    
-    $('#txfFechaNacimientoBeneficiario').datetimepicker({
-	    timepicker: false,
-    	format: 'Y-m-d', 
-    	maxDate: '0'
-    });
-
-</script>
+<script type="text/javascript" src="<?php echo URL_BASE; ?>Vista/js/registrarBeneficiario.js"></script>

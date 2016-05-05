@@ -55,10 +55,10 @@
     });
 
 var f=new Date();
-if ((f.getMonth() -1)<10) {
-	var mes = '0'+(f.getMonth() -1);
+if ((f.getMonth() +1)<10) {
+	var mes = '0'+(f.getMonth() +1);
 }else{
-	var mes = (f.getMonth() -1);
+	var mes = (f.getMonth() +1);
 }
 
 var hoy = f.getFullYear() + "-" + mes + "-" + f.getDate();
