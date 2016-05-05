@@ -175,6 +175,21 @@ Vista::mostrar('plantillas/_menuLateral');
 </div><!-- /#page-wrapper -->
 <?php Vista::mostrar('plantillas/_pie', $datos); ?>
 
+    <script type="text/javascript" src="">
+    function impriSelec(formulaMedica){
+        var css = ventimp.document.createElement("link");
+        css.setAttribute("href", "miestilo.css");
+        css.setAttribute("rel", "stylesheet");
+        css.setAttribute("type", "text/css");
+        css.setAttribute("media", "print");
+        ventimp.document.head.appendChild(css);
+    }
+    
+    $('#btnImprimirFormula').click(function(){
+        window.print();
+        });
+    </script>
+
 <script type="text/javascript">
 
 	function imprSelec(formulaMedica){
