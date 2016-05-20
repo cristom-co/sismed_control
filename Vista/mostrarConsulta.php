@@ -126,11 +126,23 @@ Vista::mostrar('plantillas/_menuLateral');
         </div>
         
         <div id="formulaMedica" class="panel panel-info">
-            <div class="panel-heading">Formula Medica</div>
+            
+
+        <div class="panel-heading">Formula Medica</div>
+        
+            <div class="responsive">
+                <img src="<?php echo URL_BASE; ?>Vista/img/logo2.png" alt="" class="img-responsive" style="max-widht:150px; max-height:150px;">
+                <ul>
+                    <li class="letraTitulos">
+                    Sistema de gestión de citas y formulación médica
+                    </li>
+                </ul>
+            </div>
+            
             <div class="panel-body">
                 <table class="table table-bordered">
                     <tr>
-                        <td>Observaciones de la formula medica: </td>
+                        <td>Observaciones de la formula medica:</td>
                         <td><?php echo $formula[0]['observacionesFormulaMedica'] ?></td>
                     </tr>
                 </table>
@@ -163,10 +175,11 @@ Vista::mostrar('plantillas/_menuLateral');
         <input type="hidden" id="idFormula" name="idFormula" value="<?php echo $formula[0]['idFormulaMedica'] ?>"/>
         
         <!--Funcion para imprimir el documento fisico-->
+        
         <style type='text/css' media='print'> 
             .noimp {display:none} 
         </style>
-        <button class="btn btn-primary noimp" id="btnImprimir" type="button" ><i class='fa fa-print fa-10x'></i> Imprimir</button>
+        <button class="btn btn-primary noimp" id="btnImprimir" type="button" onclick="javascript:imprSelec('page-wrapper')" ><i class='fa fa-print fa-10x'></i> Imprimir</button>
         
         <button type="button" id="btnImprimirFormula" class="btn btn-primary noimp" onclick="javascript:imprSelec('formulaMedica')"><i class='fa fa-print fa-10x'></i> Imprimir Formula</button>
     </div>
@@ -175,36 +188,17 @@ Vista::mostrar('plantillas/_menuLateral');
 </div><!-- /#page-wrapper -->
 <?php Vista::mostrar('plantillas/_pie', $datos); ?>
 
-    <script type="text/javascript" src="">
-    function impriSelec(formulaMedica){
-        var css = ventimp.document.createElement("link");
-        css.setAttribute("href", "miestilo.css");
-        css.setAttribute("rel", "stylesheet");
-        css.setAttribute("type", "text/css");
-        css.setAttribute("media", "print");
-        ventimp.document.head.appendChild(css);
-    }
-    
-    $('#btnImprimirFormula').click(function(){
-        window.print();
-        });
-    </script>
-
 <script type="text/javascript">
 
-	function imprSelec(formulaMedica){
-    	var ficha=document.getElementById(formulaMedica);
-    	var ventimp=window.open(' ','popimpr');
-    	ventimp.document.write(ficha.innerHTML);
-    	ventimp.document.close();
-    	ventimp.print();
-    	ventimp.close();
+// Funcion para imprimir un div content
+
+	function imprSelec(el){
+    	var restorepage = document.body.innerHTML;
+    	var imprSelec = document.getElementById(el).innerHTML;
+    	document.body.innerHTML = imprSelec;
+    	window.print();
+    	document.body.innerHTML = restorepage;
     }
-    
-    $('#btnImprimir').click(function(){
-        window.print();
-    });
-    
 
     var idEpisodio = $('#idEpisodio').val();
     $.post('<?php echo URL_BASE; ?>consultas/listarOrdenes', {idEpisodio:idEpisodio}, function(data) {
