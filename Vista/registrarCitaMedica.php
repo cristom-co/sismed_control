@@ -60,8 +60,12 @@ if ((f.getMonth() +1)<10) {
 }else{
 	var mes = (f.getMonth() +1);
 }
-
-var hoy = f.getFullYear() + "-" + mes + "-" + f.getDate();
+if ((f.getDate() +1)<10) {
+	var dia = '0'+(f.getMonth() +3);
+}else{
+	var dia = (f.getMonth() +3);
+}
+var hoy = f.getFullYear() + "-" + mes + "-" + dia;
    
 $('#cmbEmpleado').change(function () {
     var idEmpleado = $(this).val();
@@ -71,10 +75,11 @@ $('#cmbEmpleado').change(function () {
         var fechasDisponibles=[]; 
         var datos = JSON.parse(data);
         $.each(datos, function (i, v) {
-            if ((hoy < v.fechaAgendaMedica)||(hoy == v.fechaAgendaMedica)) {
+            if (hoy < v.fechaAgendaMedica) {
                 fechasDisponibles[f]=v.fechaAgendaMedica;
                 f++;
             }
+            console.log(hoy);
         });
         if(fechasDisponibles.length !== 0){
             $('#txfFechaCita').datetimepicker({

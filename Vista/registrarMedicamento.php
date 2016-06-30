@@ -13,8 +13,8 @@
                         <input type="text" id="txfCodigoMedicamento" name="txfCodigoMedicamento" class="form-control" placeholder="Codigo" required maxlength="20">
                     </div>
                     <div class="form-group">
-                        <label for="txfNombreGenericoMedicamento">Nombre Generico</label>
-                        <input type="text" id="txfNombreGenericoMedicamento" name="txfNombreGenericoMedicamento" class="form-control" placeholder="Nombre Generico" required maxlength="45">
+                        <label for="txfNombreMedicamento">Nombre Generico</label>
+                        <input type="text" id="txfNombreMedicamento" name="txfNombreMedicamento" class="form-control" placeholder="Nombre Generico" required maxlength="45">
                     </div>
                     <div class="form-group">
                         <label for="txfDescripcionMedicamento">Descripcion</label>

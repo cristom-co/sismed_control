@@ -82,7 +82,7 @@ class usuariosControlador {
                 $registro = $this->modelo->editarContrasenia();
                 if ($registro)
                 {
-                    $datos['mensaje'] = "Registro Actulizado Correctamente";
+                    $datos['mensaje'] = "Registro Actualizado Correctamente";
                 }
                 else
                 {
